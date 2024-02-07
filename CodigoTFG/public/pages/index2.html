@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuario</title>
+    <link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+    <div class="registrer-container">
+        <h2>Crear Usuario</h2>
+        <form>
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="opciones">Selecciona una opción:</label>
+            <select id="opciones">
+                <option value="user">user</option>
+                <option value="moderator">moderator</option>
+                <option value="admin">admin</option>
+            </select>
+
+            <button id="crear-usuario-boton" type="submit">Crear usuario</button>
+            <a href="/" class="redirect-link">Ir a inicio</a>
+        </form>
+    </div>
+    <script src="../signup.js"></script>
+</body>
+</html>
