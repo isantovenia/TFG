@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  <link ref="json" type="text/json" href="./roles.json">
+  
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script src="./script.js"></script>
+  
+  <form onsubmit="return false" autocomplete="off">
+
+    <div class="signupContainer">
+
+      <div class="signupTitle center">SIGN UP</div> 
+
+      <input id="formUsernameInput" class="userInput" type="text" placeholder="username" />
+      <input id="formEmailInput" class="emailInput" type="email" placeholder="email" />
+      <input id="formPasswordInput" class="passwordInput" type="password" placeholder="password" />
+      <select id="formRoleInput" class="roleInput">
+        <option value="" disabled selected>Role</option>
+        <option value="user">User</option>
+        <option value="moderator">Moderator</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <div class="signIn center"><a href="/login">Sign in</a></div>
+      
+      <button class="submitButton" onclick="submitData()">SIGN UP</input>
+
+    </div>
+
+  </form>
+</body>
+</html>

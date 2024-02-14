@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script src="./script.js"></script>
+  
+  <form onsubmit="return false" autocomplete="off">
+    <div class="loginContainer">
+      <div class="loginTitle center">LOG IN</div> 
+      <input id="formUsernameInput" class="userInput" type="text" placeholder="username" />
+      <input id="formPasswordInput" class="passwordInput" type="password" placeholder="password" />
+      <div class="rememberMe center">
+        <input id="formRememberInput" type="checkbox">Remember me</input>
+      </div>
+      <div class="signUp center"><a href="/signup">Sign up</a></div>
+      <button class="submitButton" onclick="submitData()">SIGN IN</input>
+    </div>
+  </form>
+</body>
+</html>

@@ -19,7 +19,7 @@ module.exports = function(app) {
   );
 
   app.get(
-    "/api/test/moderator",
+    "/api/test/mod",
     [authJwt.verifyToken, authJwt.isModerator],
     controller.moderatorBoard
   );
@@ -30,9 +30,17 @@ module.exports = function(app) {
     controller.adminBoard
   );
 
-
-  app.get('/api/auth/userfile',
-    [authJwt.verifyToken],
-    controller.checkRole
+  app.get(
+    "/api/getUsers",
+    [authJwt.verifyToken, authJwt.isModeratorOrAdmin],
+    controller.getUsers
   );
+  
+
+  app.get(
+    "/api/user",
+    controller.getUser
+  )
+
+  
 };

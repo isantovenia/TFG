@@ -1,3 +1,7 @@
+/*
+  No subir a git :|
+*/
+
 module.exports = {
-    secret: "bezkoder-secret-key"
-  };
+  secret: 'secreto'
+}

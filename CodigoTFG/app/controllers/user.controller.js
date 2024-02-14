@@ -1,141 +1,55 @@
 const db = require("../models");
 const User = db.user;
-const Role = db.role;
-const { Op } = require('sequelize');
 
 exports.allAccess = (req, res) => {
-  Role.findAll({
-    attributes: ['name']
-  })
-    .then((roles) => {
-      res.status(200).json(roles);
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message });
-    });
+  res.status(200).send("Public Content.");
 };
 
 exports.userBoard = (req, res) => {
-  User.findAll({
-    attributes: ['id', 'username', 'email'],
-    include: [{
-      model: Role,
-      attributes: ['name'],
-      through: { attributes: [] },
-      where: {
-        name: 'user'
-      }
-    }]
-  })
-    .then(users => {
-      const formattedUsers = users.map(user => ({
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        roles: user.roles.map(role => role.name)
-      }));
-  
-      res.status(200).json(formattedUsers);
-    })
-    .catch(err => {
-      res.status(500).json({ message: err.message });
-    });
-
+  res.status(200).send("User Content.");
 };
 
 exports.adminBoard = (req, res) => {
-
-  User.findAll({
-    attributes: ['id', 'username', 'email', 'createdAt'],
-    include: [{
-      model: Role,
-      attributes: ['name'],
-      through: { attributes: [] } 
-    }]
-  })
-  .then(users => {
-
-    const formattedUsers = users.map(user => ({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      createdAt : user.createdAt,
-      roles: user.roles.map(role => role.name)
-    }));
-
-    res.status(200).json(formattedUsers);
-  })
-  .catch(err => {
-    res.status(500).json({ message: err.message });
-  });
+  res.status(200).send("Admin Content.");
 };
 
 exports.moderatorBoard = (req, res) => {
+  res.status(200).send("Moderator Content.");
+};
 
-  User.findAll({
-    attributes: ['id', 'username', 'email'],
-    include: [{
-      model: Role,
-      attributes: ['name'],
-      through: { attributes: [] },
-      where: {
-        name: {
-          [Op.or]: ['user', 'moderator']
-        }
-      }
-    }]
-  })
-    .then(users => {
-      const formattedUsers = users.map(user => ({
+exports.getUsers = (req, res) => {
+
+  User.findAll()
+  .then(async (users) => {
+    const roledUsers = users.map(async user => {
+      const roles = await user.getRoles()
+      return {
         id: user.id,
         username: user.username,
         email: user.email,
-        roles: user.roles.map(role => role.name)
-      }));
-  
-      res.status(200).json(formattedUsers);
+        roles: roles.map(role => role.name)
+      }
     })
-    .catch(err => {
-      res.status(500).json({ message: err.message });
-    });
-
-};
-
-exports.checkRole = (req, res) => {
-
-  User.findByPk(req.userId, { 
-    attributes: ['id', 'username', 'email']
+    return Promise.all(roledUsers)
   })
-    .then(user => {
-      if (!user) {
-        return res.status(404).send({ message: 'User not found.' });
+  .then(async users => {    
+    res.status(200).send({users: users})
+  })
+}
+
+exports.getUser = (req, res) => {
+  console.log(req.query.id)
+  User.findOne({    where: {
+    id: req.query.id
+  }})
+  .then(user => {
+    res.status(200).send({
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email
       }
-      
-      if(user.getRoles() != null){
-        user.getRoles().then(roles => {
-          const filePath = getRouteBasedOnRole(roles);
-          
-          res.redirect(filePath);
-        });
-      }
-      
     })
-    .catch(err => {
-      res.status(500).send({ message: err.message });
-      res.redirect('/')
-    });
-};
-
-function getRouteBasedOnRole(roles) {
-  
-  const roleName = roles[0].dataValues.name;
-
-  switch (roleName) {
-    case 'admin':
-      return '/admin';
-    case 'moderator':
-      return '/moderator';
-    default:
-      return '/user';
-  }
+  })
+  .catch(error => res.status(500).send({message: error.message}))
 }
