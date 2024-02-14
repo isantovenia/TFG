@@ -28,7 +28,7 @@ db.sequelize.sync()
 
 
 const path = require('path')
-app.get('/', (req, res) => res.redirect('/login'))
+app.use("/", express.static(path.join(__dirname, './app/views/inicio')) );
 app.use("/login", express.static(path.join(__dirname, './app/views/login')) );
 app.use("/signup", express.static(path.join(__dirname, './app/views/signup')) );
 app.use("/home", express.static(path.join(__dirname, './app/views/home')) );

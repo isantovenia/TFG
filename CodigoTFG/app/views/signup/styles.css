@@ -1,5 +1,5 @@
 body {
-  background-color: #01d6bd;
+  background-color: white;
 }
 
 .signupContainer {
@@ -36,7 +36,7 @@ input {
 input:focus-visible, textarea:focus-visible {
   outline: none;
   border: none;
-  border-bottom: solid 2px #01d6bd;
+  background-color: white;
 }
 
 .signupTitle {
@@ -83,21 +83,21 @@ option {
   min-width: 70px;
 }
 .signIn > a {
-  color: #00a693 ;
+  color: #ffffff ;
 } 
 
 .submitButton {
   grid-area: 6 / 1 / 7 / 4;border-radius: 50px;
   border: none;
-  background-color: #01d6bd;
+  background-color: white;
   color: white;
   height: 40px;
 }
 .submitButton:hover {
-  background-color: #00a693;
+  background-color: white;
 }
 .submitButton:active {
-  background-color: #00786a;
+  background-color: white;
 }
 
 

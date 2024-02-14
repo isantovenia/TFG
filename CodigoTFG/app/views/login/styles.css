@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  background-color: #01d6bd;
+  background-color: white;
 }
 
 /********** LOGIN FORM **********/
@@ -43,7 +43,7 @@ input {
 input:focus-visible, textarea:focus-visible {
   outline: none;
   border: none;
-  border-bottom: solid 2px #01d6bd;
+  background-color: white;
 }
 
 /********** FORM TITLE **********/
@@ -90,15 +90,15 @@ input:focus-visible, textarea:focus-visible {
   grid-area: 5 / 1 / 6/ 4;
   border-radius: 50px;
   border: none;
-  background-color: #01d6bd;
+  background-color: white;
   color: white;
   height: 40px;
 }
 .submitButton:hover {
-  background-color: #00a693;
+  background-color: white;
 }
 .submitButton:active {
-  background-color: #00786a;
+  background-color: white;
 }
 
 /********** PAGE FOOTER **********/
