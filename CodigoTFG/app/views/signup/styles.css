@@ -18,7 +18,7 @@ body {
   grid-row-gap: 0px;
 
   padding: 50px 20px;
-  background-color: white;
+  background-color: rgb(58, 147, 182);
   border-radius: 15px;
 
   min-width: 350px !important;
@@ -29,38 +29,41 @@ body {
 
 input {
   border: none;
-  border-bottom: solid 2px #E0E0E0;
+  border-bottom: solid 2px #ffffff;
   font-size: 20px;
   text-indent: 50px;
 }
 input:focus-visible, textarea:focus-visible {
   outline: none;
   border: none;
-  background-color: white;
 }
 
 .signupTitle {
   grid-area: 1 / 1 / 2 / 4;
   font-size: 30px;
   font-weight: 600;
+  color: rgb(255, 255, 255);
 }
 .userInput {
   grid-area: 2 / 1 / 3 / 4;
   background: url('./icons/user-solid.svg') no-repeat ;
   background-size: 20px;
   background-position: 5% 50%;
+  color: rgb(255, 255, 255);
 }
 .emailInput {
   grid-area: 3 / 1 / 4 / 4;
   background: url('./icons/envelope-solid.svg') no-repeat;
   background-size: 20px;
   background-position: 5% 50%;
+  color: rgb(255, 255, 255);
 }
 .passwordInput {
   grid-area: 4 / 1 / 5 / 4;
   background: url('./icons/lock-solid.svg') no-repeat;
   background-size: 20px;
   background-position: 5% 50%;
+  color: rgb(255, 255, 255);
 }
 .roleInput {
   grid-area: 5 / 1 / 6 / 2;
@@ -89,28 +92,17 @@ option {
 .submitButton {
   grid-area: 6 / 1 / 7 / 4;border-radius: 50px;
   border: none;
-  background-color: white;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   height: 40px;
 }
 .submitButton:hover {
-  background-color: white;
+  background-color: rgb(0, 0, 0);
+  color : rgb(255, 255, 255);
 }
 .submitButton:active {
-  background-color: white;
-}
-
-
-.footerInfo {
-  background-color: white;
-  top: 100%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -100%);
-  height: 40px;
-  width: 55%;
-  min-width: 450px !important;
-  border-radius: 50px 50px 0 0;
+  background-color: rgb(30, 255, 0);
+  color: rgb(0, 0, 0);
 }
 
 /********** MISCELANEOUS **********/
