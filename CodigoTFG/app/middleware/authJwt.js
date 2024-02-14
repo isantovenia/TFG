@@ -40,6 +40,8 @@ isAdmin = (req, res, next) => {
       });
       return;
     });
+  }).catch(error => {
+    res.status(500).send({ message: 'Error obteniendo roles del usuario.' });
   });
 };
 
@@ -56,9 +58,13 @@ isModerator = (req, res, next) => {
       res.status(403).send({
         message: "Require Moderator Role!"
       });
+      return;
     });
+  }).catch(error => {
+    res.status(500).send({ message: 'Error obteniendo roles del usuario.' });
   });
 };
+
 
 isModeratorOrAdmin = (req, res, next) => {
   User.findByPk(req.userId).then(user => {

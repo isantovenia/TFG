@@ -19,7 +19,7 @@ module.exports = function(app) {
   );
 
   app.get(
-    "/api/test/mod",
+    "/api/test/moderator",
     [authJwt.verifyToken, authJwt.isModerator],
     controller.moderatorBoard
   );
@@ -28,5 +28,11 @@ module.exports = function(app) {
     "/api/test/admin",
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
+  );
+
+
+  app.get('/api/auth/userfile',
+    [authJwt.verifyToken],
+    controller.checkRole
   );
 };

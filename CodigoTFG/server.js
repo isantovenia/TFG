@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path")
 
 const app = express();
 
 const db = require("./app/models");
-const { signup } = require("./app/controllers/auth.controller");
 const Role = db.role;
 
 db.sequelize.sync({force: true}).then(() => {
@@ -13,8 +13,9 @@ db.sequelize.sync({force: true}).then(() => {
 });
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: "http://localhost:8081"
 };
+
 
 app.use(cors(corsOptions));
 
@@ -24,38 +25,28 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const path = require('path');
-
-app.use(express.static(__dirname+'/public'))
+app.use(express.static(path.resolve(__dirname, 'Front')));
 
 // simple route
 app.get("/", (req, res) => {
-  res.sendFile(__dirname+"/public/pages/index.html");
+  res.sendFile(path.resolve(__dirname, 'Front', 'public.html'))
 });
 
-app.get("/login", (req, res) => {
-  res.sendFile(__dirname+"/public/pages/index3.html");
+app.get("/logInSignUp", (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'Front/logInSignUp.html'))
 });
 
-app.get("/signUp", (req, res) => {
-  res.sendFile(__dirname+"/public/pages/index2.html");
+app.get("/user", (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'Front/user.html'))
 });
 
-app.get("/entradoUser", (req, res) => {
-  res.sendFile(__dirname+"/public/pages/index4.html");
+app.get("/admin", (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'Front/admin.html'))
 });
 
-app.get("/entradoModerator", (req, res) => {
-  res.sendFile(__dirname+"/public/pages/index5.html");
+app.get("/moderator", (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'Front/moderator.html'))
 });
-
-app.get("/entradoAdmin", (req, res) => {
-  res.sendFile(__dirname+"/public/pages/index6.html");
-});
-
-// routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
 
 
 // set port, listen for requests
@@ -63,6 +54,10 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
+
 
 function initial() {
   Role.create({
