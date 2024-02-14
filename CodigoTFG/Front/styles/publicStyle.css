@@ -6,35 +6,11 @@ body {
     align-items: center;
     min-height: 100vh;
     font-family: 'Jost', sans-serif;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
 
 #container {
     text-align: center;
     color: #fff;
-}
-
-h1 {
-    font-size: 3em; 
-}
-
-#miTabla {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    color: #fff; 
-}
-
-th {
-    background-color: #573b8a;
 }
 
 #loginButton {

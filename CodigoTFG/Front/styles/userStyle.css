@@ -6,7 +6,6 @@ body {
     align-items: center;
     min-height: 100vh;
     font-family: 'Jost', sans-serif;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
   }
 
   .main {
@@ -15,16 +14,16 @@ body {
     overflow: hidden;
     background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
     border-radius: 10px;
-    box-shadow: 5px 20px 50px #000;
+    box-shadow: 5px 20px 50px #000000;
   }
 
   h1 {
-    color: #fff;
+    color: #10c00a;
     text-align: center;
   }
 
   h2{
-    color: #fff;
+    color: #ffffff;
     text-align: center;
   }
 
@@ -39,20 +38,20 @@ body {
   th, td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-    color: #fff;
+    border-bottom: 1px solid #1fb191;
+    color: #ff00b3;
   }
 
   th {
-    background-color: #573b8a;
-    color: #fff;
+    background-color: #ecaade;
+    color: #4f6125;
   }
 
   #cerrarSesionBtn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #573b8a;
+    background: #030303;
     color: #fff;
     padding: 10px 20px;
     border: none;
