@@ -1,4 +1,19 @@
-#user-role{
+
+.create-user-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura según sea necesario */
+  }
+  
+  .create-user-container {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #dddddd; /* Línea rodeando todo el contenido */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra similar a Google */
+    background-color: #ffffff; /* Fondo blanco similar a Google */
+  }#user-role{
     width: 300px; /* Ajusta el ancho según tus preferencias */
     height: 30px; /* Ajusta la altura según tus preferencias */
 }
