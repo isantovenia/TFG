@@ -12,9 +12,8 @@ function HistoriaEspaña() {
       <div className="dropdown">
         <button className="dropbtn">Temas</button>
         <div className="dropdown-content">
-          <Link to="/historia-españa/tema1">Historia de España</Link>
-          <a href="#">Tema 2</a>
-          <a href="#">Tema 3</a>
+          <Link to="/historia-españa/tema1">Tema 1</Link>
+          <Link to="/historia-españa/tema2">Tema 2</Link>
         </div>
       </div>
 
