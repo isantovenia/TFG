@@ -1,0 +1,64 @@
+/* Estilos para el banner superior */
+.banner {
+  background-color: #8ec5e5;
+  padding: 20px; /* Añadimos padding uniforme */
+  width: 100%; /* Ocupa toda la anchura disponible */
+  height: 100px; /* Altura fija para el banner */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.logo span {
+  color: #fff;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: #8ec5e5;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Estilos para la barra central */
+.main-content {
+  width: 100%;
+  background-color: #f1f1f1;
+}

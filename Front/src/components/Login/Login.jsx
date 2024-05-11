@@ -21,7 +21,7 @@ const Login = () => {
         const data = await response.json();
         console.log('Inicio de sesión exitoso:', data);
         localStorage.setItem('token', data.accessToken);
-        navigate('/dashboard');
+        navigate('/landing-page');
       } else {
         const errorData = await response.json();
         console.error('Error al iniciar sesión:', errorData);
