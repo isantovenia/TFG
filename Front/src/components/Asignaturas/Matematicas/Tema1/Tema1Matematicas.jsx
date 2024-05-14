@@ -1,16 +1,16 @@
 import React from 'react';
-import './HistoriaEspaña.css';
+import './Tema1Matematicas.css';
 import { Link } from 'react-router-dom';
 
-function HistoriaEspaña() {
+function Tema1Matematicas() {
   const changePage = (page) => {
     // Aquí puedes agregar la lógica para cambiar la página
     console.log(`Cambiando a la página de ${page}`);
   };
 
   return (
-    <div className="main-container">
-      <div className="banner">
+    <div className="container">
+      <div className="blue-banner">
         <a href="/landing-page" target="_blank" rel="noopener noreferrer">
           <img 
             src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
@@ -19,15 +19,8 @@ function HistoriaEspaña() {
           />
         </a>
         <div className="dropdown">
-          <button className="dropbtn temas-btn">Temas</button>
-          <div className="dropdown-content temas-content">
-            <Link to="/historia-españa/tema1">Tema 1</Link>
-            <Link to="/historia-españa/tema2">Tema 2</Link>
-          </div>
-        </div>
-        <div className="dropdown">
-          <button className="dropbtn asignaturas-btn">Asignaturas</button>
-          <div className="dropdown-content asignaturas-content">
+          <button className="dropbtn">Asignaturas</button>
+          <div className="dropdown-content">
             <Link to="/historia-españa">Historia de España</Link>
             <Link to="/matematicas">Matematicas</Link>
           </div>
@@ -42,4 +35,4 @@ function HistoriaEspaña() {
   );
 }
 
-export default HistoriaEspaña;
+export default Tema1Matematicas;
