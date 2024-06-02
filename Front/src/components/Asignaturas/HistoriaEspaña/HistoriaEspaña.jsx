@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './HistoriaEspaña.css';
 import { Link } from 'react-router-dom';
 
 function HistoriaEspaña() {
+  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
+
+  const toggleSubjects = () => {
+      setIsSubjectsOpen(!isSubjectsOpen);
+  };
+
   const temas = [
     {
       titulo: "Tema 1",
@@ -48,36 +54,55 @@ function HistoriaEspaña() {
     }
   ];
 
+
   return (
     <div className="main-container-historia">
-      <div className="banner-historia">
-        <Link to="/landing-page">
-          <img 
-            src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
-            alt="Logo" 
-            className="logo-landing" 
-          />
-        </Link>
-        <div className="banner-right-historia">
-          <a href="mailto:info@tudominio.com" className="contact-btn-historia">
-            Contacto
-          </a>
-          <div className="dropdown-historia">
-            <button className="dropbtn-historia">Asignaturas</button>
-            <div className="dropdown-content-historia">
-              <Link to="/historia-españa">Historia de España</Link>
-              <Link to="/matematicas">Matemáticas</Link>
+      <div className="sidebar">
+                <div className="logo">
+                <Link to="/landing-page">
+                    <img 
+                        src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
+                        alt="Logo" 
+                        className="logo-landing" 
+                    />
+                </Link>
+                    <span>BachInfo</span>
+                </div>
+                <nav className="nav">
+                    <ul>
+                        <li><a href="/landing-page"><i className="icon-home"></i>Página de Inicio</a></li>
+                        <li className="submenu-toggle">
+                            <a href="#" onClick={toggleSubjects}>
+                                <i className="icon-book"></i>Asignaturas
+                                <span className="arrow">{isSubjectsOpen ? '▲' : '▼'}</span>
+                            </a>
+                        </li>
+                        {isSubjectsOpen && (
+                            <ul className="submenu">
+                                <li><a href="/historia-españa">Historia de España</a></li>
+                                <li><a href="/matematicas">Matemáticas</a></li>
+                                <li><a href="#">Biología</a></li>
+                            </ul>
+                        )}
+                        <li><a href="#"><i className="icon-stats"></i>Ver Estadísticas</a></li>
+                        <li><a href="#"><i className="icon-users"></i>Ver Usuarios</a></li>
+                        <li><a href="#"><i className="icon-data"></i>Ver Datos Tests</a></li>
+                        <li><a href="#"><i className="icon-profile"></i>Editar Perfil</a></li>
+                    </ul>
+                </nav>
+                <div className="footer">
+                    <p>nombre</p>
+                    <p>rol</p>
+                    <a href="#" className="logout"><i className="icon-logout"></i>salirse</a>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="content-historia">
-        <h1>Historia de España</h1>
-        <p>Todos los temas y contenidos sobre los diversos temas de Historia de España</p>
+            <div className="main-content-historia" style={{ marginLeft: "250px"}}>
+        <h1>Bienvenido a BachInfo</h1>
+        <p>Tu portal de recursos educativos para Bachillerato</p>
         <div className="news-section-historia">
           <h2>Últimas Noticias</h2>
           <div className="news-container-historia">
-            {temas.map((tema, index) => (
+          {temas.map((tema, index) => (
               <Link to={tema.link} className="news-item-historia" key={index}>
                 {tema.tipo === "imagen" ? (
                   <img src={tema.imagen} alt={`Imagen de ${tema.titulo}`} className="news-image-historia"/>
@@ -100,8 +125,8 @@ function HistoriaEspaña() {
           </div>
         </div>
         <div className="about-section-historia">
-          <h2>Sobre esta página</h2>
-          <p>Esta página está dedicada a proporcionar recursos educativos sobre la historia de España para estudiantes y entusiastas de la historia.</p>
+          <h2>¿Qué es BachInfo?</h2>
+          <p>BachInfo es un TFG (Trabajo de Fin de Grado) con el propósito de ayudar a estudiantes de 2º de Bachillerato, empleando una metodología que incluye la revisión del currículo educativo, entrevistas con docentes, y análisis de recursos educativos en línea para identificar contenidos relevantes.</p>
         </div>
       </div>
     </div>
