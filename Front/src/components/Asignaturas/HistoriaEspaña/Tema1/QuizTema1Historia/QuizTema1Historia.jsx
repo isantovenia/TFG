@@ -3,7 +3,6 @@ import './QuizTema1Historia.css';
 import { Link } from 'react-router-dom';
 
 function QuizTema1Historia() {
-  
   const questions = [
     {
       questionText: '¿Cuál es el lenguaje más utilizado para el desarrollo web?',
@@ -82,7 +81,7 @@ function QuizTema1Historia() {
   };
 
   return (
-    <div className='app'>
+    <div className='main-container-quiz-historia-tema1'>
       <div className="sidebar">
                 <div className="logo">
                 <Link to="/landing-page">
@@ -140,6 +139,9 @@ function QuizTema1Historia() {
       {showScore ? (
         <div className='score-section'>
           Lograste {score} de {questions.length}
+          <div className="finish-button-container">
+            <a href="/historia-españa/tema1" className='finish-button'>Finalizar</a>
+          </div>
         </div>
       ) : (
         <div className='quiz-container'>

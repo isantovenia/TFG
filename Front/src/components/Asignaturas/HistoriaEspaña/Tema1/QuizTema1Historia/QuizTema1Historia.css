@@ -1,16 +1,18 @@
 .quiz-container {
-    width: 100%;
-    max-width: 600px;
-    height: 500px; /* Set a fixed height for the quiz container */
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden; /* Hide overflow content */
-  }
+  width: 100%;
+  max-width: 600px;
+  height: auto; /* Cambiado a auto para adaptarse al contenido */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #ccc; /* Añadir borde */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* Hide overflow content */
+}
+
   
   .question-section {
     width: 100%;
@@ -67,7 +69,8 @@
     font-size: 24px;
     min-width: 600px; /* Set a minimum width for the question section */
     max-width: 600px;
-  }
+    margin-bottom: 40px; /* Ajusta el margen inferior */
+  }  
   
   .next-button-container {
     margin-top: 20px;
@@ -90,4 +93,21 @@
   .next-button:hover {
     background-color: #0056b3;
   }
+  
+  .finish-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Ajusta el margen superior */
+  }
+  
+  .finish-button:hover {
+    background-color: #0056b3;
+  }
+  
   
