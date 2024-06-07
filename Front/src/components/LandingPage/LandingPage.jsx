@@ -9,6 +9,16 @@ function LandingPage() {
         setIsSubjectsOpen(!isSubjectsOpen);
     };
 
+    const handleLogout = () => {
+      // Eliminar el token de autenticación u otra información relacionada con la sesión
+      localStorage.removeItem('token');
+      // Redirigir a la página de inicio de sesión u otra página después de cerrar sesión
+      window.location.href = '/login'; // Redirige a la página de inicio de sesión
+    };
+
+    const username = localStorage.getItem('user');
+    const rol = localStorage.getItem('rol');
+  
     const noticias = [
         {
           titulo: "Fechas EBAU",
@@ -59,16 +69,31 @@ function LandingPage() {
                                 <li><a href="#">Biología</a></li>
                             </ul>
                         )}
-                        <li><a href="#"><i className="icon-stats"></i>Ver Estadísticas</a></li>
+                        {rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR' && (
+                          <li><a href="#"><i className="icon-stats"></i>Ver Estadísticas</a></li>
+                        )}
+                        {rol === 'ROLE_ADMIN' && (
                         <li><a href="#"><i className="icon-users"></i>Ver Usuarios</a></li>
+                        )}
+                        {rol === 'ROLE_ADMIN' && (
                         <li><a href="#"><i className="icon-data"></i>Ver Datos Tests</a></li>
+                        )}
                         <li><a href="#"><i className="icon-profile"></i>Editar Perfil</a></li>
                     </ul>
                 </nav>
                 <div className="footer">
-                    <p>nombre</p>
-                    <p>rol</p>
-                    <a href="#" className="logout"><i className="icon-logout"></i>salirse</a>
+                    <p>{username}</p>
+                    {rol ? (
+                      <p>
+                        {rol === 'ROLE_ADMIN' ? 'Administrador' : 
+                        rol === 'ROLE_MODERATOR' ? 'Profesor' : 'Usuario'}
+                      </p>
+                    ) : (
+                      <p>Hay un error</p>
+                    )}
+                    <a href="/" className="logout" onClick={handleLogout}>
+                      <i className="icon-logout"></i>Salirse
+                    </a>
                 </div>
             </div>
       <div className="main-content" style={{ marginLeft: "250px" }}>

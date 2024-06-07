@@ -21,6 +21,8 @@ const Login = () => {
         const data = await response.json();
         console.log('Inicio de sesión exitoso:', data);
         localStorage.setItem('token', data.accessToken);
+        localStorage.setItem('user', data.username);
+        localStorage.setItem('rol', data.roles);
         navigate('/landing-page');
       } else {
         const errorData = await response.json();
