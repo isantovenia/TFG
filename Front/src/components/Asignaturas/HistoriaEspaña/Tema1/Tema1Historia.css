@@ -8,11 +8,6 @@ body, html {
   height: 100%;
 }
 
-.main-container-historia {
-  display: flex;
-  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
-}
-
 .main-content-historia-tema1 {
   padding: 20px;
   background-color: #fff;
@@ -20,6 +15,7 @@ body, html {
   margin-left: 250px;
   overflow-x: hidden; /* Prevent horizontal scrolling */
   overflow-y: auto; /* Allow vertical scrolling */
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
 }
 
 .about-section-historia-tema1 {

@@ -5,32 +5,95 @@ import { Link } from 'react-router-dom';
 function QuizTema1Historia() {
   const questions = [
     {
-      questionText: '¿Cuál es el lenguaje más utilizado para el desarrollo web?',
+      questionText: '¿En qué año comenzó la conquista romana de la Península Ibérica?',
       answerOptions: [
-        { answerText: 'Python', isCorrect: false },
-        { answerText: 'JavaScript', isCorrect: true },
-        { answerText: 'Java', isCorrect: false },
-        { answerText: 'C#', isCorrect: false },
+        { answerText: '300 a.C.', isCorrect: false },
+        { answerText: '218 a.C.', isCorrect: true },
+        { answerText: '150 a.C.', isCorrect: false },
+        { answerText: '202 a.C.', isCorrect: false },
       ],
     },
     {
-      questionText: '¿Quién inventó el lenguaje de programación Python?',
+      questionText: '¿Quién lideraba las legiones romanas al inicio de la conquista de la Península Ibérica?',
       answerOptions: [
-        { answerText: 'Brendan Eich', isCorrect: false },
-        { answerText: 'James Gosling', isCorrect: false },
-        { answerText: 'Guido van Rossum', isCorrect: true },
-        { answerText: 'Dennis Ritchie', isCorrect: false },
+        { answerText: 'Julio César', isCorrect: false },
+        { answerText: 'Escipión el Africano', isCorrect: false },
+        { answerText: 'Aníbal Barca', isCorrect: true },
+        { answerText: 'Viriato', isCorrect: false },
       ],
     },
     {
-      questionText: '¿Qué significa CSS?',
+      questionText: '¿Qué pueblos indígenas fueron sometidos por los romanos durante los siglos II y I a.C.?',
       answerOptions: [
-        { answerText: 'Cascading Style Sheets', isCorrect: true },
-        { answerText: 'Computer Style Sheets', isCorrect: false },
-        { answerText: 'Creative Style Sheets', isCorrect: false },
-        { answerText: 'Colorful Style Sheets', isCorrect: false },
+        { answerText: 'Fenicios y griegos', isCorrect: false },
+        { answerText: 'Íberos y celtíberos', isCorrect: true },
+        { answerText: 'Cartagineses y lusitanos', isCorrect: false },
+        { answerText: 'Suevos y vándalos', isCorrect: false },
       ],
     },
+    {
+      questionText: '¿Qué líder lusitano destacó por su resistencia contra Roma en el siglo II a.C.?',
+      answerOptions: [
+        { answerText: 'Aníbal', isCorrect: false },
+        { answerText: 'Viriato', isCorrect: true },
+        { answerText: 'Julio César', isCorrect: false },
+        { answerText: 'Escipión', isCorrect: false },
+      ],
+    },
+    {
+      questionText: '¿Cuál fue uno de los principales efectos de la romanización en la Península Ibérica?',
+      answerOptions: [
+        { answerText: 'La desaparición de todas las lenguas locales', isCorrect: false },
+        { answerText: 'La introducción de la cultura y costumbres romanas', isCorrect: true },
+        { answerText: 'La colonización por fenicios', isCorrect: false },
+        { answerText: 'La independencia de las tribus indígenas', isCorrect: false },
+      ],
+    },
+    {
+      questionText: '¿Qué infraestructuras construyeron los romanos para facilitar el comercio y la comunicación?',
+      answerOptions: [
+        { answerText: 'Pirámides y templos', isCorrect: false },
+        { answerText: 'Calzadas, puentes y puertos', isCorrect: true },
+        { answerText: 'Castillos y murallas', isCorrect: false },
+        { answerText: 'Universidades y escuelas', isCorrect: false },
+      ],
+    },
+    {
+      questionText: '¿Cómo se dividió la Península Ibérica durante la época romana?',
+      answerOptions: [
+        { answerText: 'En reinos independientes', isCorrect: false },
+        { answerText: 'En provincias como Hispania Citerior y Ulterior', isCorrect: true },
+        { answerText: 'En estados aliados', isCorrect: false },
+        { answerText: 'En territorios feudales', isCorrect: false },
+      ],
+    },
+    {
+      questionText: '¿Qué evento marcó el inicio del fin de la Hispania romana?',
+      answerOptions: [
+        { answerText: 'La llegada de Aníbal', isCorrect: false },
+        { answerText: 'La derrota de los cartagineses', isCorrect: false },
+        { answerText: 'Las incursiones de pueblos bárbaros en el siglo III d.C.', isCorrect: true },
+        { answerText: 'La resistencia de Viriato', isCorrect: false },
+      ],
+    },
+    {
+      questionText: '¿Cuál fue uno de los principales centros comerciales y culturales en el sur de la Península Ibérica durante los siglos IX a II a.C.?',
+      answerOptions: [
+        { answerText: 'Cartago', isCorrect: false },
+        { answerText: 'Roma', isCorrect: false },
+        { answerText: 'Tartessos', isCorrect: true },
+        { answerText: 'Atenas', isCorrect: false },
+      ],
+    },
+    {
+      questionText: '¿Qué cambio importante ocurrió durante el Neolítico en la Península Ibérica?',
+      answerOptions: [
+        { answerText: 'El desarrollo de la metalurgia del hierro', isCorrect: false },
+        { answerText: 'La introducción de la agricultura y la domesticación de animales', isCorrect: true },
+        { answerText: 'La aparición de las primeras universidades', isCorrect: false },
+        { answerText: 'La conquista romana', isCorrect: false },
+      ],
+    }
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
