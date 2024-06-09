@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import './Tema1Matematicas.css';
 import { Link } from 'react-router-dom';
-import './Tema1Matematicas.css'; // Asegúrate de importar el archivo CSS
 
 function Tema1Matematicas() {
+  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
+
+  const toggleSubjects = () => {
+    setIsSubjectsOpen(!isSubjectsOpen);
+  };
+
   const [expanded, setExpanded] = useState({});
 
   const toggleExpand = (id) => {
@@ -12,119 +18,197 @@ function Tema1Matematicas() {
     }));
   };
 
+  const username = localStorage.getItem('user');
+  const rol = localStorage.getItem('rol');
+
+  const handleLogout = () => {
+    // Eliminar el token de autenticación u otra información relacionada con la sesión
+    localStorage.removeItem('token');
+    // Redirigir a la página de inicio de sesión u otra página después de cerrar sesión
+    window.location.href = '/login'; // Redirige a la página de inicio de sesión
+  };
+
   return (
-    <div className="main-container-historia">
-      <div className="banner-historia">
-        <Link to="/landing-page">
-          <img 
-            src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
-            alt="Logo" 
-            className="logo-historia" 
-          />
-        </Link>
-        <div className="banner-right-historia">
-          <a href="mailto:info@tudominio.com" className="contact-btn-historia">
-            Contacto
-          </a>
-          <div className="dropdown-historia">
-            <button className="dropbtn-historia">Asignaturas</button>
-            <div className="dropdown-content-historia">
-              <Link to="/historia-españa">Historia de España</Link>
-              <Link to="/matematicas">Matemáticas</Link>
+    <div className="main-container-matematicas">
+      <div className="sidebar">
+                <div className="logo">
+                <Link to="/landing-page">
+                    <img 
+                        src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
+                        alt="Logo" 
+                        className="logo-landing" 
+                    />
+                </Link>
+                    <span>BachInfo</span>
+                </div>
+                <nav className="nav">
+                    <ul>
+                        <li><a href="/landing-page"><i className="icon-home"></i>Página de Inicio</a></li>
+                        <li className="submenu-toggle">
+                            <a href="#" onClick={toggleSubjects}>
+                                <i className="icon-book"></i>Asignaturas
+                                <span className="arrow">{isSubjectsOpen ? '▲' : '▼'}</span>
+                            </a>
+                        </li>
+                        {isSubjectsOpen && (
+                            <ul className="submenu">
+                                <li><a href="/historia-españa">Historia de España</a></li>
+                                <li><a href="/matematicas">Matemáticas</a></li>
+                                <li><a href="#">Biología</a></li>
+                            </ul>
+                        )}
+                        {rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR' && (
+                          <li><a href="#"><i className="icon-stats"></i>Ver Estadísticas</a></li>
+                        )}
+                        {rol === 'ROLE_ADMIN' && (
+                        <li><a href="#"><i className="icon-users"></i>Ver Usuarios</a></li>
+                        )}
+                        {rol === 'ROLE_ADMIN' && (
+                        <li><a href="#"><i className="icon-data"></i>Ver Datos Tests</a></li>
+                        )}
+                        <li><a href="#"><i className="icon-profile"></i>Editar Perfil</a></li>
+                    </ul>
+                </nav>
+                <div className="footer">
+                    <p>{username}</p>
+                    {rol ? (
+                      <p>
+                        {rol === 'ROLE_ADMIN' ? 'Administrador' : 
+                        rol === 'ROLE_MODERATOR' ? 'Profesor' : 'Usuario'}
+                      </p>
+                    ) : (
+                      <p>Hay un error</p>
+                    )}
+                    <a href="/" className="logout" onClick={handleLogout}>
+                      <i className="icon-logout"></i>Salirse
+                    </a>
+                </div>
             </div>
+      <div className="main-content-matematicas-tema1">
+        <h1>Bienvenido a BachInfo</h1>
+        <p>Tu portal de recursos educativos para Bachillerato</p>
+        <h2>Tema 1</h2>
+        <p>
+          Funciones
+        </p>
+        <div className="dropdown-box">
+          <h3 onClick={() => toggleExpand('caracteristicas')}>
+            1. Características de una función <span className="arrow">&#9660;</span>
+          </h3>
+          {expanded['caracteristicas'] && (
+            <div className="dropdown-content">
+              <p>
+              Las funciones tienen características clave que las definen y describen su comportamiento
+              </p>
+              <h4 onClick={() => toggleExpand('dominio')}>
+                Dominio <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['dominio'] && (
+                <ul>
+                  <li>
+                      <p>Es el conjunto de todos los valores de entrada para los cuales la función está definida. En otras palabras, son los valores que pueden ser ingresados en la función.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('recorrido')}>
+              Recorrido (o rango) <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['recorrido'] && (
+                <ul>
+                  <li>
+                      <p>Es el conjunto de todos los valores de salida que produce la función para los valores en su dominio.</p>
+                      <p>Es importante notar que no todos los valores de la función pueden ser alcanzados, dependiendo del tipo de función.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('punto')}>
+              Puntos de corte con los ejes <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['punto'] && (
+                <ul>
+                  <li>
+                      <p>Son los puntos en los cuales la gráfica de la función intersecta los ejes x e y.</p>
+                      <p>Estos puntos proporcionan información sobre la relación entre las variables independiente y dependiente.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('simetria')}>
+              Simetría <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['simetria'] && (
+                <ul>
+                  <li>
+                      <p>Algunas funciones exhiben ciertos tipos de simetría en su gráfica, como simetría par o impar, lo que puede revelar propiedades adicionales sobre la función.</p>
+                  </li>
+                </ul>
+              )}
+              
+            </div>
+          )}
+        </div>
+
+        <div className="expandable-section">
+          <div className="dropdown-box">
+            <h3 onClick={() => toggleExpand('tipos')}>
+              2. Tipos de funciones <span className="arrow">&#9660;</span>
+            </h3>
+              <p>
+              Hay varios tipos de funciones, cada una con sus propias características
+              </p>
+              <h4 onClick={() => toggleExpand('polinomicas')}>
+              Polinómicas <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['polinomicas'] && (
+                <ul>
+                  <li>
+                      <p>Son funciones que se expresan como una suma de términos de la forma 𝑎𝑥(𝑛), donde 𝑎 es un coeficiente constante, 𝑛 es un número entero no negativo y 𝑥 es la variable independiente. </p>
+                      <p>Ejemplos comunes incluyen las funciones lineales, cuadráticas, cúbicas, etc.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('racionales')}>
+                Racionales <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['racionales'] && (
+                <ul>
+                  <li>
+                      <p>Estas funciones se representan como el cociente de dos polinomios.</p>
+                      <p>La función puede tener valores no definidos (o discontinuidades) en los puntos donde el denominador es igual a cero.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('inversa')}>
+              De proporcionalidad inversa <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['inversa'] && (
+                <ul>
+                  <li>
+                      <p>Son funciones donde una variable es inversamente proporcional a otra.</p>
+                      <p>Se pueden expresar como 𝑓(𝑥)=𝑘/𝑥, donde 𝑘 es una constante distinta de cero.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('trozos')}>
+              Definidas a trozos <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['trozos'] && (
+                <ul>
+                  <li>
+                    <p>Estas funciones están definidas por diferentes expresiones en diferentes intervalos del dominio. </p>
+                    <p>Cada expresión define la función en un subconjunto específico del dominio.</p></li>
+                </ul>
+              )}
           </div>
         </div>
-      </div>
-      <div className="content-historia">
-      <h2>Tema 1</h2>
-        <p>
-          La Península Ibérica en la Edad Antigua: los tiempos prerromanos y la Hispania romana.
-        </p>
-        <h3 onClick={() => toggleExpand('homini')}>
-          1. El proceso de hominización en la Península Ibérica (del Paleolítico a la Edad del Bronce) <span className="arrow">&#9660;</span>
-        </h3>
-        {expanded['homini'] && (
-          <div>
-            <p>
-              La historia de la Península Ibérica se remonta a tiempos muy antiguos, cuando los primeros grupos de humanos llegaron a la región durante el Paleolítico temprano. A lo largo de milenios, estas sociedades cazadoras y recolectoras evolucionaron, adaptándose a los desafíos del entorno y desarrollando nuevas técnicas y herramientas para sobrevivir.
-            </p>
-            <h4 onClick={() => toggleExpand('paleolitico')}>
-              Paleolítico <span className="arrow">&#9660;</span>
-            </h4>
-            {expanded['paleolitico'] && (
-              <ul>
-                <li>Primeros asentamientos: Los primeros humanos llegaron a la Península Ibérica hace aproximadamente 1.2 millones de años, como lo demuestran los restos arqueológicos encontrados en yacimientos como Atapuerca.</li>
-                <li>Cultura material: Durante el Paleolítico, los grupos humanos fabricaban herramientas de piedra, como hachas y raspadores, para cazar animales y procesar alimentos.</li>
-                <li>Arte rupestre: Una de las manifestaciones más fascinantes del Paleolítico en la Península Ibérica es el arte rupestre, como las pinturas y grabados encontrados en cuevas como Altamira y Lascaux.</li>
-              </ul>
-            )}
-            <h4 onClick={() => toggleExpand('neolitico')}>
-              Neolítico y Edad del Bronce <span className="arrow">&#9660;</span>
-            </h4>
-            {expanded['neolitico'] && (
-              <ul>
-                <li>Transición a la agricultura: Durante el Neolítico, las sociedades ibéricas comenzaron a practicar la agricultura y la ganadería, lo que les permitió establecer asentamientos permanentes y desarrollar formas más complejas de organización social.</li>
-                <li>Cultura megalítica: Se construyeron monumentos megalíticos, como los dólmenes y los menhires, que aún se pueden ver en la Península Ibérica, como los de Antequera y Évora.</li>
-                <li>Metalurgia: En la Edad del Bronce, se introdujo el uso del bronce en la fabricación de herramientas y armas, lo que marcó un importante avance tecnológico en la región.</li>
-              </ul>
-            )}
-          </div>
-        )}
-        <h3 onClick={() => toggleExpand('prerromanos')}>
-          2. Los tiempos prerromanos: invasiones indoeuropeas, colonizaciones históricas, Tartessos y el mundo de los iberos (siglos IX a III a.C.) <span className="arrow">&#9660;</span>
-        </h3>
-        {expanded['prerromanos'] && (
-          <div>
-            <p>
-              Durante los primeros milenios del primer milenio a.C., la Península Ibérica fue testigo de una serie de movimientos migratorios y desarrollos culturales que configuraron su paisaje humano y político.
-            </p>
-            <h4 onClick={() => toggleExpand('pueblosIndoeuropeos')}>Pueblos indoeuropeos <span className="arrow">&#9660;</span></h4>
-            {expanded['pueblosIndoeuropeos'] && (
-              <ul>
-                <li>Celtas: Los celtas fueron uno de los grupos indoeuropeos que migraron hacia la Península Ibérica durante la Edad del Hierro, estableciendo asentamientos en el norte y oeste de la región.</li>
-                <li>Íberos: Los íberos eran otro grupo indoeuropeo que habitaba la Península Ibérica, conocido por su habilidad en la metalurgia y su cultura distintiva, como lo evidencian los restos arqueológicos encontrados en lugares como el yacimiento de Puig de la Nau.</li>
-              </ul>
-            )}
-            <h4 onClick={() => toggleExpand('colonizaciones')}>Colonizaciones históricas <span className="arrow">&#9660;</span></h4>
-            {expanded['colonizaciones'] && (
-              <ul>
-                <li>Fenicios: Los fenicios establecieron colonias comerciales a lo largo de la costa mediterránea, como Gadir (actual Cádiz), donde comerciaban con las poblaciones locales y difundían su influencia cultural.</li>
-                <li>Griegos: Los griegos fundaron colonias en la costa oriental de la Península Ibérica, como Emporion (actual Ampurias), que se convirtió en un importante centro comercial y cultural en la región.</li>
-              </ul>
-            )}
-          </div>
-        )}
-        <h3 onClick={() => toggleExpand('reconquista')}>
-        3. La conquista romana de la península Ibérica y el proceso de romanización. La Hispania romana
-        (siglos 111 a.C. -IV d.C.). <span className="arrow">&#9660;</span>
-        </h3>
-        {expanded['reconquista'] && (
-          <div>
-            <p>
-              Durante los primeros milenios del primer milenio a.C., la Península Ibérica fue testigo de una serie de movimientos migratorios y desarrollos culturales que configuraron su paisaje humano y político.
-            </p>
-            <h4 onClick={() => toggleExpand('pueblosIndoeuropeos')}>Pueblos indoeuropeos <span className="arrow">&#9660;</span></h4>
-            {expanded['pueblosIndoeuropeos'] && (
-              <ul>
-                <li>Celtas: Los celtas fueron uno de los grupos indoeuropeos que migraron hacia la Península Ibérica durante la Edad del Hierro, estableciendo asentamientos en el norte y oeste de la región.</li>
-                <li>Íberos: Los íberos eran otro grupo indoeuropeo que habitaba la Península Ibérica, conocido por su habilidad en la metalurgia y su cultura distintiva, como lo evidencian los restos arqueológicos encontrados en lugares como el yacimiento de Puig de la Nau.</li>
-              </ul>
-            )}
-            <h4 onClick={() => toggleExpand('colonizaciones')}>Colonizaciones históricas <span className="arrow">&#9660;</span></h4>
-            {expanded['colonizaciones'] && (
-              <ul>
-                <li>Fenicios: Los fenicios establecieron colonias comerciales a lo largo de la costa mediterránea, como Gadir (actual Cádiz), donde comerciaban con las poblaciones locales y difundían su influencia cultural.</li>
-                <li>Griegos: Los griegos fundaron colonias en la costa oriental de la Península Ibérica, como Emporion (actual Ampurias), que se convirtió en un importante centro comercial y cultural en la región.</li>
-              </ul>
-            )}
-          </div>
-        )}
-      </div>
-      <div className="about-section-historia">
-        <h2>Sobre esta página</h2>
-        <p>Esta página está dedicada a proporcionar recursos educativos sobre la historia de España para estudiantes y entusiastas de la historia.</p>
+       <div className="quiz-button-container">
+          <Link to="/matematicas/tema1/quiz" className="quiz-button">Ir al Quiz</Link>
+        </div>
+      <div className="about-section-matematicas-tema1">
+        <h2>¿Qué es BachInfo?</h2>
+        <p>BachInfo es un TFG (Trabajo de Fin de Grado) con el propósito de ayudar a estudiantes de 2º de Bachillerato, empleando una metodología que incluye la revisión del currículo educativo, entrevistas con docentes, y análisis de recursos educativos en línea para identificar contenidos relevantes.</p>
       </div>
     </div>
+   </div>
   );
 }
 

@@ -13,6 +13,8 @@ import QuizTema1Historia from './components/Asignaturas/HistoriaEspaña/Tema1/Qu
 import QuizTema2Historia from './components/Asignaturas/HistoriaEspaña/Tema2/QuizTema2Historia/QuizTema2Historia.jsx';
 import Matematicas from './components/Asignaturas/Matematicas/Matematicas.jsx';
 import MatematicasTema1 from './components/Asignaturas/Matematicas/Tema1/Tema1Matematicas.jsx'
+import QuizTema1Matematicas from './components/Asignaturas/Matematicas/Tema1/QuizTema1Matematicas/QuizTema1Matematicas.jsx'
+import QuizTema2Matematicas from './components/Asignaturas/Matematicas/Tema2/QuizTema2Matematicas/QuizTema2Matematicas2.jsx'
 import MatematicasTema2 from './components/Asignaturas/Matematicas/Tema2/Tema2Matematicas.jsx'
 
 const router = createBrowserRouter([
@@ -61,9 +63,17 @@ const router = createBrowserRouter([
     element: <MatematicasTema1 />
   },
   {
+    path: "/matematicas/tema1/quiz",
+    element: <QuizTema1Matematicas />
+  },
+  {
     path: "/matematicas/tema2",
     element: <MatematicasTema2 />
-  }
+  },
+  {
+    path: "/matematicas/tema2/quiz",
+    element: <QuizTema2Matematicas />
+  },
 ]);
 
 

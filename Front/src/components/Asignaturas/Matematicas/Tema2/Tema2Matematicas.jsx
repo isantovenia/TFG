@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import './Tema2Matematicas.css';
 import { Link } from 'react-router-dom';
-import './Tema2Matematicas.css'; // Asegúrate de importar el archivo CSS
 
 function Tema2Matematicas() {
+  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
+
+  const toggleSubjects = () => {
+    setIsSubjectsOpen(!isSubjectsOpen);
+  };
+
   const [expanded, setExpanded] = useState({});
 
   const toggleExpand = (id) => {
@@ -12,119 +18,151 @@ function Tema2Matematicas() {
     }));
   };
 
+  const username = localStorage.getItem('user');
+  const rol = localStorage.getItem('rol');
+
+  const handleLogout = () => {
+    // Eliminar el token de autenticación u otra información relacionada con la sesión
+    localStorage.removeItem('token');
+    // Redirigir a la página de inicio de sesión u otra página después de cerrar sesión
+    window.location.href = '/login'; // Redirige a la página de inicio de sesión
+  };
+
   return (
-    <div className="main-container-historia">
-      <div className="banner-historia">
-        <Link to="/landing-page">
-          <img 
-            src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
-            alt="Logo" 
-            className="logo-historia" 
-          />
-        </Link>
-        <div className="banner-right-historia">
-          <a href="mailto:info@tudominio.com" className="contact-btn-historia">
-            Contacto
-          </a>
-          <div className="dropdown-historia">
-            <button className="dropbtn-historia">Asignaturas</button>
-            <div className="dropdown-content-historia">
-              <Link to="/historia-españa">Historia de España</Link>
-              <Link to="/matematicas">Matemáticas</Link>
+    <div className="main-container-matematicas">
+      <div className="sidebar">
+                <div className="logo">
+                <Link to="/landing-page">
+                    <img 
+                        src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
+                        alt="Logo" 
+                        className="logo-landing" 
+                    />
+                </Link>
+                    <span>BachInfo</span>
+                </div>
+                <nav className="nav">
+                    <ul>
+                        <li><a href="/landing-page"><i className="icon-home"></i>Página de Inicio</a></li>
+                        <li className="submenu-toggle">
+                            <a href="#" onClick={toggleSubjects}>
+                                <i className="icon-book"></i>Asignaturas
+                                <span className="arrow">{isSubjectsOpen ? '▲' : '▼'}</span>
+                            </a>
+                        </li>
+                        {isSubjectsOpen && (
+                            <ul className="submenu">
+                                <li><a href="/historia-españa">Historia de España</a></li>
+                                <li><a href="/matematicas">Matemáticas</a></li>
+                                <li><a href="#">Biología</a></li>
+                            </ul>
+                        )}
+                        {rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR' && (
+                          <li><a href="#"><i className="icon-stats"></i>Ver Estadísticas</a></li>
+                        )}
+                        {rol === 'ROLE_ADMIN' && (
+                        <li><a href="#"><i className="icon-users"></i>Ver Usuarios</a></li>
+                        )}
+                        {rol === 'ROLE_ADMIN' && (
+                        <li><a href="#"><i className="icon-data"></i>Ver Datos Tests</a></li>
+                        )}
+                        <li><a href="#"><i className="icon-profile"></i>Editar Perfil</a></li>
+                    </ul>
+                </nav>
+                <div className="footer">
+                    <p>{username}</p>
+                    {rol ? (
+                      <p>
+                        {rol === 'ROLE_ADMIN' ? 'Administrador' : 
+                        rol === 'ROLE_MODERATOR' ? 'Profesor' : 'Usuario'}
+                      </p>
+                    ) : (
+                      <p>Hay un error</p>
+                    )}
+                    <a href="/" className="logout" onClick={handleLogout}>
+                      <i className="icon-logout"></i>Salirse
+                    </a>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="content-historia">
-      <h2>Tema 2</h2>
+      <div className="main-content-matematicas-tema2">
+        <h1>Bienvenido a BachInfo</h1>
+        <p>Tu portal de recursos educativos para Bachillerato</p>
+        <h2>Tema 1</h2>
         <p>
-          La Península Ibérica en la Edad Antigua: los tiempos prerromanos y la Hispania romana.
+          Limites
         </p>
-        <h3 onClick={() => toggleExpand('homini')}>
-          1. El proceso de hominización en la Península Ibérica (del Paleolítico a la Edad del Bronce) <span className="arrow">&#9660;</span>
-        </h3>
-        {expanded['homini'] && (
-          <div>
-            <p>
-              La historia de la Península Ibérica se remonta a tiempos muy antiguos, cuando los primeros grupos de humanos llegaron a la región durante el Paleolítico temprano. A lo largo de milenios, estas sociedades cazadoras y recolectoras evolucionaron, adaptándose a los desafíos del entorno y desarrollando nuevas técnicas y herramientas para sobrevivir.
-            </p>
-            <h4 onClick={() => toggleExpand('paleolitico')}>
-              Paleolítico <span className="arrow">&#9660;</span>
-            </h4>
-            {expanded['paleolitico'] && (
-              <ul>
-                <li>Primeros asentamientos: Los primeros humanos llegaron a la Península Ibérica hace aproximadamente 1.2 millones de años, como lo demuestran los restos arqueológicos encontrados en yacimientos como Atapuerca.</li>
-                <li>Cultura material: Durante el Paleolítico, los grupos humanos fabricaban herramientas de piedra, como hachas y raspadores, para cazar animales y procesar alimentos.</li>
-                <li>Arte rupestre: Una de las manifestaciones más fascinantes del Paleolítico en la Península Ibérica es el arte rupestre, como las pinturas y grabados encontrados en cuevas como Altamira y Lascaux.</li>
-              </ul>
-            )}
-            <h4 onClick={() => toggleExpand('neolitico')}>
-              Neolítico y Edad del Bronce <span className="arrow">&#9660;</span>
-            </h4>
-            {expanded['neolitico'] && (
-              <ul>
-                <li>Transición a la agricultura: Durante el Neolítico, las sociedades ibéricas comenzaron a practicar la agricultura y la ganadería, lo que les permitió establecer asentamientos permanentes y desarrollar formas más complejas de organización social.</li>
-                <li>Cultura megalítica: Se construyeron monumentos megalíticos, como los dólmenes y los menhires, que aún se pueden ver en la Península Ibérica, como los de Antequera y Évora.</li>
-                <li>Metalurgia: En la Edad del Bronce, se introdujo el uso del bronce en la fabricación de herramientas y armas, lo que marcó un importante avance tecnológico en la región.</li>
-              </ul>
-            )}
-          </div>
-        )}
-        <h3 onClick={() => toggleExpand('prerromanos')}>
-          2. Los tiempos prerromanos: invasiones indoeuropeas, colonizaciones históricas, Tartessos y el mundo de los iberos (siglos IX a III a.C.) <span className="arrow">&#9660;</span>
-        </h3>
-        {expanded['prerromanos'] && (
-          <div>
-            <p>
-              Durante los primeros milenios del primer milenio a.C., la Península Ibérica fue testigo de una serie de movimientos migratorios y desarrollos culturales que configuraron su paisaje humano y político.
-            </p>
-            <h4 onClick={() => toggleExpand('pueblosIndoeuropeos')}>Pueblos indoeuropeos <span className="arrow">&#9660;</span></h4>
-            {expanded['pueblosIndoeuropeos'] && (
-              <ul>
-                <li>Celtas: Los celtas fueron uno de los grupos indoeuropeos que migraron hacia la Península Ibérica durante la Edad del Hierro, estableciendo asentamientos en el norte y oeste de la región.</li>
-                <li>Íberos: Los íberos eran otro grupo indoeuropeo que habitaba la Península Ibérica, conocido por su habilidad en la metalurgia y su cultura distintiva, como lo evidencian los restos arqueológicos encontrados en lugares como el yacimiento de Puig de la Nau.</li>
-              </ul>
-            )}
-            <h4 onClick={() => toggleExpand('colonizaciones')}>Colonizaciones históricas <span className="arrow">&#9660;</span></h4>
-            {expanded['colonizaciones'] && (
-              <ul>
-                <li>Fenicios: Los fenicios establecieron colonias comerciales a lo largo de la costa mediterránea, como Gadir (actual Cádiz), donde comerciaban con las poblaciones locales y difundían su influencia cultural.</li>
-                <li>Griegos: Los griegos fundaron colonias en la costa oriental de la Península Ibérica, como Emporion (actual Ampurias), que se convirtió en un importante centro comercial y cultural en la región.</li>
-              </ul>
-            )}
-          </div>
-        )}
-        <h3 onClick={() => toggleExpand('reconquista')}>
-        3. La conquista romana de la península Ibérica y el proceso de romanización. La Hispania romana
-        (siglos 111 a.C. -IV d.C.). <span className="arrow">&#9660;</span>
-        </h3>
-        {expanded['reconquista'] && (
-          <div>
-            <p>
-              Durante los primeros milenios del primer milenio a.C., la Península Ibérica fue testigo de una serie de movimientos migratorios y desarrollos culturales que configuraron su paisaje humano y político.
-            </p>
-            <h4 onClick={() => toggleExpand('pueblosIndoeuropeos')}>Pueblos indoeuropeos <span className="arrow">&#9660;</span></h4>
-            {expanded['pueblosIndoeuropeos'] && (
-              <ul>
-                <li>Celtas: Los celtas fueron uno de los grupos indoeuropeos que migraron hacia la Península Ibérica durante la Edad del Hierro, estableciendo asentamientos en el norte y oeste de la región.</li>
-                <li>Íberos: Los íberos eran otro grupo indoeuropeo que habitaba la Península Ibérica, conocido por su habilidad en la metalurgia y su cultura distintiva, como lo evidencian los restos arqueológicos encontrados en lugares como el yacimiento de Puig de la Nau.</li>
-              </ul>
-            )}
-            <h4 onClick={() => toggleExpand('colonizaciones')}>Colonizaciones históricas <span className="arrow">&#9660;</span></h4>
-            {expanded['colonizaciones'] && (
-              <ul>
-                <li>Fenicios: Los fenicios establecieron colonias comerciales a lo largo de la costa mediterránea, como Gadir (actual Cádiz), donde comerciaban con las poblaciones locales y difundían su influencia cultural.</li>
-                <li>Griegos: Los griegos fundaron colonias en la costa oriental de la Península Ibérica, como Emporion (actual Ampurias), que se convirtió en un importante centro comercial y cultural en la región.</li>
-              </ul>
-            )}
-          </div>
-        )}
-      </div>
-      <div className="about-section-historia">
-        <h2>Sobre esta página</h2>
-        <p>Esta página está dedicada a proporcionar recursos educativos sobre la historia de España para estudiantes y entusiastas de la historia.</p>
+        <div className="dropdown-box">
+          <h3 onClick={() => toggleExpand('caracteristicas')}>
+            1. Limites <span className="arrow">&#9660;</span>
+          </h3>
+          {expanded['caracteristicas'] && (
+            <div className="dropdown-content">
+              <p>
+              Las funciones tienen características clave que las definen y describen su comportamiento
+              </p>
+              <h4 onClick={() => toggleExpand('calcular')}>
+              Calcular límites y resolver indeterminaciones <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['calcular'] && (
+                <ul>
+                  <li>
+                      <p>Los límites son conceptos centrales en el cálculo y se utilizan para describir el comportamiento de una función a medida que la variable independiente se acerca a cierto valor. Algunas formas de indeterminaciones comunes son 0/0, ∞/∞ y ∞-∞. Resolver estas indeterminaciones implica técnicas como factorización, racionalización, uso de regla de L'Hôpital, entre otras.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('estudiar')}>
+              Estudiar la continuidad y clasificar las discontinuidades <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['estudiar'] && (
+                <ul>
+                  <p>Estudiar la continuidad y clasificar las discontinuidades:</p>
+                  <ul>
+                      <li>
+                          <strong>Funciones elementales: </strong>
+                          <p>Se refiere a funciones simples como polinomios, exponenciales, logaritmos, trigonométricas, etc. Se estudia la continuidad de estas funciones y se clasifican las discontinuidades, que pueden ser evitables (cuando existe un límite finito en el punto) o inevitables (cuando no existe un límite finito).</p>
+                      </li>
+                      <li>
+                          <strong>Funciones a trozos: </strong>
+                          <p>Son funciones definidas por diferentes expresiones en diferentes intervalos. También se analiza la continuidad y se clasifican las discontinuidades.</p>
+                      </li>
+                  </ul>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('parametro')}>
+              Calcular un parámetro a, o dos parámetros a y b, para que una función sea continua:<span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['parametro'] && (
+                <ul>
+                  <li>
+                      <p>Esto implica encontrar los valores de los parámetros que garantizan la continuidad de una función en un punto o en un intervalo dado.</p>
+                  </li>
+                </ul>
+              )}
+              <h4 onClick={() => toggleExpand('ramas')}>
+              Calcular las ramas infinitas y las asíntotas de una función <span className="arrow">&#9660;</span>
+              </h4>
+              {expanded['ramas'] && (
+                <ul>
+                  <strong>Asíntotas horizontales (AH): </strong>
+                  <li>Son líneas horizontales a las que se aproxima la función a medida que la variable independiente tiende a infinito.</li>
+                  <strong>Asíntotas verticales (AV): </strong>
+                  <li>Son líneas verticales en las que la función tiende a infinito o menos infinito.</li>
+                  <strong>Asíntotas oblicuas (AO): </strong>
+                  <li>Son líneas inclinadas a las que se aproxima la función a medida que la variable independiente tiende a infinito.</li>
+                </ul>
+              )}
+            </div>
+          )}
+        </div>
+       <div className="quiz-button-container">
+          <Link to="/matematicas/tema2/quiz" className="quiz-button">Ir al Quiz</Link>
+        </div>
+      <div className="about-section-matematicas-tema2">
+        <h2>¿Qué es BachInfo?</h2>
+        <p>BachInfo es un TFG (Trabajo de Fin de Grado) con el propósito de ayudar a estudiantes de 2º de Bachillerato, empleando una metodología que incluye la revisión del currículo educativo, entrevistas con docentes, y análisis de recursos educativos en línea para identificar contenidos relevantes.</p>
       </div>
     </div>
+   </div>
   );
 }
 
