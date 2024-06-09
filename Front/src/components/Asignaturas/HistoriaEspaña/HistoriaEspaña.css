@@ -1,10 +1,11 @@
 .main-content-historia {
-    padding: 20px;
-    background-color: #fff;
-    box-sizing: border-box;
-    width: 100vw;
-    margin-left: 250px;
-    margin-top: 400px; /* Ajusta el margen superior según sea necesario para evitar la superposición */
+  padding: 20px;
+  background-color: #fff9c6;
+  width: calc(100vw - 250px);
+  margin-left: 250px;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
   }
   .news-section-historia {
     margin-top: 30px;

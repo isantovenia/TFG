@@ -1,5 +1,5 @@
 # Requisitos para que funcione
-1. Tener instalado un mysql (en mi caso utilicé wampserver ya que crea uno), con una base de datos testdb creada
+1. Tener instalado un mysql, con una base de datos testdb creada
 ```BBDD
 CREATE DATABASE testdb;
 ```

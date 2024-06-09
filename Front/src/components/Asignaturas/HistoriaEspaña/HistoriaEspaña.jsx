@@ -121,11 +121,11 @@ function HistoriaEspaña() {
                     </a>
                 </div>
             </div>
-            <div className="main-content-historia" style={{ marginLeft: "250px"}}>
+      <div className="main-content-historia" style={{ marginLeft: "250px"}}>
         <h1>Bienvenido a BachInfo</h1>
         <p>Tu portal de recursos educativos para Bachillerato</p>
         <div className="news-section-historia">
-          <h2>Últimas Noticias</h2>
+          <h2>Historia de España</h2>
           <div className="news-container-historia">
           {temas.map((tema, index) => (
               <Link to={tema.link} className="news-item-historia" key={index}>

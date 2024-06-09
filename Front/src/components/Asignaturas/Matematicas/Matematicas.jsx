@@ -22,43 +22,43 @@ function Matematicas() {
   const temas = [
     {
       titulo: "Tema 1",
-      descripcion: "La Península Ibérica en la Edad Antigua: Los tiempos prerromanos y la Hispania romana.",
-      imagen: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzeFSXi0X8k5cfOKnLmK3VVGWltergRKawTwmU6JR-DYNHVHomCsEb3g0DUo587sd7UaAcguToQq8QC8io0Zg35F89IGiRXVVCpr-04VGR7KWvINdFIJzEl_NulcUB4zOReKOTMFhIFMg/s1600/provinciashispania.jpg",
+      descripcion: "Funciones",
+      imagen: "https://concepto.de/wp-content/uploads/2019/12/funcion-matematica-e1577482849653.jpg",
       tipo: "imagen",
       link: "/matematicas/tema1"
     },
     {
       titulo: "Tema 2",
-      descripcion: "La Península Ibérica en la Edad Media.",
-      imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Pen%C3%ADnsula_ib%C3%A9rica_1150.svg/300px-Pen%C3%ADnsula_ib%C3%A9rica_1150.svg.png",
+      descripcion: "Limites",
+      imagen: "https://i.ytimg.com/vi/o2UTk8bsLS0/maxresdefault.jpg",
       tipo: "imagen",
       link: "/matematicas/tema2"
     },
     {
       titulo: "Tema 3",
-      descripcion: "España en la Edad Moderna.",
-      imagen: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7404tnUyfgxxEXCY-SPLhhF4e06XZN0I1WpJBi6siSbL7FIMIbJqcWMCMlsYHF1vavV-fnwE76-CXjYpOzc9y3exQMR65NtJ1ye9WluLmaMRxyAHLSE4kPbL2wqbJCl_zWE4DJlHod8A/s1600/reyescatolicosmapa.jpg",
+      descripcion: "Derivadas",
+      imagen: "https://i.ytimg.com/vi/uK4-s0ojHFg/maxresdefault.jpg",
       tipo: "imagen",
       link: "/matematicas/tema3"
     },
     {
       titulo: "Tema 4",
-      descripcion: "El siglo XVIII.",
-      imagen: "https://humanidades.com/wp-content/uploads/2023/08/Espana-en-el-siglo-XVIII-felipe-V.jpg",
+      descripcion: "Aplicaciones de las derivadas",
+      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSVwzBSE6wxpfCb3SdePR0VA8tK7HokyMKWg&s",
       tipo: "imagen",
       link: "/matematicas/tema3"
     },
     {
       titulo: "Tema 5",
-      descripcion: "La Crisis de Antiguo Régimen: (1788-1833): liberalismo frente a absolutismo.",
-      imagen: "https://i.ytimg.com/vi/qZDBt8tSYDg/maxresdefault.jpg",
+      descripcion: "Integrales",
+      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmiQ4hLZ6vGQWPt3tKGZRMStPVNTNbE5JiUA&s",
       tipo: "imagen",
       link: "/matematicas/tema3"
     },
     {
       titulo: "Tema 6",
-      descripcion: "España en la Edad Moderna.",
-      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7pY1NhQfhr1c3M4085ZollYtQqcGmpVztCzVdd4lXhQ&s",
+      descripcion: "Matrices",
+      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2uE_vmb6-A35XfltEbnAQyrvBcCbxBP3Y4A&s",
       tipo: "imagen",
       link: "/matematicas/tema3"
     }
@@ -125,7 +125,7 @@ function Matematicas() {
         <h1>Bienvenido a BachInfo</h1>
         <p>Tu portal de recursos educativos para Bachillerato</p>
         <div className="news-section-matematicas">
-          <h2>Últimas Noticias</h2>
+          <h2>Matemáticas</h2>
           <div className="news-container-matematicas">
           {temas.map((tema, index) => (
               <Link to={tema.link} className="news-item-matematicas" key={index}>
