@@ -47,7 +47,7 @@ function Dashboard() {
                   <th>Email</th>
                   <th>Creado</th>
                   <th>Actualizado</th>
-                  <th>Rol</th>
+                  
                   {/* Agrega más encabezados de columna según tu estructura de datos */}
                 </tr>
               </thead>
@@ -59,14 +59,12 @@ function Dashboard() {
                     <td>{row.email}</td>
                     <td>{row.createdAt}</td>
                     <td>{row.updatedAt}</td>
-                    <td>{row.roleId}</td>
                     {/* Agrega más celdas según tu estructura de datos */}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-
           <div className="about-section-historia">
             <h2>¿Qué es BachInfo?</h2>
             <p>BachInfo es un TFG (Trabajo de Fin de Grado) con el propósito de ayudar a estudiantes de 2º de Bachillerato, empleando una metodología que incluye la revisión del currículo educativo, entrevistas con docentes, y análisis de recursos educativos en línea para identificar contenidos relevantes.</p>
