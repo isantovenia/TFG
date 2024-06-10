@@ -36,6 +36,8 @@ function initial() {
 4. Descargar los modulos de node
 ```node
 npm install
+npm install axios
+
 ```
 
 5. Ejecutar el server para el back

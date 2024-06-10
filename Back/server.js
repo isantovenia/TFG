@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-
 const jwt = require("jsonwebtoken");
-const config = require("./app/config/auth.config")
+const config = require("./app/config/auth.config");
+const db = require("./app/models");
 
 const app = express();
 
@@ -11,9 +11,7 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public', {
@@ -24,42 +22,24 @@ app.use(express.static(__dirname + '/public', {
   }
 }));
 
-const db = require("./app/models");
-const Role = db.role;
-
 db.sequelize.sync();
 
-app.get("/api/getDashboard", (req, res) => {
-  const token = req.headers.authorization;
+const User = db.user; // Asegúrate de que 'user' es el nombre correcto de tu modelo de usuario
 
-  if (!token) {
-    return res.status(401).json({ mensaje: 'Token no proporcionado' });
-  }
+// Ruta para obtener los datos del dashboard
+app.get("/api/data", (req, res) => {
+    // Consulta para obtener los datos de la base de datos
+    User.findAll({
+      attributes: ['id', 'username', 'email'] // Ajusta los atributos según tu modelo
+    })
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(error => {
+      res.status(500).json({ mensaje: 'Error al obtener datos', error });
+    });
 
-  jwt.verify(token.replace('Bearer ', ''), config.secret, (err, usuario) => {
-    if (err) {
-      return res.status(403).json({ mensaje: 'Token no válido' });
-    }
-
-    const roles = usuario.roles || [];
-    console.log(usuario);
-
-    let responseData;
-
-    if (roles.includes('admin')) {
-      responseData= {message: "Tu rango es admin"}
-    } else if (roles.includes('moderator')) {
-      responseData= {message: "Tu rango es mod"}
-    } else if (roles.includes('user')) {
-      responseData= {message: "Tu rango es user"}
-    }
-
-    res.status(200).json(responseData);
-
-
-  });
 });
-
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
