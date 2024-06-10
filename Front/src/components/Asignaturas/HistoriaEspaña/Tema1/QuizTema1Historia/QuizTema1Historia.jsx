@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './QuizTema1Historia.css';
 import { Link } from 'react-router-dom';
+import Sidebar from '../../../../Sidebar/Sidebar.jsx';
 
 function QuizTema1Historia() {
   const questions = [
@@ -145,60 +146,7 @@ function QuizTema1Historia() {
 
   return (
     <div className='main-container-quiz-historia-tema1'>
-      <div className="sidebar">
-                <div className="logo">
-                <Link to="/landing-page">
-                    <img 
-                        src="https://www.comunidadbaratz.com/wp-content/uploads/Instrucciones-a-tener-en-cuenta-sobre-como-se-abre-un-libro-nuevo.jpg" 
-                        alt="Logo" 
-                        className="logo-landing" 
-                    />
-                </Link>
-                    <span>BachInfo</span>
-                </div>
-                <nav className="nav">
-                    <ul>
-                        <li><a href="/landing-page"><i className="icon-home"></i>Página de Inicio</a></li>
-                        <li className="submenu-toggle">
-                            <a href="#" onClick={toggleSubjects}>
-                                <i className="icon-book"></i>Asignaturas
-                                <span className="arrow">{isSubjectsOpen ? '▲' : '▼'}</span>
-                            </a>
-                        </li>
-                        {isSubjectsOpen && (
-                            <ul className="submenu">
-                                <li><a href="/historia-españa">Historia de España</a></li>
-                                <li><a href="/matematicas">Matemáticas</a></li>
-                                <li><a href="#">Biología</a></li>
-                            </ul>
-                        )}
-                        {rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR' && (
-                          <li><a href="#"><i className="icon-stats"></i>Ver Estadísticas</a></li>
-                        )}
-                        {rol === 'ROLE_ADMIN' && (
-                        <li><a href="#"><i className="icon-users"></i>Ver Usuarios</a></li>
-                        )}
-                        {rol === 'ROLE_ADMIN' && (
-                        <li><a href="#"><i className="icon-data"></i>Ver Datos Tests</a></li>
-                        )}
-                        <li><a href="#"><i className="icon-profile"></i>Editar Perfil</a></li>
-                    </ul>
-                </nav>
-                <div className="footer">
-                    <p>{username}</p>
-                    {rol ? (
-                      <p>
-                        {rol === 'ROLE_ADMIN' ? 'Administrador' : 
-                        rol === 'ROLE_MODERATOR' ? 'Profesor' : 'Usuario'}
-                      </p>
-                    ) : (
-                      <p>Hay un error</p>
-                    )}
-                    <a href="/" className="logout" onClick={handleLogout}>
-                      <i className="icon-logout"></i>Salirse
-                    </a>
-                </div>
-            </div>
+      <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       {showScore ? (
         <div className='score-section'>
           Lograste {score} de {questions.length}

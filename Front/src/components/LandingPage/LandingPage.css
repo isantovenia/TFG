@@ -127,7 +127,7 @@
   padding: 20px;
   background-color: #fff; /* fondo blanco */
   box-sizing: border-box;
-  width: 100vw; /* Ancho igual al ancho de la ventana del navegador */
+  width: 84vw; /* Ancho igual al ancho de la ventana del navegador */
   margin-left: 250px; /* Igual al ancho de la barra lateral */
 }
 
