@@ -15,7 +15,7 @@ import MatematicasTema1 from './components/Asignaturas/Matematicas/Tema1/Tema1Ma
 import QuizTema1Matematicas from './components/Asignaturas/Matematicas/Tema1/QuizTema1Matematicas/QuizTema1Matematicas.jsx'
 import QuizTema2Matematicas from './components/Asignaturas/Matematicas/Tema2/QuizTema2Matematicas/QuizTema2Matematicas2.jsx'
 import MatematicasTema2 from './components/Asignaturas/Matematicas/Tema2/Tema2Matematicas.jsx'
-import Dashboard from './components/Dashboard/Dashboard.jsx'
+import DashboardUsuarios from './components/DashboardUsuarios/DashboardUsuarios.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />
+    element: <DashboardUsuarios />
   },
   {
     path: "/create-user",
@@ -73,11 +73,7 @@ const router = createBrowserRouter([
   {
     path: "/matematicas/tema2/quiz",
     element: <QuizTema2Matematicas />
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />
-  },
+  }
 ]);
 
 
