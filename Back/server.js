@@ -30,7 +30,7 @@ const User = db.user; // Asegúrate de que 'user' es el nombre correcto de tu mo
 app.get("/api/data", (req, res) => {
     // Consulta para obtener los datos de la base de datos
     User.findAll({
-      attributes: ['id', 'username', 'email'] // Ajusta los atributos según tu modelo
+      attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt'] // Ajusta los atributos según tu modelo
     })
     .then(users => {
       res.status(200).json(users);
