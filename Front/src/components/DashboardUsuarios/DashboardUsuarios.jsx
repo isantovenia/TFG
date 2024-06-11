@@ -38,7 +38,7 @@ function Dashboard() {
         <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
         <div className="main-content-historia" style={{ marginLeft: "250px"}}>
         <div className="data-table-container">
-            <h2>Data from MySQL</h2>
+            <h2>Usuarios</h2>
             <table>
               <thead>
                 <tr>
