@@ -1,0 +1,54 @@
+/* Correo.css */
+
+/* Estilos generales */
+.hearder-contact {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .fieldset {
+    margin-bottom: 20px;
+  }
+  
+  .symbol-required::after {
+    content: "*";
+    color: red;
+  }
+  
+  /* Estilos para el formulario */
+  .field-asunto label,
+  .field-message label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .field-asunto input,
+  .field-message input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-send {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-send:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos específicos para dispositivos pequeños */
+  @media screen and (max-width: 600px) {
+    .btn-send {
+      font-size: 14px;
+    }
+  }
+  
