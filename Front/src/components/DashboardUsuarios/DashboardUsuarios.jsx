@@ -46,8 +46,6 @@ function Dashboard() {
                   <th>Nombre</th>
                   <th>Email</th>
                   <th>Creado</th>
-                  <th>Actualizado</th>
-                  
                   {/* Agrega más encabezados de columna según tu estructura de datos */}
                 </tr>
               </thead>
@@ -58,7 +56,6 @@ function Dashboard() {
                     <td>{row.username}</td>
                     <td>{row.email}</td>
                     <td>{row.createdAt}</td>
-                    <td>{row.updatedAt}</td>
                     {/* Agrega más celdas según tu estructura de datos */}
                   </tr>
                 ))}

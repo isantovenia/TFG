@@ -40,12 +40,12 @@ const CreateUser = () => {
             <div className="create-user-container">
                 <h2>Sign up</h2>
                 <label>
-                    New username:
+                    Usuario:
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </label>
                 <br />
                 <label>
-                    New password:
+                    Contraseña:
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
                 <br />

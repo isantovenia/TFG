@@ -1,19 +1,56 @@
-
 .create-user-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ajusta la altura según sea necesario */
-  }
-  
-  .create-user-container {
-    width: 300px;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #dddddd; /* Línea rodeando todo el contenido */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra similar a Google */
-    background-color: #ffffff; /* Fondo blanco similar a Google */
-  }#user-role{
-    width: 300px; /* Ajusta el ancho según tus preferencias */
-    height: 30px; /* Ajusta la altura según tus preferencias */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.create-user-container {
+  width: 100%;
+  max-width: 400px; /* Ajusta esto para limitar el ancho máximo */
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  box-sizing: border-box; /* Asegura que el padding y el border se incluyan en el ancho total */
+}
+
+.create-user-container h2 {
+  text-align: center;
+}
+
+.create-user-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.create-user-container input,
+.create-user-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+.button-container button:hover {
+  background-color: #0056b3;
 }

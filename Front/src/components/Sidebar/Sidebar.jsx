@@ -41,16 +41,12 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                                 <li><a href="#">Biología</a></li>
                             </ul>
                         )}
-                        {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
-                            <li><a href="#"><i className="icon-stats"></i>Ver Estadísticas</a></li>
-                        )}
                         {rol === 'ROLE_ADMIN' && (
                             <li><a href="/dashboard"><i className="icon-users"></i>Ver Usuarios</a></li>
                         )}
                         {rol === 'ROLE_ADMIN' && (
                             <li><a href="#"><i className="icon-data"></i>Ver Datos Tests</a></li>
                         )}
-                        <li><a href="#"><i className="icon-profile"></i>Editar Perfil</a></li>
                     </ul>
                 </nav>
                 <div className="footer">
@@ -66,7 +62,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                     <a href="/" className="logout" onClick={handleLogout}>
                         <i className="icon-logout"></i>Salirse
                     </a>
-                </div>
+                </div>  
             </div>
     );
 };
