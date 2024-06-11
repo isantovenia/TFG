@@ -1,8 +1,19 @@
 import React, {useRef} from 'react'
 import emailjs from '@emailjs/browser'
+import Sidebar from '../Sidebar/Sidebar.jsx';
 
 function Correo(){
     const refForm = useRef();
+
+    const handleLogout = () => {
+        // Eliminar el token de autenticación u otra información relacionada con la sesión
+        localStorage.removeItem('token');
+        // Redirigir a la página de inicio de sesión u otra página después de cerrar sesión
+        window.location.href = '/login'; // Redirige a la página de inicio de sesión
+      };
+  
+      const username = localStorage.getItem('user');
+      const rol = localStorage.getItem('rol');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -17,6 +28,7 @@ function Correo(){
 
     return (
         <div>
+            <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
             <form ref={refForm} action ="" onSubmit={handleSubmit}>
                 <div className='hearder-contact'>
                     <h2>Contact us</h2>
