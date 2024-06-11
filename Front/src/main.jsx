@@ -16,6 +16,7 @@ import QuizTema1Matematicas from './components/Asignaturas/Matematicas/Tema1/Qui
 import QuizTema2Matematicas from './components/Asignaturas/Matematicas/Tema2/QuizTema2Matematicas/QuizTema2Matematicas2.jsx'
 import MatematicasTema2 from './components/Asignaturas/Matematicas/Tema2/Tema2Matematicas.jsx'
 import DashboardUsuarios from './components/DashboardUsuarios/DashboardUsuarios.jsx'
+import Correo from './components/Correo/Correo.jsx';
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/matematicas/tema2/quiz",
     element: <QuizTema2Matematicas />
+  },
+  {
+    path: "/correo",
+    element: <Correo />
   }
 ]);
 
