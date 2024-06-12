@@ -1,54 +1,70 @@
 /* Correo.css */
 
 /* Estilos generales */
-.hearder-contact {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .fieldset {
-    margin-bottom: 20px;
-  }
-  
-  .symbol-required::after {
-    content: "*";
-    color: red;
-  }
-  
-  /* Estilos para el formulario */
-  .field-asunto label,
-  .field-message label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  .field-asunto input,
-  .field-message input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
+.header-contact-container {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 20px;
+  border: 1px solid #dddddd; /* Línea rodeando todo el contenido */
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.header-contact {
+  margin: 0;
+}
+
+/* Estilos para los fieldset */
+.field-asunto,
+.field-message {
+  border: none;  /* Eliminar el borde del fieldset */
+  padding: 0;    /* Eliminar el padding del fieldset */
+  margin: 0;     /* Eliminar el margin del fieldset */
+  margin-bottom: 20px;  /* Agregar margen inferior para separación */
+}
+
+/* Estilos para los label y input */
+.field-asunto label,
+.field-message label {
+  display: block;
+  margin: 10px 0;
+}
+
+.field-asunto input,
+.field-message textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  color: black;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.field-message textarea {
+  resize: vertical; /* Permite redimensionar verticalmente el textarea */
+}
+
+/* Estilos para el botón */
+.btn-send {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;  /* Separación del botón del último fieldset */
+}
+
+.btn-send:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos específicos para dispositivos pequeños */
+@media screen and (max-width: 600px) {
   .btn-send {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn-send:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilos específicos para dispositivos pequeños */
-  @media screen and (max-width: 600px) {
-    .btn-send {
       font-size: 14px;
-    }
   }
-  
+}
