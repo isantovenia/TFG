@@ -28,15 +28,15 @@ function LandingPage() {
           tipo: "imagen"
         },
         {
-          titulo: "Aprende más y mejor en Historia de España con estos videos",
+          titulo: "Aprende más y mejor en Historia de España con estos videos.",
           descripcion: "Esta es la descripción de la noticia 2.",
           video: "https://www.youtube.com/embed/0x5A4Jji8k4?list=PLXU5k6pAbxGrlLbcyEyAQ_DQnJwg4dDUb",
           tipo: "video"
         },
         {
           titulo: "Noticia 3",
-          descripcion: "Esta es la descripción de la noticia 3.",
-          imagen: "https://via.placeholder.com/150",
+          descripcion: "¿Quieres saber cuando salen las notas? Descubrelo y esta atento a ello.",
+          imagen: "https://fotografias.larazon.es/clipping/cmsimages02/2023/05/31/02569868-F8BB-4552-A9C7-028D943A701F/fechas-comunidades-autonomas-ebau-2023_58.jpg?crop=1905,1080,x0,y0&width=1000&height=567&optimize=high&format=webply",
           tipo: "imagen"
         }
       ];

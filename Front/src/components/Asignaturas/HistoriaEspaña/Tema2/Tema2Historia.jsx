@@ -33,12 +33,8 @@ function Tema2Historia() {
     <div className="main-container-historia">
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       <div className="main-content-historia-tema2">
-        <h1>Bienvenido a BachInfo</h1>
-        <p>Tu portal de recursos educativos para Bachillerato</p>
         <h2>Tema 2</h2>
-        <p>
-        La Península Ibérica en la Edad Media: Tres culturas y un mapa político en constante cambio (711-1474)
-        </p>
+        <p><em>La Península Ibérica en la Edad Media: Tres culturas y un mapa político en constante cambio (711-1474)</em></p>
         <div className="dropdown-box">
           <h3 onClick={() => toggleExpand('reinos')}>
             1. Los Reinos Cristianos: La Reconquista (hasta el siglo XIV) <span className="arrow">&#9660;</span>
@@ -54,15 +50,24 @@ function Tema2Historia() {
               {expanded['invasion'] && (
                 <ul>
                 <li>
-                <li>
-                    <strong>Conquista Musulmana en la Península Ibérica (711):</strong>
-                    <p>En el año 711, los musulmanes, liderados por Tariq ibn Ziyad, cruzaron el estrecho de Gibraltar y derrotaron al rey visigodo Rodrigo en la batalla de Guadalete. Esta conquista rápida y eficaz llevó a la dominación musulmana de gran parte de la Península, estableciendo el Emirato y posteriormente el Califato de Córdoba.</p>
-                    <p>Sin embargo, en las montañas del norte, pequeños núcleos de resistencia cristiana lograron mantenerse y comenzaron a formar los primeros reinos cristianos, como el Reino de Asturias.</p>
+                  <em><strong>Invasión musulmana y primeros reinos cristianos:</strong></em>
+                  <ul>
+                    <li>
+                      <strong>Conquista Musulmana en la Península Ibérica (711):</strong>
+                      <ul>
+                        <li>En el año 711, los musulmanes, liderados por Tariq ibn Ziyad, cruzaron el estrecho de Gibraltar y derrotaron al rey visigodo Rodrigo en la batalla de Guadalete. Esta conquista rápida y eficaz llevó a la dominación musulmana de gran parte de la Península, estableciendo el Emirato y posteriormente el Califato de Córdoba.</li>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Invasionisl%C3%A1micaespa%C3%B1a.svg/1200px-Invasionisl%C3%A1micaespa%C3%B1a.svg.png" alt="Descripción de la imagen" width="200" height="150"></img>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Resistencia cristiana y formación de los primeros reinos:</strong>
+                      <ul>
+                        <li>En las montañas del norte, pequeños núcleos de resistencia cristiana lograron mantenerse y comenzaron a formar los primeros reinos cristianos, como el Reino de Asturias. Este reino fue crucial en la preservación de la identidad cristiana y marcó el inicio de un largo proceso conocido como la Reconquista.</li>
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
-
-                </li>
-            </ul>
-            
+              </ul>
               )}
               <h4 onClick={() => toggleExpand('reconquista')}>
                 Reconquista<span className="arrow">&#9660;</span>
@@ -70,13 +75,16 @@ function Tema2Historia() {
               {expanded['reconquista'] && (
                 <ul>
                 <li>
-                    <strong>Avance de la Reconquista:</strong>
-                    <p>La Reconquista fue un proceso complejo y prolongado, caracterizado por avances y retrocesos. Los reinos cristianos del norte comenzaron a expandirse lentamente hacia el sur, impulsados tanto por motivos religiosos como políticos y económicos. El Reino de León, el Condado de Castilla (posteriormente Reino de Castilla), el Reino de Navarra y el Reino de Aragón fueron algunos de los principales protagonistas.</p>
-                    <p><strong>Siglo X-XI:</strong> Durante este período, se consolidaron los reinos de León y Castilla, mientras que Aragón comenzó a expandirse hacia el sur y el este.</p>
-                    <p><strong>Siglo XII:</strong> La unión dinástica entre Castilla y León en 1230 bajo Fernando III fue un hito importante. Además, la conquista de Toledo en 1085 por Alfonso VI de León y Castilla marcó un avance significativo para los cristianos.</p>
-                    <p><strong>Siglo XIII:</strong> Fue un siglo de grandes conquistas, destacándose la toma de Córdoba (1236) y Sevilla (1248) por Fernando III de Castilla y la expansión aragonesa hacia el Mediterráneo con la conquista de Valencia (1238) por Jaime I.</p>
+                  <em><strong>Avance de la Reconquista:</strong></em>
+                  <ul>
+                    <li><strong>Siglo X-XI:</strong> Durante este período, se consolidaron los reinos de León y Castilla, mientras que Aragón comenzó a expandirse hacia el sur y el este.</li>
+                    <li><strong>Siglo XII:</strong> La unión dinástica entre Castilla y León en 1230 bajo Fernando III fue un hito importante. Además, la conquista de Toledo en 1085 por Alfonso VI de León y Castilla marcó un avance significativo para los cristianos.</li>
+                    <img src="https://descargas.intef.es/recursos_educativos/It_didac/CCSS/5/11/La_Edad_Media_II/183418_jpg_1.jpg" alt="Descripción de la imagen" width="200" height="150"></img>
+                    <li><strong>Siglo XIII:</strong> Fue un siglo de grandes conquistas, destacándose la toma de Córdoba (1236) y Sevilla (1248) por Fernando III de Castilla y la expansión aragonesa hacia el Mediterráneo con la conquista de Valencia (1238) por Jaime I.</li>
+                  </ul>
                 </li>
-            </ul>
+              </ul>
+              
             
               )}
               <h4 onClick={() => toggleExpand('final')}>
@@ -85,11 +93,36 @@ function Tema2Historia() {
               {expanded['final'] && (
                 <ul>
                 <li>
-                    <strong>Final del período:</strong>
-                    <p>Para finales del siglo XIII, la mayoría de la Península estaba bajo control cristiano, excepto el Reino Nazarí de Granada, que perduraría hasta 1492. La Reconquista tuvo profundas implicaciones demográficas, sociales y culturales, con la repoblación de tierras conquistadas por cristianos del norte y de otros lugares de Europa.</p>
+                  <em><strong>Reconquista en la Península Ibérica:</strong></em>
+                  <ul>
+                    <li><strong>Periodo:</strong> Desde la invasión musulmana en 711 hasta la caída del Reino Nazarí de Granada en 1492.</li>
+                    <li>
+                      <strong>Implicaciones demográficas:</strong>
+                      <ul>
+                        <li><strong>Repoblación:</strong> Tras cada avance cristiano, se repoblaron las tierras conquistadas con cristianos del norte de la península y de otras partes de Europa.</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Implicaciones sociales:</strong>
+                      <ul>
+                        <li><strong>Nuevos sistemas políticos y sociales:</strong> Se establecieron nuevos órdenes políticos y sociales en las tierras reconquistadas.</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Implicaciones culturales:</strong>
+                      <ul>
+                        <li><strong>Mixtura cultural:</strong> La convivencia de cristianos, musulmanes y judíos dejó una huella cultural profunda en la península ibérica.</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Implicaciones religiosas:</strong>
+                      <ul>
+                        <li><strong>Unificación territorial y religiosa:</strong> Con la caída de Granada en 1492, se completó la unificación territorial bajo el dominio cristiano y se impuso la ortodoxia católica.</li>
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
-            </ul>
-            
+              </ul>
               )}
             </div>
           )}
@@ -111,14 +144,19 @@ function Tema2Historia() {
                 {expanded['crisis'] && (
                   <ul>
                   <li>
-                    <strong>Crisis</strong>
-                    <p>El siglo XIV fue una época de crisis en Europa, y la Península Ibérica no fue una excepción. Esta crisis tuvo varias dimensiones:</p>
-                    <p><strong>Peste Negra (1348-1351):</strong> La pandemia devastó la población, causando una grave crisis demográfica y económica.</p>
-                    <p><strong>Conflictos internos y guerras civiles:</strong> En Castilla, la guerra civil entre Pedro I y Enrique II (1366-1369) desestabilizó el reino. Aragón también sufrió conflictos internos y problemas sucesorios.</p>
-                    <p><strong>Crisis agraria y hambrunas:</strong> Las malas cosechas y la reducción de la mano de obra debido a la peste llevaron a crisis alimentarias.</p>
-                </li>
-              </ul>
-              
+                    <ul>
+                      <li><strong>Peste Negra (1348-1351):</strong> La pandemia devastó la población, causando una grave crisis demográfica y económica.</li>
+                      <img src="https://estaticos-cdn.prensaiberica.es/clip/0f72ca61-284e-42d6-9ce7-2265ace828fd_alta-libre-aspect-ratio_default_0.jpg" alt="Descripción de la imagen" width="200" height="150"></img>
+                      <li><strong>Conflictos internos y guerras civiles:</strong>
+                        <ul>
+                          <li>En Castilla, la guerra civil entre Pedro I y Enrique II (1366-1369) desestabilizó el reino.</li>
+                          <li>Aragón también sufrió conflictos internos y problemas sucesorios.</li>
+                        </ul>
+                      </li>
+                      <li><strong>Crisis agraria y hambrunas:</strong> Las malas cosechas y la reducción de la mano de obra debido a la peste llevaron a crisis alimentarias.</li>
+                    </ul>
+                  </li>
+                </ul>
                 )}
                 <h4 onClick={() => toggleExpand('recuperacion')}>
                 Siglo XV: Recuperación y consolidación<span className="arrow">&#9660;</span>
@@ -126,28 +164,45 @@ function Tema2Historia() {
                 {expanded['recuperacion'] && (
                   <ul>
                   <li>
-                        <strong>Siglo XV</strong>
-                        <p>A pesar de las crisis, los reinos peninsulares comenzaron a recuperarse y consolidarse:</p>
-                        <p><strong>Castilla:</strong> Bajo los Reyes Católicos, Isabel I de Castilla y Fernando II de Aragón, se produjo la unificación de los dos reinos en 1469 mediante su matrimonio, sentando las bases para la creación del Reino de España. Las reformas administrativas y militares fortalecieron el poder real.</p>
-                        <p><strong>Aragón:</strong> Enfrentó sus propios desafíos, incluyendo la Guerra Civil Catalana (1462-1472), pero también logró cierta estabilidad hacia finales del siglo XV.</p>
-                        <p><strong>Portugal:</strong> Mantuvo una relativa estabilidad interna y comenzó su expansión marítima, marcando el inicio de la Era de los Descubrimientos.</p>
-                    </li>
-
-              </ul>
+                    <ul>
+                      <li>
+                        <strong>Castilla:</strong> Bajo los Reyes Católicos, Isabel I de Castilla y Fernando II de Aragón se casaron en 1469, unificando los reinos y sentando las bases para la creación del Reino de España. Implementaron reformas administrativas y militares que fortalecieron el poder real.
+                      </li>
+                      <li>
+                        <strong>Aragón:</strong> Enfrentó desafíos como la Guerra Civil Catalana (1462-1472), pero hacia finales del siglo XV logró cierta estabilidad.
+                      </li>
+                      <li>
+                        <strong>Portugal:</strong> Experimentó relativa estabilidad interna y comenzó su expansión marítima, iniciando la Era de los Descubrimientos.
+                      </li>
+                      <img src="https://historiauniversal.org/wp-content/uploads/reconquista-espanola.jpg" alt="Descripción de la imagen" width="200" height="150"></img>
+                    </ul>
+                  </li>
+                </ul>
               )}
-
               <h4 onClick={() => toggleExpand('cambios')}>
               Cambios sociales y económicos<span className="arrow">&#9660;</span>
                 </h4>
                 {expanded['cambios'] && (
                   <ul>
-                    <li>
-                        <strong>Cambios</strong>
-                        <p><strong>Desarrollo urbano:</strong> El crecimiento de las ciudades y el comercio revitalizó la economía.</p>
-                        <p><strong>Nobleza y monarquía:</strong> La consolidación del poder de la monarquía frente a la nobleza fue un proceso clave en este período. Los Reyes Católicos implementaron políticas para reducir el poder de los nobles y fortalecer el estado centralizado.</p>
-                        <p><strong>Religión y sociedad:</strong> La convivencia entre las tres culturas (cristianos, judíos y musulmanes) se vio afectada por políticas cada vez más intolerantes, culminando en la expulsión de los judíos en 1492 y la presión sobre los musulmanes para convertirse al cristianismo o abandonar la península.</p>
-                    </li>
-                  </ul>
+                  <li>
+                    <em><strong>Desarrollo Urbano y Comercial:</strong></em>
+                    <ul>
+                      <li><strong>Crecimiento de las ciudades y comercio:</strong> El crecimiento urbano se aceleró, convirtiendo las ciudades en centros dinámicos de comercio y actividad económica. Esto fue impulsado por la expansión de mercados y rutas comerciales tras la finalización de la Reconquista en 1492.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <em><strong>Nobleza y Monarquía:</strong></em>
+                    <ul>
+                      <li><strong>Consolidación del poder monárquico:</strong> Los Reyes Católicos implementaron políticas para reducir el poder de la nobleza y fortalecer un gobierno centralizado. Esto incluyó la unión de las coronas de Castilla y Aragón, creando un estado español más cohesivo y poderoso.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <em><strong>Religión y Sociedad:</strong></em>
+                    <ul>
+                      <li><strong>Intolerancia religiosa:</strong> Se promulgaron políticas cada vez más intolerantes, como la Inquisición española, que buscaba eliminar la herejía y afirmar el catolicismo como la única fe aceptada. Esto culminó en la expulsión de los judíos en 1492 y presiones sobre los musulmanes para convertirse o abandonar la península.</li>
+                    </ul>
+                  </li>
+                </ul>               
               )}
               </div>
             )}
