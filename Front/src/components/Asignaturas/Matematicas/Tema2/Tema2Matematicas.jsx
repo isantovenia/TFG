@@ -33,12 +33,8 @@ function Tema2Matematicas() {
     <div className="main-container-matematicas">
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       <div className="main-content-matematicas-tema2">
-        <h1>Bienvenido a BachInfo</h1>
-        <p>Tu portal de recursos educativos para Bachillerato</p>
         <h2>Tema 1</h2>
-        <p>
-          Limites
-        </p>
+        <p><em>Limites</em></p>
         <div className="dropdown-box">
           <h3 onClick={() => toggleExpand('caracteristicas')}>
             1. Limites <span className="arrow">&#9660;</span>
@@ -73,16 +69,26 @@ function Tema2Matematicas() {
                           <strong>Funciones a trozos: </strong>
                           <p>Son funciones definidas por diferentes expresiones en diferentes intervalos. También se analiza la continuidad y se clasifican las discontinuidades.</p>
                       </li>
+                      <iframe width="200" height="150" src="https://www.youtube.com/embed/N4BG7SW6gZw" 
+                              title="Video de YouTube" frameborder="0" 
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                              allowfullscreen>
+                      </iframe>
                   </ul>
                 </ul>
               )}
               <h4 onClick={() => toggleExpand('parametro')}>
-              Calcular un parámetro a, o dos parámetros a y b, para que una función sea continua:<span className="arrow">&#9660;</span>
+              Calcular un parámetro a, o dos parámetros a y b, para que una función sea continua<span className="arrow">&#9660;</span>
               </h4>
               {expanded['parametro'] && (
                 <ul>
                   <li>
                       <p>Esto implica encontrar los valores de los parámetros que garantizan la continuidad de una función en un punto o en un intervalo dado.</p>
+                      <iframe width="200" height="150" src="https://www.youtube.com/embed/9BiQb9t24UI" 
+                              title="Video de YouTube" frameborder="0" 
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                              allowfullscreen>
+                      </iframe>
                   </li>
                 </ul>
               )}
@@ -97,6 +103,11 @@ function Tema2Matematicas() {
                   <li>Son líneas verticales en las que la función tiende a infinito o menos infinito.</li>
                   <strong>Asíntotas oblicuas (AO): </strong>
                   <li>Son líneas inclinadas a las que se aproxima la función a medida que la variable independiente tiende a infinito.</li>
+                  <iframe width="200" height="150" src="https://www.youtube.com/embed/VnbfGfW4E2o" 
+                              title="Video de YouTube" frameborder="0" 
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                              allowfullscreen>
+                      </iframe>
                 </ul>
               )}
             </div>

@@ -24,7 +24,7 @@ function Matematicas() {
     {
       titulo: "Tema 1",
       descripcion: "Funciones",
-      imagen: "https://concepto.de/wp-content/uploads/2019/12/funcion-matematica-e1577482849653.jpg",
+      imagen: "https://i.ytimg.com/vi/Ll7xfe3HoZE/maxresdefault.jpg",
       tipo: "imagen",
       link: "/matematicas/tema1"
     },
@@ -40,28 +40,28 @@ function Matematicas() {
       descripcion: "Derivadas",
       imagen: "https://i.ytimg.com/vi/uK4-s0ojHFg/maxresdefault.jpg",
       tipo: "imagen",
-      link: "/matematicas/tema3"
+      link: "/matematicas"
     },
     {
       titulo: "Tema 4",
       descripcion: "Aplicaciones de las derivadas",
-      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSVwzBSE6wxpfCb3SdePR0VA8tK7HokyMKWg&s",
+      imagen: "https://i.ytimg.com/vi/izGTzSy5X10/maxresdefault.jpg",
       tipo: "imagen",
-      link: "/matematicas/tema3"
+      link: "/matematicas"
     },
     {
       titulo: "Tema 5",
       descripcion: "Integrales",
-      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmiQ4hLZ6vGQWPt3tKGZRMStPVNTNbE5JiUA&s",
+      imagen: "https://i.ytimg.com/vi/d7Y9Om4KCUM/maxresdefault.jpg",
       tipo: "imagen",
-      link: "/matematicas/tema3"
+      link: "/matematicas"
     },
     {
       titulo: "Tema 6",
       descripcion: "Matrices",
-      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2uE_vmb6-A35XfltEbnAQyrvBcCbxBP3Y4A&s",
+      imagen: "https://i.ytimg.com/vi/m6w5vLA3Lnw/mqdefault.jpg",
       tipo: "imagen",
-      link: "/matematicas/tema3"
+      link: "/matematicas"
     }
   ];
 

@@ -23,8 +23,8 @@ function HistoriaEspaña() {
   const temas = [
     {
       titulo: "Tema 1",
-      descripcion: "La Península Ibérica en la Edad Antigua: Los tiempos prerromanos y la Hispania romana.",
-      imagen: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzeFSXi0X8k5cfOKnLmK3VVGWltergRKawTwmU6JR-DYNHVHomCsEb3g0DUo587sd7UaAcguToQq8QC8io0Zg35F89IGiRXVVCpr-04VGR7KWvINdFIJzEl_NulcUB4zOReKOTMFhIFMg/s1600/provinciashispania.jpg",
+      descripcion: "La Península Ibérica en la Edad Antigua",
+      imagen: "https://brevehistoriahispanica.com/wp-content/uploads/2012/09/tema-1-celtas-e-iberos.png",
       tipo: "imagen",
       link: "/historia-españa/tema1"
     },
@@ -38,30 +38,30 @@ function HistoriaEspaña() {
     {
       titulo: "Tema 3",
       descripcion: "España en la Edad Moderna.",
-      imagen: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7404tnUyfgxxEXCY-SPLhhF4e06XZN0I1WpJBi6siSbL7FIMIbJqcWMCMlsYHF1vavV-fnwE76-CXjYpOzc9y3exQMR65NtJ1ye9WluLmaMRxyAHLSE4kPbL2wqbJCl_zWE4DJlHod8A/s1600/reyescatolicosmapa.jpg",
+      imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Reinos_Antiguo_R%C3%A9gimen.svg/400px-Reinos_Antiguo_R%C3%A9gimen.svg.png",
       tipo: "imagen",
-      link: "/historia-españa/tema3"
+      link: "/historia-españa"
     },
     {
       titulo: "Tema 4",
       descripcion: "El siglo XVIII.",
-      imagen: "https://humanidades.com/wp-content/uploads/2023/08/Espana-en-el-siglo-XVIII-felipe-V.jpg",
+      imagen: "https://estudiamossociales.weebly.com/uploads/2/6/6/3/26630656/726897496.jpg",
       tipo: "imagen",
-      link: "/historia-españa/tema3"
+      link: "/historia-españa"
     },
     {
       titulo: "Tema 5",
-      descripcion: "La Crisis de Antiguo Régimen: (1788-1833): liberalismo frente a absolutismo.",
-      imagen: "https://i.ytimg.com/vi/qZDBt8tSYDg/maxresdefault.jpg",
+      descripcion: "La Crisis de Antiguo Régimen: (1788-1833)",
+      imagen: "https://cdn.goconqr.com/uploads/node/image/105307103/desktop_fdc37d79-e66a-4cdc-9b6d-f56b037cca92.jpg",
       tipo: "imagen",
-      link: "/historia-españa/tema3"
+      link: "/historia-españa"
     },
     {
       titulo: "Tema 6",
       descripcion: "España en la Edad Moderna.",
-      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7pY1NhQfhr1c3M4085ZollYtQqcGmpVztCzVdd4lXhQ&s",
+      imagen: "https://curiosidadesdelahistoriablog.com/wp-content/uploads/2015/12/hviii_focog.jpg?w=772&h=628&crop=1",
       tipo: "imagen",
-      link: "/historia-españa/tema3"
+      link: "/historia-españa"
     }
   ];
 
