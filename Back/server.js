@@ -115,6 +115,25 @@ app.get('/temas/:numAsignatura', (req, res) => {
   connection.end();
 });
 
+app.post('/addTema', (req, res) => {
+  const { numAsignatura, numTema, imagen, titulo, subtitulo } = req.body;
+  var connection = mysql.createConnection(credentials);
+  
+  // Insertar el nuevo tema en la base de datos
+  const insertTemaQuery = 'INSERT INTO temas (NumAsignatura, NumTema, Imagen, Titulo, Subtitulo) VALUES (?, ?, ?, ?, ?)';
+  const params = [numAsignatura, numTema, imagen, titulo, subtitulo];
+
+  connection.query(insertTemaQuery, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error al agregar el tema:', error);
+      res.status(500).send('Error al agregar el tema');
+    } else {
+      console.log('Tema agregado correctamente');
+      res.status(200).send('Tema agregado correctamente');
+    }
+  });
+});
+
 
 
 require('./app/routes/auth.routes')(app);
