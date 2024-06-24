@@ -33,7 +33,7 @@ function Tema2Matematicas() {
     <div className="main-container-matematicas">
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       <div className="main-content-matematicas-tema2">
-        <h2>Tema 1</h2>
+        <h2>Tema 2</h2>
         <p><em>Limites</em></p>
         <div className="dropdown-box">
           <h3 onClick={() => toggleExpand('caracteristicas')}>

@@ -1,97 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Matematicas.css';
 import { Link } from 'react-router-dom';
 import Sidebar from '../../Sidebar/Sidebar.jsx';
 
 function Matematicas() {
+  const [temas, setTemas] = useState([]);
+
+  useEffect(() => {
+    const fetchTemas = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/temas/1'); // Cambia la URL según tu configuración
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+
+        setTemas(data); // Asumiendo que `data` ya está ordenado por `NumTema` desde el backend
+      } catch (error) {
+        console.error('Error al obtener temas:', error);
+      }
+    };
+
+    fetchTemas();
+  }, []);
+
   const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
 
   const toggleSubjects = () => {
-      setIsSubjectsOpen(!isSubjectsOpen);
+    setIsSubjectsOpen(!isSubjectsOpen);
   };
 
   const username = localStorage.getItem('user');
   const rol = localStorage.getItem('rol');
 
   const handleLogout = () => {
-    // Eliminar el token de autenticación u otra información relacionada con la sesión
     localStorage.removeItem('token');
-    // Redirigir a la página de inicio de sesión u otra página después de cerrar sesión
-    window.location.href = '/login'; // Redirige a la página de inicio de sesión
+    window.location.href = '/login';
   };
-
-  const temas = [
-    {
-      titulo: "Tema 1",
-      descripcion: "Funciones",
-      imagen: "https://i.ytimg.com/vi/Ll7xfe3HoZE/maxresdefault.jpg",
-      tipo: "imagen",
-      link: "/matematicas/tema1"
-    },
-    {
-      titulo: "Tema 2",
-      descripcion: "Limites",
-      imagen: "https://i.ytimg.com/vi/o2UTk8bsLS0/maxresdefault.jpg",
-      tipo: "imagen",
-      link: "/matematicas/tema2"
-    },
-    {
-      titulo: "Tema 3",
-      descripcion: "Derivadas",
-      imagen: "https://i.ytimg.com/vi/uK4-s0ojHFg/maxresdefault.jpg",
-      tipo: "imagen",
-      link: "/matematicas"
-    },
-    {
-      titulo: "Tema 4",
-      descripcion: "Aplicaciones de las derivadas",
-      imagen: "https://i.ytimg.com/vi/izGTzSy5X10/maxresdefault.jpg",
-      tipo: "imagen",
-      link: "/matematicas"
-    },
-    {
-      titulo: "Tema 5",
-      descripcion: "Integrales",
-      imagen: "https://i.ytimg.com/vi/d7Y9Om4KCUM/maxresdefault.jpg",
-      tipo: "imagen",
-      link: "/matematicas"
-    },
-    {
-      titulo: "Tema 6",
-      descripcion: "Matrices",
-      imagen: "https://i.ytimg.com/vi/m6w5vLA3Lnw/mqdefault.jpg",
-      tipo: "imagen",
-      link: "/matematicas"
-    }
-  ];
-
 
   return (
     <div className="main-container-historia">
-        <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
-        <div className="main-content-matematicas" style={{ marginLeft: "250px"}}>
+      <Sidebar username={username} rol={rol} handleLogout={handleLogout} />
+      <div className="main-content-matematicas" style={{ marginLeft: "250px"}}>
         <h1>Bienvenido a BachInfo</h1>
         <p>Tu portal de recursos educativos para Bachillerato</p>
         <div className="news-section-matematicas">
           <h2>Matemáticas</h2>
           <div className="news-container-matematicas">
-          {temas.map((tema, index) => (
-              <Link to={tema.link} className="news-item-matematicas" key={index}>
-                {tema.tipo === "imagen" ? (
-                  <img src={tema.imagen} alt={`Imagen de ${tema.titulo}`} className="news-image-matematicas"/>
-                ) : (
-                  <iframe
-                    className="news-video-matematicas"
-                    src={tema.video}
-                    title={`Video de ${tema.titulo}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                )}
+            {temas.map((tema, index) => (
+              <Link to={`http://localhost:5173/matematicas/tema${tema.NumTema}`} className="news-item-matematicas" key={index}>
+                <img src={`data:image/jpeg;base64,${tema.Imagen.toString('base64')}`} alt={`Imagen de ${tema.Titulo}`} className="news-image-matematicas"/>
                 <div className="news-content-matematicas">
-                  <h3>{tema.titulo}</h3>
-                  <p>{tema.descripcion}</p>
+                  <h3>{tema.Titulo}</h3>
+                  <p>{tema.Subtitulo}</p>
                 </div>
               </Link>
             ))}

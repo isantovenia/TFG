@@ -97,6 +97,26 @@ app.post('/addQuestion', (req, res) => {
   connection.end();
 });
 
+app.get('/temas/:numAsignatura', (req, res) => {
+  const numAsignatura = req.params.numAsignatura; // Obtener el número de test desde los parámetros de la URL
+  var connection = mysql.createConnection(credentials);
+  
+  // Consulta SQL para obtener las preguntas del número de test especificado
+  const query = 'SELECT * FROM temas WHERE NumAsignatura = ?';
+  connection.query(query, [numAsignatura], (error, result) => {
+    if (error) {
+      console.error('Error en la consulta:', error);
+      res.status(500).send('Error en la consulta');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+
+  connection.end();
+});
+
+
+
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 
