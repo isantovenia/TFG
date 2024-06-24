@@ -1,106 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './QuizTema1Historia.css';
-import { Link } from 'react-router-dom';
 import Sidebar from '../../../../Sidebar/Sidebar.jsx';
 
 function QuizTema1Historia() {
-  const questions = [
-    {
-      questionText: '¿En qué año comenzó la conquista romana de la Península Ibérica?',
-      answerOptions: [
-        { answerText: '300 a.C.', isCorrect: false },
-        { answerText: '218 a.C.', isCorrect: true },
-        { answerText: '150 a.C.', isCorrect: false },
-        { answerText: '202 a.C.', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Quién lideraba las legiones romanas al inicio de la conquista de la Península Ibérica?',
-      answerOptions: [
-        { answerText: 'Julio César', isCorrect: false },
-        { answerText: 'Escipión el Africano', isCorrect: false },
-        { answerText: 'Aníbal Barca', isCorrect: true },
-        { answerText: 'Viriato', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué pueblos indígenas fueron sometidos por los romanos durante los siglos II y I a.C.?',
-      answerOptions: [
-        { answerText: 'Fenicios y griegos', isCorrect: false },
-        { answerText: 'Íberos y celtíberos', isCorrect: true },
-        { answerText: 'Cartagineses y lusitanos', isCorrect: false },
-        { answerText: 'Suevos y vándalos', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué líder lusitano destacó por su resistencia contra Roma en el siglo II a.C.?',
-      answerOptions: [
-        { answerText: 'Aníbal', isCorrect: false },
-        { answerText: 'Viriato', isCorrect: true },
-        { answerText: 'Julio César', isCorrect: false },
-        { answerText: 'Escipión', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Cuál fue uno de los principales efectos de la romanización en la Península Ibérica?',
-      answerOptions: [
-        { answerText: 'La desaparición de todas las lenguas locales', isCorrect: false },
-        { answerText: 'La introducción de la cultura y costumbres romanas', isCorrect: true },
-        { answerText: 'La colonización por fenicios', isCorrect: false },
-        { answerText: 'La independencia de las tribus indígenas', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué infraestructuras construyeron los romanos para facilitar el comercio y la comunicación?',
-      answerOptions: [
-        { answerText: 'Pirámides y templos', isCorrect: false },
-        { answerText: 'Calzadas, puentes y puertos', isCorrect: true },
-        { answerText: 'Castillos y murallas', isCorrect: false },
-        { answerText: 'Universidades y escuelas', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Cómo se dividió la Península Ibérica durante la época romana?',
-      answerOptions: [
-        { answerText: 'En reinos independientes', isCorrect: false },
-        { answerText: 'En provincias como Hispania Citerior y Ulterior', isCorrect: true },
-        { answerText: 'En estados aliados', isCorrect: false },
-        { answerText: 'En territorios feudales', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué evento marcó el inicio del fin de la Hispania romana?',
-      answerOptions: [
-        { answerText: 'La llegada de Aníbal', isCorrect: false },
-        { answerText: 'La derrota de los cartagineses', isCorrect: false },
-        { answerText: 'Las incursiones de pueblos bárbaros en el siglo III d.C.', isCorrect: true },
-        { answerText: 'La resistencia de Viriato', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Cuál fue uno de los principales centros comerciales y culturales en el sur de la Península Ibérica durante los siglos IX a II a.C.?',
-      answerOptions: [
-        { answerText: 'Cartago', isCorrect: false },
-        { answerText: 'Roma', isCorrect: false },
-        { answerText: 'Tartessos', isCorrect: true },
-        { answerText: 'Atenas', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué cambio importante ocurrió durante el Neolítico en la Península Ibérica?',
-      answerOptions: [
-        { answerText: 'El desarrollo de la metalurgia del hierro', isCorrect: false },
-        { answerText: 'La introducción de la agricultura y la domesticación de animales', isCorrect: true },
-        { answerText: 'La aparición de las primeras universidades', isCorrect: false },
-        { answerText: 'La conquista romana', isCorrect: false },
-      ],
-    }
-  ];
-
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [showNext, setShowNext] = useState(false);
+
+  useEffect(() => {
+    // Función para cargar las preguntas desde la API
+    const fetchQuestions = async () => {
+      try {
+        const numTest = 3; // Aquí define el número de test que deseas cargar dinámicamente
+        const response = await fetch(`http://localhost:8080/test/${numTest}`); // Cambia la URL para incluir el número de test
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        // Formatear las preguntas según el formato necesario
+        const formattedQuestions = data.map(pregunta => ({
+          questionText: pregunta.Pregunta,
+          answerOptions: [
+            { answerText: pregunta.RespuestaBuena, isCorrect: true },
+            { answerText: pregunta.RespuestaMala1, isCorrect: false },
+            { answerText: pregunta.RespuestaMala2, isCorrect: false },
+            { answerText: pregunta.RespuestaMala3, isCorrect: false }
+          ]
+        }));
+        setQuestions(formattedQuestions);
+      } catch (error) {
+        console.error('Error al obtener las preguntas:', error);
+        // Manejo de errores: podrías mostrar un mensaje de error en tu interfaz
+      }
+    };
+  
+    fetchQuestions(); // Llamar a la función para cargar las preguntas cuando el componente se monte
+  }, []); // [] significa que se ejecuta solo una vez al montarse el componente
+   // [] como segundo parámetro para que se ejecute solo una vez al montarse el componente
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
@@ -119,21 +57,6 @@ function QuizTema1Historia() {
     }
   };
 
-  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
-
-  const toggleSubjects = () => {
-    setIsSubjectsOpen(!isSubjectsOpen);
-  };
-
-  const [expanded, setExpanded] = useState({});
-
-  const toggleExpand = (id) => {
-    setExpanded(prevState => ({
-      ...prevState,
-      [id]: !prevState[id]
-    }));
-  };
-
   const username = localStorage.getItem('user');
   const rol = localStorage.getItem('rol');
 
@@ -145,13 +68,13 @@ function QuizTema1Historia() {
   };
 
   return (
-    <div className='main-container-quiz-historia-tema1'>
+    <div className='main-container-quiz-matematicas-tema2'>
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       {showScore ? (
         <div className='score-section'>
           Lograste {score} de {questions.length}
           <div className="finish-button-container">
-            <a href="/historia-españa/tema1" className='finish-button'>Finalizar</a>
+            <a href="/matematicas/tema2" className='finish-button'>Finalizar</a>
           </div>
         </div>
       ) : (
@@ -160,9 +83,9 @@ function QuizTema1Historia() {
             <div className='question-count'>
               <span>Pregunta {currentQuestion + 1}</span>/{questions.length}
             </div>
-            <div className='question-text'>{questions[currentQuestion].questionText}</div>
+            <div className='question-text'>{questions[currentQuestion]?.questionText}</div>
             <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+              {questions[currentQuestion]?.answerOptions.map((answerOption, index) => (
                 <button key={index} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>
                   {answerOption.answerText}
                 </button>
@@ -172,7 +95,7 @@ function QuizTema1Historia() {
           {showNext && (
             <div className='next-button-container'>
               <button className='next-button' onClick={handleNextQuestion}>
-                Next
+                Siguiente
               </button>
             </div>
           )}

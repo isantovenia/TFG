@@ -1,107 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './QuizTema2Historia.css';
-import { Link } from 'react-router-dom';
 import Sidebar from '../../../../Sidebar/Sidebar.jsx';
 
 function QuizTema2Historia() {
-  const questions = [
-    {
-      questionText: '¿Cuál fue uno de los principales conflictos en la Península Ibérica durante la Edad Media?',
-      answerOptions: [
-        { answerText: 'Guerra de los Cien Años', isCorrect: false },
-        { answerText: 'Guerra de los Treinta Años', isCorrect: false },
-        { answerText: 'La Reconquista', isCorrect: true },
-        { answerText: 'Guerra de los Siete Años', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué reino cristiano fue fundamental en la unificación de Castilla y León?',
-      answerOptions: [
-        { answerText: 'Reino de Navarra', isCorrect: false },
-        { answerText: 'Reino de León', isCorrect: true },
-        { answerText: 'Reino de Aragón', isCorrect: false },
-        { answerText: 'Reino de Castilla', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Cuál fue uno de los logros significativos de los reinos cristianos en el siglo XII?',
-      answerOptions: [
-        { answerText: 'Conquista de Córdoba', isCorrect: false },
-        { answerText: 'Unión dinástica entre Castilla y León', isCorrect: true },
-        { answerText: 'Conquista de Toledo', isCorrect: false },
-        { answerText: 'Conquista de Valencia', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué evento marcó el final de la Reconquista en la Península Ibérica?',
-      answerOptions: [
-        { answerText: 'La toma de Granada por los Reyes Católicos', isCorrect: true },
-        { answerText: 'La unión de Castilla y Aragón', isCorrect: false },
-        { answerText: 'La batalla de Las Navas de Tolosa', isCorrect: false },
-        { answerText: 'La coronación de Fernando III como emperador', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué crisis afectó a la Península Ibérica en el siglo XIV?',
-      answerOptions: [
-        { answerText: 'La Guerra de los Cien Años', isCorrect: false },
-        { answerText: 'La Guerra Civil Catalana', isCorrect: false },
-        { answerText: 'La Peste Negra', isCorrect: true },
-        { answerText: 'La invasión musulmana', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Quiénes fueron los Reyes Católicos?',
-      answerOptions: [
-        { answerText: 'Isabel I de Castilla y Fernando II de Aragón', isCorrect: true },
-        { answerText: 'Fernando III de Castilla y Alfonso X de León', isCorrect: false },
-        { answerText: 'Felipe II de Castilla y Juana I de Aragón', isCorrect: false },
-        { answerText: 'Juan I de Castilla y Juana I de Aragón', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué reino ibérico marcó el inicio de la Era de los Descubrimientos?',
-      answerOptions: [
-        { answerText: 'Reino de Navarra', isCorrect: false },
-        { answerText: 'Reino de León', isCorrect: false },
-        { answerText: 'Reino de Aragón', isCorrect: false },
-        { answerText: 'Reino de Portugal', isCorrect: true },
-      ],
-    },
-    {
-      questionText: '¿Cuál fue una de las principales consecuencias de la consolidación del poder real durante la Crisis Política y Social del siglo XIV y XV?',
-      answerOptions: [
-        { answerText: 'Aumento del poder de la nobleza', isCorrect: false },
-        { answerText: 'Fragmentación de los reinos peninsulares', isCorrect: false },
-        { answerText: 'Fortalecimiento del estado centralizado', isCorrect: true },
-        { answerText: 'Disminución del poder monárquico', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Qué implicaciones tuvo la expulsión de los judíos en 1492?',
-      answerOptions: [
-        { answerText: 'Mayor tolerancia religiosa', isCorrect: false },
-        { answerText: 'Disminución de la influencia cultural en la península', isCorrect: true },
-        { answerText: 'Consolidación del poder musulmán', isCorrect: false },
-        { answerText: 'Fortalecimiento del comercio', isCorrect: false },
-      ],
-    },
-    {
-      questionText: '¿Cuál fue uno de los cambios sociales y económicos durante la Edad Media en la Península Ibérica?',
-      answerOptions: [
-        { answerText: 'Desarrollo de las ciudades y el comercio', isCorrect: true },
-        { answerText: 'Reducción del desarrollo urbano', isCorrect: false },
-        { answerText: 'Disminución del comercio', isCorrect: false },
-        { answerText: 'Aumento del poder de la nobleza', isCorrect: false },
-      ],
-    }
-  ];
-
-
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [showNext, setShowNext] = useState(false);
+
+  useEffect(() => {
+    // Función para cargar las preguntas desde la API
+    const fetchQuestions = async () => {
+      try {
+        const numTest = 4; // Aquí define el número de test que deseas cargar dinámicamente
+        const response = await fetch(`http://localhost:8080/test/${numTest}`); // Cambia la URL para incluir el número de test
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        // Formatear las preguntas según el formato necesario
+        const formattedQuestions = data.map(pregunta => ({
+          questionText: pregunta.Pregunta,
+          answerOptions: [
+            { answerText: pregunta.RespuestaBuena, isCorrect: true },
+            { answerText: pregunta.RespuestaMala1, isCorrect: false },
+            { answerText: pregunta.RespuestaMala2, isCorrect: false },
+            { answerText: pregunta.RespuestaMala3, isCorrect: false }
+          ]
+        }));
+        setQuestions(formattedQuestions);
+      } catch (error) {
+        console.error('Error al obtener las preguntas:', error);
+        // Manejo de errores: podrías mostrar un mensaje de error en tu interfaz
+      }
+    };
+  
+    fetchQuestions(); // Llamar a la función para cargar las preguntas cuando el componente se monte
+  }, []); // [] significa que se ejecuta solo una vez al montarse el componente
+   // [] como segundo parámetro para que se ejecute solo una vez al montarse el componente
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
@@ -120,21 +57,6 @@ function QuizTema2Historia() {
     }
   };
 
-  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
-
-  const toggleSubjects = () => {
-    setIsSubjectsOpen(!isSubjectsOpen);
-  };
-
-  const [expanded, setExpanded] = useState({});
-
-  const toggleExpand = (id) => {
-    setExpanded(prevState => ({
-      ...prevState,
-      [id]: !prevState[id]
-    }));
-  };
-
   const username = localStorage.getItem('user');
   const rol = localStorage.getItem('rol');
 
@@ -146,13 +68,13 @@ function QuizTema2Historia() {
   };
 
   return (
-    <div className='main-container-quiz-historia-tema2'>
+    <div className='main-container-quiz-matematicas-tema2'>
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       {showScore ? (
         <div className='score-section'>
           Lograste {score} de {questions.length}
           <div className="finish-button-container">
-            <a href="/historia-españa/tema2" className='finish-button'>Finalizar</a>
+            <a href="/matematicas/tema2" className='finish-button'>Finalizar</a>
           </div>
         </div>
       ) : (
@@ -161,9 +83,9 @@ function QuizTema2Historia() {
             <div className='question-count'>
               <span>Pregunta {currentQuestion + 1}</span>/{questions.length}
             </div>
-            <div className='question-text'>{questions[currentQuestion].questionText}</div>
+            <div className='question-text'>{questions[currentQuestion]?.questionText}</div>
             <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+              {questions[currentQuestion]?.answerOptions.map((answerOption, index) => (
                 <button key={index} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>
                   {answerOption.answerText}
                 </button>
@@ -173,7 +95,7 @@ function QuizTema2Historia() {
           {showNext && (
             <div className='next-button-container'>
               <button className='next-button' onClick={handleNextQuestion}>
-                Next
+                Siguiente
               </button>
             </div>
           )}

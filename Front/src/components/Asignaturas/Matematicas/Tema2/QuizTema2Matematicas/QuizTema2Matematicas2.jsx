@@ -1,107 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './QuizTema2Matematicas.css';
-import { Link } from 'react-router-dom';
 import Sidebar from '../../../../Sidebar/Sidebar.jsx';
 
 function QuizTema2Matematicas() {
-    const questions = [
-        {
-            questionText: '¿Qué concepto central en el cálculo se utiliza para describir el comportamiento de una función a medida que la variable independiente se acerca a cierto valor?',
-            answerOptions: [
-                { answerText: 'Integral', isCorrect: false },
-                { answerText: 'Derivada', isCorrect: false },
-                { answerText: 'Límite', isCorrect: true },
-                { answerText: 'Función', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿Cuáles son algunas formas comunes de indeterminaciones al calcular límites?',
-            answerOptions: [
-                { answerText: '1/0 y 0/1', isCorrect: false },
-                { answerText: '2/0 y 0/2', isCorrect: false },
-                { answerText: '0/0, ∞/∞ y ∞-∞', isCorrect: true },
-                { answerText: '∞/1 y 1/∞', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿Qué técnica se utiliza para resolver indeterminaciones de límites que involucran 0/0?',
-            answerOptions: [
-                { answerText: 'Diferenciación', isCorrect: false },
-                { answerText: 'Integración', isCorrect: false },
-                { answerText: 'Regla de L\'Hôpital', isCorrect: true },
-                { answerText: 'Factorización', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿A qué se refiere el término "discontinuidades evitables" en el estudio de la continuidad de funciones elementales?',
-            answerOptions: [
-                { answerText: 'Cuando no se puede encontrar el límite de la función', isCorrect: false },
-                { answerText: 'Cuando existe un límite finito en el punto', isCorrect: true },
-                { answerText: 'Cuando la función es constante', isCorrect: false },
-                { answerText: 'Cuando la función es lineal', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿Qué tipo de funciones son las funciones a trozos?',
-            answerOptions: [
-                { answerText: 'Funciones exponenciales', isCorrect: false },
-                { answerText: 'Funciones definidas por diferentes expresiones en diferentes intervalos', isCorrect: true },
-                { answerText: 'Funciones trigonométricas', isCorrect: false },
-                { answerText: 'Funciones lineales', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿Qué implica calcular un parámetro para que una función sea continua?',
-            answerOptions: [
-                { answerText: 'Que la función tenga infinitas discontinuidades', isCorrect: false },
-                { answerText: 'Encontrar los valores del parámetro que garantizan la continuidad', isCorrect: true },
-                { answerText: 'Que la función sea una función a trozos', isCorrect: false },
-                { answerText: 'Que la función tenga derivada continua', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿Qué representan las asíntotas horizontales en una función?',
-            answerOptions: [
-                { answerText: 'Líneas verticales', isCorrect: false },
-                { answerText: 'Puntos de discontinuidad', isCorrect: false },
-                { answerText: 'Líneas horizontales a las que se aproxima la función a medida que la variable independiente tiende a infinito', isCorrect: true },
-                { answerText: 'Raíces de la función', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿Cuál es la característica de las asíntotas verticales en una función?',
-            answerOptions: [
-                { answerText: 'Son líneas horizontales', isCorrect: false },
-                { answerText: 'Son líneas verticales en las que la función tiende a infinito o menos infinito', isCorrect: true },
-                { answerText: 'Son líneas oblicuas', isCorrect: false },
-                { answerText: 'Son líneas paralelas al eje x', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿En qué consisten las asíntotas oblicuas en una función?',
-            answerOptions: [
-                { answerText: 'Son líneas horizontales', isCorrect: false },
-                { answerText: 'Son líneas verticales', isCorrect: false },
-                { answerText: 'Son líneas inclinadas a las que se aproxima la función a medida que la variable independiente tiende a infinito', isCorrect: true },
-                { answerText: 'Son líneas rectas', isCorrect: false },
-            ],
-        },
-        {
-            questionText: '¿Qué método se utiliza para resolver límites que involucran ∞-∞?',
-            answerOptions: [
-                { answerText: 'Factorización', isCorrect: false },
-                { answerText: 'Regla de L\'Hôpital', isCorrect: false },
-                { answerText: 'Identificación de términos dominantes', isCorrect: true },
-                { answerText: 'Racionalización', isCorrect: false },
-            ],
-        },
-    ];
-    
-
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [showNext, setShowNext] = useState(false);
+
+  useEffect(() => {
+    // Función para cargar las preguntas desde la API
+    const fetchQuestions = async () => {
+      try {
+        const numTest = 1; // Aquí define el número de test que deseas cargar dinámicamente
+        const response = await fetch(`http://localhost:8080/test/${numTest}`); // Cambia la URL para incluir el número de test
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        // Formatear las preguntas según el formato necesario
+        const formattedQuestions = data.map(pregunta => ({
+          questionText: pregunta.Pregunta,
+          answerOptions: [
+            { answerText: pregunta.RespuestaBuena, isCorrect: true },
+            { answerText: pregunta.RespuestaMala1, isCorrect: false },
+            { answerText: pregunta.RespuestaMala2, isCorrect: false },
+            { answerText: pregunta.RespuestaMala3, isCorrect: false }
+          ]
+        }));
+        setQuestions(formattedQuestions);
+      } catch (error) {
+        console.error('Error al obtener las preguntas:', error);
+        // Manejo de errores: podrías mostrar un mensaje de error en tu interfaz
+      }
+    };
+  
+    fetchQuestions(); // Llamar a la función para cargar las preguntas cuando el componente se monte
+  }, []); // [] significa que se ejecuta solo una vez al montarse el componente
+   // [] como segundo parámetro para que se ejecute solo una vez al montarse el componente
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
@@ -118,21 +55,6 @@ function QuizTema2Matematicas() {
     } else {
       setShowScore(true);
     }
-  };
-
-  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
-
-  const toggleSubjects = () => {
-    setIsSubjectsOpen(!isSubjectsOpen);
-  };
-
-  const [expanded, setExpanded] = useState({});
-
-  const toggleExpand = (id) => {
-    setExpanded(prevState => ({
-      ...prevState,
-      [id]: !prevState[id]
-    }));
   };
 
   const username = localStorage.getItem('user');
@@ -161,9 +83,9 @@ function QuizTema2Matematicas() {
             <div className='question-count'>
               <span>Pregunta {currentQuestion + 1}</span>/{questions.length}
             </div>
-            <div className='question-text'>{questions[currentQuestion].questionText}</div>
+            <div className='question-text'>{questions[currentQuestion]?.questionText}</div>
             <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+              {questions[currentQuestion]?.answerOptions.map((answerOption, index) => (
                 <button key={index} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>
                   {answerOption.answerText}
                 </button>
@@ -173,7 +95,7 @@ function QuizTema2Matematicas() {
           {showNext && (
             <div className='next-button-container'>
               <button className='next-button' onClick={handleNextQuestion}>
-                Next
+                Siguiente
               </button>
             </div>
           )}
