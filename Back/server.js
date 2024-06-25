@@ -172,6 +172,26 @@ app.put('/editTema', (req, res) => {
   });
 });
 
+app.delete('/removePregunta', (req, res) => {
+  const { numTest, pregunta } = req.body;
+  var connection = mysql.createConnection(credentials);
+  
+  // Eliminar la pregunta de la base de datos
+  const deletePreguntaQuery = 'DELETE FROM test WHERE NumTest = ? AND Pregunta = ?';
+  const params = [numTest, pregunta];
+
+  connection.query(deletePreguntaQuery, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error al eliminar la pregunta:', error);
+      res.status(500).send('Error al eliminar la pregunta');
+    } else {
+      console.log('Pregunta eliminada correctamente');
+      res.status(200).send('Pregunta eliminada correctamente');
+    }
+  });
+});
+
+
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);

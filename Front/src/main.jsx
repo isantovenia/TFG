@@ -17,10 +17,12 @@ import QuizTema2Matematicas from './components/Asignaturas/Matematicas/Tema2/Qui
 import MatematicasTema2 from './components/Asignaturas/Matematicas/Tema2/Tema2Matematicas.jsx'
 import DashboardUsuarios from './components/DashboardUsuarios/DashboardUsuarios.jsx'
 import Correo from './components/Correo/Correo.jsx';
-import AddQuestionForm from './components/AddQuestion/AddQuestion.jsx';
+import AddQuestionForm from './components/Preguntas/AddQuestion/AddQuestion.jsx';
+import RemoveQuestion from './components/Preguntas/RemoveQuestion/RemoveQuestion.jsx';
 import AddTema from './components/Temas/AddTema/AddTema.jsx';
 import RemoveTemas from './components/Temas/RemoveTemas/RemoveTemas.jsx';
 import EditTema from './components/Temas/EditarTemas/EditarTemas.jsx';
+import EditQuestion from './components/Preguntas/EditQuestion/EditQuestion.jsx';
 
 const router = createBrowserRouter([
   {
@@ -98,6 +100,14 @@ const router = createBrowserRouter([
   {
     path: "/editTema",
     element: <EditTema />
+  },
+  {
+    path: "/removequestion",
+    element: <RemoveQuestion />
+  },
+  {
+    path: "/editQuestion",
+    element: <EditQuestion />
   }
 ]);
 
