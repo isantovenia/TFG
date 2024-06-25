@@ -134,6 +134,26 @@ app.post('/addTema', (req, res) => {
   });
 });
 
+app.delete('/removeTema', (req, res) => {
+  const { numAsignatura, numTema } = req.body;
+  var connection = mysql.createConnection(credentials);
+  
+  // Eliminar el tema de la base de datos
+  const deleteTemaQuery = 'DELETE FROM temas WHERE NumAsignatura = ? AND NumTema = ?';
+  const params = [numAsignatura, numTema];
+
+  connection.query(deleteTemaQuery, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error al eliminar el tema:', error);
+      res.status(500).send('Error al eliminar el tema');
+    } else {
+      console.log('Tema eliminado correctamente');
+      res.status(200).send('Tema eliminado correctamente');
+    }
+  });
+});
+
+
 
 
 require('./app/routes/auth.routes')(app);

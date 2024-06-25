@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './AddTema.css';
-import Sidebar from '../Sidebar/Sidebar.jsx';
+import Sidebar from '../../Sidebar/Sidebar.jsx';
 
 function AddTema() {
   const [numAsignatura, setNumAsignatura] = useState('');

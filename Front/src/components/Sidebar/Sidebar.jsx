@@ -50,6 +50,9 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                         {rol === 'ROLE_ADMIN' && (
                             <li><a href="/addTema"><i className="icon-users"></i>Añadir Tema</a></li>
                         )}
+                                                {rol === 'ROLE_ADMIN' && (
+                            <li><a href="/removeTemas"><i className="icon-users"></i>Eliminar Tema</a></li>
+                        )}
                         {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
                             <li><a href="/correo"><i className="icon-stats"></i>Contactanos</a></li>
                         )}
