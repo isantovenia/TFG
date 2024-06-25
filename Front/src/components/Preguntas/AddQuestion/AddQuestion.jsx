@@ -11,6 +11,7 @@ function AddQuestionForm() {
     { answerText: '', isCorrect: false },
   ]);
   const [testNumber, setTestNumber] = useState('');
+  const [NumAsignatura, setNumAsignatura] = useState('');
 
   const handleAnswerTextChange = (index, newText) => {
     const updatedAnswerOptions = [...answerOptions];
@@ -31,6 +32,7 @@ function AddQuestionForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          NumAsignatura,
           testNumber,
           questionText,
           answerOptions: updatedAnswerOptions,
@@ -49,6 +51,7 @@ function AddQuestionForm() {
         { answerText: '', isCorrect: false },
         { answerText: '', isCorrect: false },
       ]);
+      setNumAsignatura(''); // Limpiar también NumAsignatura después de enviar
     } catch (error) {
       console.error('Error al agregar pregunta:', error);
       alert('Hubo un error al agregar la pregunta');
@@ -70,6 +73,15 @@ function AddQuestionForm() {
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       <h2>Añadir Nueva Pregunta</h2>
       <form onSubmit={handleSubmit}>
+        <label>
+          Número de Asignatura:
+          <input
+            type="text"
+            value={NumAsignatura}
+            onChange={(e) => setNumAsignatura(e.target.value)}
+            required
+          />
+        </label>
         <label>
           Número de Test:
           <input

@@ -68,15 +68,16 @@ app.get('/test/:numTest', (req, res) => {
 });
 
 app.post('/addQuestion', (req, res) => {
-  const { testNumber, questionText, answerOptions } = req.body;
+  const { NumAsignatura, testNumber, questionText, answerOptions } = req.body;
 
   // Crear conexión a la base de datos
   const connection = mysql.createConnection(credentials);
 
   // Insertar la nueva pregunta y opciones de respuesta en la base de datos
-  const insertQuestionQuery = 'INSERT INTO test (NumTest, Pregunta, RespuestaBuena, RespuestaMala1, RespuestaMala2, RespuestaMala3) VALUES (?, ?, ?, ?, ?, ?)';
+  const insertQuestionQuery = 'INSERT INTO test (NumTest, NumAsignatura, Pregunta, RespuestaBuena, RespuestaMala1, RespuestaMala2, RespuestaMala3) VALUES (?, ?, ?, ?, ?, ?, ?)';
   const params = [
     testNumber,
+    NumAsignatura,
     questionText,
     answerOptions[0].answerText,
     answerOptions[1].answerText,
@@ -96,6 +97,7 @@ app.post('/addQuestion', (req, res) => {
 
   connection.end();
 });
+
 
 app.get('/temas/:numAsignatura', (req, res) => {
   const numAsignatura = req.params.numAsignatura; // Obtener el número de test desde los parámetros de la URL
@@ -173,12 +175,12 @@ app.put('/editTema', (req, res) => {
 });
 
 app.delete('/removePregunta', (req, res) => {
-  const { numTest, pregunta } = req.body;
-  var connection = mysql.createConnection(credentials);
+  const { numTest, pregunta, NumAsignatura } = req.body;
+  const connection = mysql.createConnection(credentials);
   
   // Eliminar la pregunta de la base de datos
-  const deletePreguntaQuery = 'DELETE FROM test WHERE NumTest = ? AND Pregunta = ?';
-  const params = [numTest, pregunta];
+  const deletePreguntaQuery = 'DELETE FROM test WHERE NumAsignatura = ? AND NumTest = ? AND Pregunta = ?';
+  const params = [NumAsignatura, numTest, pregunta];
 
   connection.query(deletePreguntaQuery, params, (error, results, fields) => {
     if (error) {
@@ -188,8 +190,10 @@ app.delete('/removePregunta', (req, res) => {
       console.log('Pregunta eliminada correctamente');
       res.status(200).send('Pregunta eliminada correctamente');
     }
+    connection.end(); // Cerrar la conexión después de la consulta
   });
 });
+
 
 
 

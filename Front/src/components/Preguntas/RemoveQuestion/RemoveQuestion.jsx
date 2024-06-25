@@ -5,12 +5,7 @@ import Sidebar from '../../../components/Sidebar/Sidebar.jsx';
 function RemoveQuestion() {
   const [numTest, setNumTest] = useState('');
   const [pregunta, setPregunta] = useState('');
-
-  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
-
-  const toggleSubjects = () => {
-    setIsSubjectsOpen(!isSubjectsOpen);
-  };
+  const [NumAsignatura, setNumAsignatura] = useState('');
 
   const handleLogout = () => {
     // Eliminar el token de autenticación u otra información relacionada con la sesión
@@ -33,15 +28,18 @@ function RemoveQuestion() {
         body: JSON.stringify({
           numTest,
           pregunta,
+          NumAsignatura,
         }),
       });
-      if (!response.ok) {
+      if (response.ok) {
+        alert('Pregunta eliminada correctamente');
+        // Limpiar el formulario después de eliminar la pregunta
+        setNumTest('');
+        setPregunta('');
+        setNumAsignatura('');
+      } else {
         throw new Error('Error al eliminar la pregunta');
       }
-      alert('Pregunta eliminada correctamente');
-      // Limpiar el formulario después de eliminar la pregunta
-      setNumTest('');
-      setPregunta('');
     } catch (error) {
       console.error('Error al eliminar pregunta:', error);
       alert('Hubo un error al eliminar la pregunta');
@@ -53,6 +51,15 @@ function RemoveQuestion() {
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
       <h2>Eliminar Pregunta</h2>
       <form onSubmit={handleSubmit}>
+        <label>
+          Número de Asignatura:
+          <input
+            type="text"
+            value={NumAsignatura}
+            onChange={(e) => setNumAsignatura(e.target.value)}
+            required
+          />
+        </label>
         <label>
           Número de Test:
           <input
