@@ -194,6 +194,26 @@ app.delete('/removePregunta', (req, res) => {
   });
 });
 
+app.put('/editarPregunta', (req, res) => {
+  const { NumTest, Pregunta, RespuestaBuena, RespuestaMala1, RespuestaMala2, RespuestaMala3, NumAsignatura } = req.body;
+
+  const connection = mysql.createConnection(credentials);
+  
+  // Actualizar la pregunta en la base de datos
+  const updatePreguntaQuery = 'UPDATE test SET Pregunta = ?, RespuestaBuena = ?, RespuestaMala1 = ?, RespuestaMala2 = ?, RespuestaMala3 = ? WHERE NumAsignatura = ? AND NumTest = ?';
+  const params = [Pregunta, RespuestaBuena, RespuestaMala1, RespuestaMala2, RespuestaMala3, NumAsignatura, NumTest];
+
+  connection.query(updatePreguntaQuery, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error al actualizar la pregunta:', error);
+      res.status(500).send('Error al actualizar la pregunta');
+    } else {
+      console.log('Pregunta actualizada correctamente');
+      res.status(200).send('Pregunta actualizada correctamente');
+    }
+    connection.end(); // Cerrar la conexión después de la consulta
+  });
+});
 
 
 

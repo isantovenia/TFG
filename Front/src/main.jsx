@@ -22,6 +22,7 @@ import RemoveQuestion from './components/Preguntas/RemoveQuestion/RemoveQuestion
 import AddTema from './components/Temas/AddTema/AddTema.jsx';
 import RemoveTemas from './components/Temas/RemoveTemas/RemoveTemas.jsx';
 import EditTema from './components/Temas/EditarTemas/EditarTemas.jsx';
+import EditarQuestion from './components/Preguntas/EditQuestion/EditQuestion.jsx';
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
   {
     path: "/removequestion",
     element: <RemoveQuestion />
+  },
+  {
+    path: "/editQuestion",
+    element: <EditarQuestion />
   }
 ]);
 
