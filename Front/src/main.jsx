@@ -20,6 +20,7 @@ import Correo from './components/Correo/Correo.jsx';
 import AddQuestionForm from './components/AddQuestion/AddQuestion.jsx';
 import AddTema from './components/Temas/AddTema/AddTema.jsx';
 import RemoveTemas from './components/Temas/RemoveTemas/RemoveTemas.jsx';
+import EditTema from './components/Temas/EditarTemas/EditarTemas.jsx';
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
   {
     path: "/removeTemas",
     element: <RemoveTemas />
+  },
+  {
+    path: "/editTema",
+    element: <EditTema />
   }
 ]);
 

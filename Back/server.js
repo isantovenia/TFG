@@ -153,7 +153,24 @@ app.delete('/removeTema', (req, res) => {
   });
 });
 
+app.put('/editTema', (req, res) => {
+  const { numAsignatura, numTema, imagen, titulo, subtitulo } = req.body;
+  var connection = mysql.createConnection(credentials);
+  
+  // Actualizar el tema en la base de datos
+  const updateTemaQuery = 'UPDATE temas SET Imagen = ?, Titulo = ?, Subtitulo = ? WHERE NumAsignatura = ? AND NumTema = ?';
+  const params = [imagen, titulo, subtitulo, numAsignatura, numTema];
 
+  connection.query(updateTemaQuery, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error al editar el tema:', error);
+      res.status(500).send('Error al editar el tema');
+    } else {
+      console.log('Tema editado correctamente');
+      res.status(200).send('Tema editado correctamente');
+    }
+  });
+});
 
 
 require('./app/routes/auth.routes')(app);
