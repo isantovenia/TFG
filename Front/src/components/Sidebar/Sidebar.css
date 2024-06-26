@@ -1,6 +1,8 @@
 .container {
   display: flex;
+  flex-direction: column;
   height: 100vh;
+  overflow: hidden; /* Evitar desbordamiento horizontal */
 }
 
 .sidebar {
@@ -12,8 +14,8 @@
   border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
+  min-height: 0; /* Permitir que el contenido desborde si es necesario */
+  overflow-y: auto; /* Permitir desplazamiento vertical en el sidebar */
 }
 
 .logo {
@@ -32,6 +34,8 @@
 
 .nav {
   flex-grow: 1;
+  overflow-y: auto; /* Permitir desplazamiento vertical en el nav */
+  max-height: calc(100vh - 140px); /* Restar el espacio del logo y el footer */
 }
 
 .nav ul {
@@ -83,12 +87,10 @@
 }
 
 .footer {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
   padding: 20px;
-  text-align: center;
+  text-align: left;
   border-top: 1px solid #444;
+  flex-shrink: 0; /* No permitir que el footer se encoja */
 }
 
 .footer p {

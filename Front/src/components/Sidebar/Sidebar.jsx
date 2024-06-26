@@ -43,6 +43,9 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                             <i className="icon-home"></i>Página de Inicio
                         </a>
                     </li>
+                    {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
+                        <li><a href="/correo"><i className="icon-stats"></i>Contactanos</a></li>
+                    )}
                     <li className="submenu-toggle">
                         <a href="#" onClick={toggleSubjects}>
                             <i className="icon-book"></i>Asignaturas
@@ -106,9 +109,6 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                                 </ul>
                             )}
                         </>
-                    )}
-                    {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
-                        <li><a href="/correo"><i className="icon-stats"></i>Contactanos</a></li>
                     )}
                 </ul>
             </nav>
