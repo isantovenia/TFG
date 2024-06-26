@@ -6,6 +6,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
     const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
     const [isTopicsOpen, setIsTopicsOpen] = useState(false);
     const [isQuestionsOpen, setIsQuestionsOpen] = useState(false); 
+    const [isUsuariosOpen, setIsUsuariosOpen] = useState(false); 
 
     const toggleSubjects = () => {
         setIsSubjectsOpen(!isSubjectsOpen);
@@ -16,7 +17,11 @@ const Sidebar = ({ username, rol, handleLogout }) => {
     };
 
     const toggleQuestions = () => {
-        setIsQuestionsOpen(!isQuestionsOpen); // Nueva función para "Preguntas"
+        setIsQuestionsOpen(!isQuestionsOpen); 
+    };
+
+    const toggleUsuarios = () => {
+        setIsUsuariosOpen(!isUsuariosOpen); 
     };
 
     return (
@@ -86,13 +91,21 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                         </>
                     )}
                     {rol === 'ROLE_ADMIN' && (
-                        <li><a href="/dashboard"><i className="icon-users"></i>Ver Usuarios</a></li>
-                    )}
-                    {rol === 'ROLE_ADMIN' && (
-                        <li><a href="/editUsuario"><i className="icon-users"></i>Editar Usuarios</a></li>
-                    )}
-                    {rol === 'ROLE_ADMIN' && (
-                        <li><a href="/eliminarUsuario"><i className="icon-users"></i>Eliminar Usuarios</a></li>
+                        <>
+                            <li className="submenu-toggle">
+                                <a href="#" onClick={toggleUsuarios}>
+                                    <i className="icon-question"></i>Usuarios
+                                    <span className="arrow">{isUsuariosOpen ? '▲' : '▼'}</span>
+                                </a>
+                            </li>
+                            {isUsuariosOpen && (
+                                <ul className="submenu">
+                                     <li><a href="/dashboard">Ver Usuarios</a></li>
+                                     <li><a href="/editUsuario">Editar Usuarios</a></li>
+                                     <li><a href="/eliminarUsuario">Eliminar Usuarios</a></li>
+                                </ul>
+                            )}
+                        </>
                     )}
                     {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
                         <li><a href="/correo"><i className="icon-stats"></i>Contactanos</a></li>
