@@ -88,6 +88,12 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                     {rol === 'ROLE_ADMIN' && (
                         <li><a href="/dashboard"><i className="icon-users"></i>Ver Usuarios</a></li>
                     )}
+                    {rol === 'ROLE_ADMIN' && (
+                        <li><a href="/editUsuario"><i className="icon-users"></i>Editar Usuarios</a></li>
+                    )}
+                    {rol === 'ROLE_ADMIN' && (
+                        <li><a href="/eliminarUsuario"><i className="icon-users"></i>Eliminar Usuarios</a></li>
+                    )}
                     {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
                         <li><a href="/correo"><i className="icon-stats"></i>Contactanos</a></li>
                     )}

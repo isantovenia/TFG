@@ -1,4 +1,4 @@
-.remove-tema-container {
+.eliminar-usuario-container {
     padding: 20px;
     max-width: 600px;
     margin: 0 auto;
@@ -7,29 +7,29 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .remove-tema-container h2 {
+  .eliminar-usuario-container h2 {
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .remove-tema-container form {
+  .eliminar-usuario-container form {
     display: flex;
     flex-direction: column;
   }
   
-  .remove-tema-container label {
+  .eliminar-usuario-container label {
     margin-bottom: 10px;
     font-weight: bold;
   }
   
-  .remove-tema-container input {
+  .eliminar-usuario-container input {
     padding: 8px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  .remove-tema-container button {
+  .eliminar-usuario-container button {
     padding: 10px;
     background-color: #d9534f;
     color: white;
@@ -38,7 +38,7 @@
     cursor: pointer;
   }
   
-  .remove-tema-container button:hover {
+  .eliminar-usuario-container button:hover {
     background-color: #c9302c;
   }
   

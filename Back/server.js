@@ -215,6 +215,108 @@ app.put('/editarPregunta', (req, res) => {
   });
 });
 
+app.put('/editarUsuario', (req, res) => {
+  const { idUsuario, username, email, rol } = req.body;
+
+  let rolId;
+  switch(rol) {
+    case 'usuario':
+      rolId = 1;
+      break;
+    case 'profesor':
+      rolId = 2;
+      break;
+    case 'administrador':
+      rolId = 3;
+      break;
+    default:
+      return res.status(400).send('Rol no válido');
+  }
+
+  const connection = mysql.createConnection(credentials);
+
+  connection.beginTransaction(err => {
+    if (err) {
+      console.error('Error al iniciar la transacción:', err);
+      return res.status(500).send('Error al iniciar la transacción');
+    }
+
+    // Actualizar la información del usuario en la tabla users
+    const updateUsuarioQuery = 'UPDATE users SET username = ?, email = ? WHERE id = ?';
+    const usuarioParams = [username, email, idUsuario];
+
+    connection.query(updateUsuarioQuery, usuarioParams, (error, results) => {
+      if (error) {
+        return connection.rollback(() => {
+          console.error('Error al actualizar el usuario:', error);
+          res.status(500).send('Error al actualizar el usuario');
+        });
+      }
+
+      // Actualizar el rol en la tabla user_roles
+      const updateUserRoleQuery = 'UPDATE user_roles SET roleId = ? WHERE userId = ?';
+      const userRoleParams = [rolId, idUsuario];
+
+      connection.query(updateUserRoleQuery, userRoleParams, (error, results) => {
+        if (error) {
+          return connection.rollback(() => {
+            console.error('Error al actualizar el rol del usuario:', error);
+            res.status(500).send('Error al actualizar el rol del usuario');
+          });
+        }
+
+        connection.commit(err => {
+          if (err) {
+            return connection.rollback(() => {
+              console.error('Error al hacer commit:', err);
+              res.status(500).send('Error al hacer commit');
+            });
+          }
+
+          console.log('Usuario y rol actualizados correctamente');
+          res.status(200).send('Usuario y rol actualizados correctamente');
+          connection.end(); // Cerrar la conexión después de la transacción
+        });
+      });
+    });
+  });
+});
+
+app.delete('/eliminarUsuario', (req, res) => {
+  const { idUsuario, username } = req.body;
+
+  const connection = mysql.createConnection(credentials);
+
+  connection.beginTransaction(err => {
+    if (err) {
+      console.error('Error al iniciar la transacción:', err);
+      return res.status(500).send('Error al iniciar la transacción');
+    }
+    // Eliminar el usuario de la tabla users
+    const deleteUserQuery = 'DELETE FROM users WHERE id = ? AND username = ?';
+    connection.query(deleteUserQuery, [idUsuario, username], (error, results) => {
+      if (error) {
+        return connection.rollback(() => {
+          console.error('Error al eliminar el usuario:', error);
+          res.status(500).send('Error al eliminar el usuario');
+        });
+      }
+
+      connection.commit(err => {
+        if (err) {
+          return connection.rollback(() => {
+            console.error('Error al hacer commit:', err);
+            res.status(500).send('Error al hacer commit');
+          });
+        }
+
+        console.log('Usuario eliminado correctamente');
+        res.status(200).send('Usuario eliminado correctamente');
+        connection.end(); // Cerrar la conexión después de la transacción
+        });
+      });
+  });
+});
 
 
 require('./app/routes/auth.routes')(app);

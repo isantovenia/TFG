@@ -23,6 +23,8 @@ import AddTema from './components/Temas/AddTema/AddTema.jsx';
 import RemoveTemas from './components/Temas/RemoveTemas/RemoveTemas.jsx';
 import EditTema from './components/Temas/EditarTemas/EditarTemas.jsx';
 import EditarQuestion from './components/Preguntas/EditQuestion/EditQuestion.jsx';
+import EditarUsuario from './components/Usuarios/EditarUsuario/EditarUsuario.jsx';
+import EliminarUsuario from './components/Usuarios/EliminarUsuario/EliminarUsuario.jsx';
 
 const router = createBrowserRouter([
   {
@@ -108,6 +110,14 @@ const router = createBrowserRouter([
   {
     path: "/editQuestion",
     element: <EditarQuestion />
+  },
+  {
+    path: "/editUsuario",
+    element: <EditarUsuario />
+  },
+  {
+    path: "/eliminarUsuario",
+    element: <EliminarUsuario />
   }
 ]);
 
