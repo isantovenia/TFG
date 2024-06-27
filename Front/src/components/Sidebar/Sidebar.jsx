@@ -70,8 +70,8 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                             {isTopicsOpen && (
                                 <ul className="submenu">
                                     <li><a href="/addTema">Añadir Tema</a></li>
-                                    <li><a href="/removeTemas">Eliminar Tema</a></li>
                                     <li><a href="/editTema">Editar Tema</a></li>
+                                    <li><a href="/removeTemas">Eliminar Tema</a></li>
                                 </ul>
                             )}
                         </>

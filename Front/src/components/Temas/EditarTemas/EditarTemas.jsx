@@ -100,7 +100,8 @@ function EditTema() {
         </label>
         <label>
           Subtítulo:
-          <textarea
+          <input
+            type="text"
             value={subtitulo}
             onChange={(e) => setSubtitulo(e.target.value)}
             required
