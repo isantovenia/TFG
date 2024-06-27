@@ -318,6 +318,75 @@ app.delete('/eliminarUsuario', (req, res) => {
   });
 });
 
+app.get('/noticias', (req, res) => {
+  var connection = mysql.createConnection(credentials);
+  
+  // Consulta SQL para obtener todas las noticias
+  const query = 'SELECT * FROM noticias';
+  connection.query(query, (error, result) => {
+    if (error) {
+      console.error('Error en la consulta:', error);
+      res.status(500).send('Error en la consulta');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+
+  connection.end();
+});
+
+app.post('/addNoticia', (req, res) => {
+  const { numNoticia, titulo, descripcion, imagen } = req.body;
+  const connection = mysql.createConnection(credentials);
+
+  // Verificar si ya existe una noticia con el mismo NumNoticia
+  const verificaExistenciaQuery = 'SELECT * FROM noticias WHERE NumNoticia = ?';
+  connection.query(verificaExistenciaQuery, [numNoticia], (error, results) => {
+    if (error) {
+      console.error('Error al verificar existencia de noticia:', error);
+      res.status(500).send('Error al verificar existencia de noticia');
+    } else {
+      if (results.length > 0) {
+        // Ya existe una noticia con ese NumNoticia
+        res.status(409).send('Ya existe una noticia con ese número');
+      } else {
+        // Insertar la nueva noticia en la base de datos
+        const insertNoticiaQuery = 'INSERT INTO noticias (NumNoticia, Titulo, Descripcion, Imagen) VALUES (?, ?, ?, ?)';
+        const params = [numNoticia, titulo, descripcion, imagen];
+
+        connection.query(insertNoticiaQuery, params, (insertError, insertResults) => {
+          if (insertError) {
+            console.error('Error al agregar la noticia:', insertError);
+            res.status(500).send('Error al agregar la noticia');
+          } else {
+            console.log('Noticia agregada correctamente');
+            res.status(200).send('Noticia agregada correctamente');
+          }
+        });
+      }
+    }
+  });
+
+  connection.end();
+});
+
+// Endpoint para obtener una noticia por su NumNoticia
+app.get('/noticias/:numNoticia', (req, res) => {
+  const numNoticia = req.params.numNoticia;
+  const connection = mysql.createConnection(credentials);
+
+  const query = 'SELECT * FROM noticias WHERE NumNoticia = ?';
+  connection.query(query, [numNoticia], (error, results) => {
+    if (error) {
+      console.error('Error al obtener la noticia:', error);
+      res.status(500).send('Error al obtener la noticia');
+    } else {
+      res.status(200).json(results);
+    }
+  });
+
+  connection.end();
+});
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);

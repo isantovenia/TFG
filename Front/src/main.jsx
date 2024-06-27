@@ -25,6 +25,7 @@ import EditTema from './components/Temas/EditarTemas/EditarTemas.jsx';
 import EditarQuestion from './components/Preguntas/EditQuestion/EditQuestion.jsx';
 import EditarUsuario from './components/Usuarios/EditarUsuario/EditarUsuario.jsx';
 import EliminarUsuario from './components/Usuarios/EliminarUsuario/EliminarUsuario.jsx';
+import CrearNoticia from './components/Noticias/CrearNoticia/CrearNoticia.jsx';
 
 const router = createBrowserRouter([
   {
@@ -118,6 +119,10 @@ const router = createBrowserRouter([
   {
     path: "/eliminarUsuario",
     element: <EliminarUsuario />
+  },
+  {
+    path: "/crearNoticia",
+    element: <CrearNoticia />
   }
 ]);
 
