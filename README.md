@@ -5,6 +5,7 @@ npm install @emailjs/browser --save
 npm i emailjs-com
 npm install nodemailer
 npm install react-router-dom
+npm install mysql body-parser
 
 Ejecutar el server para el back
 cd .\Back\
