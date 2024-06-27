@@ -1,0 +1,55 @@
+.editar-noticia-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .editar-noticia-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .editar-noticia-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .editar-noticia-container form label {
+    margin-bottom: 10px;
+  }
+  
+  .editar-noticia-container form input[type="text"],
+  .editar-noticia-container form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .editar-noticia-container form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .editar-noticia-container form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .editar-noticia-container form button:hover {
+    background-color: #0056b3;
+  }
+  

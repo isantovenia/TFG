@@ -345,10 +345,12 @@ app.post('/addNoticia', (req, res) => {
     if (error) {
       console.error('Error al verificar existencia de noticia:', error);
       res.status(500).send('Error al verificar existencia de noticia');
+      connection.end(); // Cerrar conexión en caso de error
     } else {
       if (results.length > 0) {
         // Ya existe una noticia con ese NumNoticia
         res.status(409).send('Ya existe una noticia con ese número');
+        connection.end(); // Cerrar conexión después de enviar respuesta
       } else {
         // Insertar la nueva noticia en la base de datos
         const insertNoticiaQuery = 'INSERT INTO noticias (NumNoticia, Titulo, Descripcion, Imagen) VALUES (?, ?, ?, ?)';
@@ -362,12 +364,11 @@ app.post('/addNoticia', (req, res) => {
             console.log('Noticia agregada correctamente');
             res.status(200).send('Noticia agregada correctamente');
           }
+          connection.end(); // Siempre cerrar conexión después de ejecutar la consulta
         });
       }
     }
   });
-
-  connection.end();
 });
 
 // Endpoint para obtener una noticia por su NumNoticia
@@ -382,6 +383,25 @@ app.get('/noticias/:numNoticia', (req, res) => {
       res.status(500).send('Error al obtener la noticia');
     } else {
       res.status(200).json(results);
+    }
+    connection.end(); // Siempre cerrar conexión después de ejecutar la consulta
+  });
+});
+
+app.put('/editarNoticia', (req, res) => {
+  const { NumNoticia, Titulo, Descripcion, Imagen } = req.body;
+  const connection = mysql.createConnection(credentials);
+  
+  const updateNoticiaQuery = 'UPDATE noticias SET Titulo = ?, Descripcion = ?, Imagen = ? WHERE NumNoticia = ?';
+  const params = [Titulo, Descripcion, Imagen, NumNoticia];
+
+  connection.query(updateNoticiaQuery, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error al editar la noticia:', error);
+      res.status(500).send('Error al editar la noticia');
+    } else {
+      console.log('Noticia editada correctamente');
+      res.status(200).send('Noticia editada correctamente');
     }
   });
 
