@@ -7,6 +7,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
     const [isTopicsOpen, setIsTopicsOpen] = useState(false);
     const [isQuestionsOpen, setIsQuestionsOpen] = useState(false); 
     const [isUsuariosOpen, setIsUsuariosOpen] = useState(false); 
+    const [isNoticiasOpen, setIsNoticiasOpen] = useState(false); 
 
     const toggleSubjects = () => {
         setIsSubjectsOpen(!isSubjectsOpen);
@@ -22,6 +23,10 @@ const Sidebar = ({ username, rol, handleLogout }) => {
 
     const toggleUsuarios = () => {
         setIsUsuariosOpen(!isUsuariosOpen); 
+    };
+
+    const toggleNoticias = () => {
+        setIsNoticiasOpen(!isNoticiasOpen); 
     };
 
     return (
@@ -106,6 +111,23 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                                      <li><a href="/dashboard">Ver Usuarios</a></li>
                                      <li><a href="/editUsuario">Editar Usuarios</a></li>
                                      <li><a href="/eliminarUsuario">Eliminar Usuarios</a></li>
+                                </ul>
+                            )}
+                        </>
+                    )}
+                    {rol === 'ROLE_ADMIN' && (
+                        <>
+                            <li className="submenu-toggle">
+                                <a href="#" onClick={toggleNoticias}>
+                                    <i className="icon-question"></i>Noticias
+                                    <span className="arrow">{isNoticiasOpen ? '▲' : '▼'}</span>
+                                </a>
+                            </li>
+                            {isNoticiasOpen && (
+                                <ul className="submenu">
+                                     <li><a href="/crearNoticia">Crear Noticia</a></li>
+                                     <li><a href="/editarNoticia">Editar Noticia</a></li>
+                                     <li><a href="/eliminarNoticia">Eliminar Noticia</a></li>
                                 </ul>
                             )}
                         </>

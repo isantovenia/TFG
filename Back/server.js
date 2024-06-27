@@ -408,6 +408,45 @@ app.put('/editarNoticia', (req, res) => {
   connection.end();
 });
 
+app.delete("/eliminarNoticia", (req, res) => {
+  const { NumNoticia, Titulo } = req.body;
+  const connection = mysql.createConnection(credentials);
+  // Verificar si la noticia existe antes de eliminarla
+  const verificaExistenciaQuery =
+    "SELECT * FROM noticias WHERE NumNoticia = ? AND Titulo = ?";
+  connection.query(
+    verificaExistenciaQuery,
+    [NumNoticia, Titulo],
+    (error, results) => {
+      if (error) {
+        console.error("Error al verificar existencia de noticia:", error);
+        res.status(500).send("Error al verificar existencia de noticia");
+      } else {
+        if (results.length === 0) {
+          // No se encontró una noticia con esos parámetros
+          res.status(404).send("No se encontró la noticia especificada");
+        } else {
+          // Eliminar la noticia de la base de datos
+          const deleteNoticiaQuery = "DELETE FROM noticias WHERE NumNoticia = ?";
+          connection.query(
+            deleteNoticiaQuery,
+            [NumNoticia],
+            (deleteError, deleteResults) => {
+              if (deleteError) {
+                console.error("Error al eliminar la noticia:", deleteError);
+                res.status(500).send("Error al eliminar la noticia");
+              } else {
+                console.log("Noticia eliminada correctamente");
+                res.status(200).send("Noticia eliminada correctamente");
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+});
+
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 
