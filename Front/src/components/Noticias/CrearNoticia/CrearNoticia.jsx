@@ -116,7 +116,7 @@ function CrearNoticia() {
           />
         </label>
         <label>
-          Imagen:
+          Imagen (solo JPG):
           <input
             type="file"
             onChange={handleImagenSeleccionada}
