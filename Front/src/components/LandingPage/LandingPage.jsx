@@ -19,7 +19,7 @@ function LandingPage() {
 
         // Procesar las noticias para convertir la imagen base64 a una URL válida
         const noticiasConImagenes = data.map(noticia => {
-          const imagenUrl = `data:image/jpeg;base64,${noticia.Imagen}`; // Asumiendo que la imagen es JPEG
+          const imagenUrl = `${noticia.Imagen}`; // La URL ya debería ser válida si es data:image/jpeg;base64,...
           return { ...noticia, Imagen: imagenUrl };
         });
 

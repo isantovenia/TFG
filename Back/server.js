@@ -331,20 +331,19 @@ app.get('/noticias', (req, res) => {
     if (error) {
       console.error('Error en la consulta:', error);
       res.status(500).send('Error en la consulta');
-      connection.end(); // Cerrar conexión en caso de error
     } else {
       // Convertir base64 a imagen y enviar resultados
       const noticiasConImagenes = results.map(noticia => {
         const imagenBase64 = noticia.Imagen;
         const noticiaConImagen = {
           ...noticia,
-          Imagen: `data:image/jpeg;base64,${imagenBase64}` // Asumiendo que la imagen es JPEG, ajustar según el tipo real
+          Imagen: `data:image/jpeg;base64,${imagenBase64}` // Asumiendo que la imagen es JPEG
         };
         return noticiaConImagen;
       });
       res.status(200).json(noticiasConImagenes);
-      connection.end(); // Cerrar conexión después de enviar respuesta
     }
+    connection.end(); // Cerrar conexión después de enviar respuesta
   });
 });
 
