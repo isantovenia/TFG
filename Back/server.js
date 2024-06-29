@@ -4,8 +4,12 @@ const jwt = require("jsonwebtoken");
 const config = require("./app/config/auth.config");
 const db = require("./app/models");
 const mysql = require('mysql2')
+const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.json()); // Parsear JSON body
+app.use(bodyParser.urlencoded({ extended: true })); // Parsear URL-encoded body
 
 var corsOptions = {
   origin: "*"
@@ -319,25 +323,37 @@ app.delete('/eliminarUsuario', (req, res) => {
 });
 
 app.get('/noticias', (req, res) => {
-  var connection = mysql.createConnection(credentials);
-  
+  const connection = mysql.createConnection(credentials);
+
   // Consulta SQL para obtener todas las noticias
   const query = 'SELECT * FROM noticias';
-  connection.query(query, (error, result) => {
+  connection.query(query, (error, results) => {
     if (error) {
       console.error('Error en la consulta:', error);
       res.status(500).send('Error en la consulta');
+      connection.end(); // Cerrar conexión en caso de error
     } else {
-      res.status(200).json(result);
+      // Convertir base64 a imagen y enviar resultados
+      const noticiasConImagenes = results.map(noticia => {
+        const imagenBase64 = noticia.Imagen;
+        const noticiaConImagen = {
+          ...noticia,
+          Imagen: `data:image/jpeg;base64,${imagenBase64}` // Asumiendo que la imagen es JPEG, ajustar según el tipo real
+        };
+        return noticiaConImagen;
+      });
+      res.status(200).json(noticiasConImagenes);
+      connection.end(); // Cerrar conexión después de enviar respuesta
     }
   });
-
-  connection.end();
 });
 
 app.post('/addNoticia', (req, res) => {
   const { numNoticia, titulo, descripcion, imagen } = req.body;
   const connection = mysql.createConnection(credentials);
+
+  // Convertir imagen a base64
+  const base64Image = imagen.replace(/^data:image\/(jpeg|jpg|png);base64,/, '');
 
   // Verificar si ya existe una noticia con el mismo NumNoticia
   const verificaExistenciaQuery = 'SELECT * FROM noticias WHERE NumNoticia = ?';
@@ -354,7 +370,7 @@ app.post('/addNoticia', (req, res) => {
       } else {
         // Insertar la nueva noticia en la base de datos
         const insertNoticiaQuery = 'INSERT INTO noticias (NumNoticia, Titulo, Descripcion, Imagen) VALUES (?, ?, ?, ?)';
-        const params = [numNoticia, titulo, descripcion, imagen];
+        const params = [numNoticia, titulo, descripcion, base64Image];
 
         connection.query(insertNoticiaQuery, params, (insertError, insertResults) => {
           if (insertError) {

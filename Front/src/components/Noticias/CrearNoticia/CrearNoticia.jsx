@@ -15,15 +15,13 @@ function CrearNoticia() {
   };
 
   const handleLogout = () => {
-    // Eliminar el token de autenticación u otra información relacionada con la sesión
     localStorage.removeItem('token');
-    // Redirigir a la página de inicio de sesión u otra página después de cerrar sesión
-    window.location.href = '/login'; // Redirige a la página de inicio de sesión
+    window.location.href = '/login';
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Verificar si ya existe una noticia con el mismo NumNoticia
+
     const existeNoticia = await verificarExistenciaNoticia(numNoticia);
     
     if (existeNoticia) {
@@ -48,7 +46,6 @@ function CrearNoticia() {
         throw new Error('Error al agregar la noticia');
       }
       alert('Noticia agregada correctamente');
-      // Limpiar el formulario después de agregar la noticia
       setNumNoticia('');
       setTitulo('');
       setDescripcion('');
@@ -66,14 +63,24 @@ function CrearNoticia() {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      return data.length > 0; // Devuelve true si hay alguna noticia con ese NumNoticia
+      return data.length > 0;
     } catch (error) {
       console.error('Error al verificar existencia de noticia:', error);
-      return false; // En caso de error, se asume que la noticia no existe
+      return false;
     }
   };
 
-  // Obtención de username y rol desde el localStorage
+  const handleImagenSeleccionada = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagen(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const username = localStorage.getItem('user');
   const rol = localStorage.getItem('rol');
 
@@ -109,11 +116,11 @@ function CrearNoticia() {
           />
         </label>
         <label>
-          Imagen (URL o base64):
+          Imagen:
           <input
-            type="text"
-            value={imagen}
-            onChange={(e) => setImagen(e.target.value)}
+            type="file"
+            onChange={handleImagenSeleccionada}
+            accept="image/*"
             required
           />
         </label>

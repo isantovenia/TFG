@@ -16,7 +16,14 @@ function LandingPage() {
           throw new Error('Error al obtener las noticias');
         }
         const data = await response.json();
-        setNoticias(data);
+
+        // Procesar las noticias para convertir la imagen base64 a una URL válida
+        const noticiasConImagenes = data.map(noticia => {
+          const imagenUrl = `data:image/jpeg;base64,${noticia.Imagen}`; // Asumiendo que la imagen es JPEG
+          return { ...noticia, Imagen: imagenUrl };
+        });
+
+        setNoticias(noticiasConImagenes);
       } catch (error) {
         console.error('Error al obtener las noticias:', error);
       }
@@ -39,7 +46,7 @@ function LandingPage() {
         <div className="news-section">
           <h2>Últimas Noticias</h2>
           <div className="news-container">
-          {noticias.map((noticia, index) => (
+            {noticias.map((noticia, index) => (
               <div className="news-item" key={index}>
                 <img src={noticia.Imagen} alt={`Imagen de ${noticia.Titulo}`} className="news-image" />
                 <div className="news-content">
