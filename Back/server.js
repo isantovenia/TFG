@@ -164,10 +164,12 @@ app.delete('/removeTema', (req, res) => {
 app.put('/editTema', (req, res) => {
   const { numAsignatura, numTema, imagen, titulo, subtitulo } = req.body;
   var connection = mysql.createConnection(credentials);
+
+  const base64Image = imagen.replace(/^data:image\/(jpeg|jpg|png);base64,/, '');
   
   // Actualizar el tema en la base de datos
   const updateTemaQuery = 'UPDATE temas SET Imagen = ?, Titulo = ?, Subtitulo = ? WHERE NumAsignatura = ? AND NumTema = ?';
-  const params = [imagen, titulo, subtitulo, numAsignatura, numTema];
+  const params = [base64Image, titulo, subtitulo, numAsignatura, numTema];
 
   connection.query(updateTemaQuery, params, (error, results, fields) => {
     if (error) {
@@ -408,9 +410,11 @@ app.get('/noticias/:numNoticia', (req, res) => {
 app.put('/editarNoticia', (req, res) => {
   const { NumNoticia, Titulo, Descripcion, Imagen } = req.body;
   const connection = mysql.createConnection(credentials);
+
+  const base64Image = Imagen.replace(/^data:image\/(jpeg|jpg|png);base64,/, '');
   
   const updateNoticiaQuery = 'UPDATE noticias SET Titulo = ?, Descripcion = ?, Imagen = ? WHERE NumNoticia = ?';
-  const params = [Titulo, Descripcion, Imagen, NumNoticia];
+  const params = [Titulo, Descripcion, base64Image, NumNoticia];
 
   connection.query(updateNoticiaQuery, params, (error, results, fields) => {
     if (error) {

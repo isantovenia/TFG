@@ -40,6 +40,17 @@ function EditarNoticia() {
     window.location.href = '/login';
   };
 
+  const handleImagenSeleccionada = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagen(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const username = localStorage.getItem('user');
   const rol = localStorage.getItem('rol');
 
@@ -75,11 +86,11 @@ function EditarNoticia() {
           />
         </label>
         <label>
-          Imagen (URL o base64):
+          Imagen (solo JPG):
           <input
-            type="text"
-            value={imagen}
-            onChange={(e) => setImagen(e.target.value)}
+            type="file"
+            onChange={handleImagenSeleccionada}
+            accept="image/*"
             required
           />
         </label>

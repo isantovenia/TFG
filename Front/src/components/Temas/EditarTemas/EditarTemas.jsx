@@ -25,6 +25,17 @@ function EditTema() {
   const username = localStorage.getItem('user');
   const rol = localStorage.getItem('rol');
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagen(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -81,11 +92,11 @@ function EditTema() {
           />
         </label>
         <label>
-          Imagen (URL o base64):
+          Imagen:
           <input
-            type="text"
-            value={imagen}
-            onChange={(e) => setImagen(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
             required
           />
         </label>
