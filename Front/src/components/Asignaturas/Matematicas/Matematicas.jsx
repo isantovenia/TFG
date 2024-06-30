@@ -38,6 +38,8 @@ function Matematicas() {
     window.location.href = '/login';
   };
 
+  const sortedTemas = temas.sort((a, b) => a.NumTema - b.NumTema);
+
   return (
     <div className="main-container-historia">
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} />
@@ -47,15 +49,15 @@ function Matematicas() {
         <div className="news-section-matematicas">
           <h2>Matemáticas</h2>
           <div className="news-container-matematicas">
-            {temas.map((tema, index) => (
-              <Link to={`http://localhost:5173/matematicas/tema${tema.NumTema}`} className="news-item-matematicas" key={index}>
-                <img src={`data:image/jpeg;base64,${tema.Imagen.toString('base64')}`} alt={`Imagen de ${tema.Titulo}`} className="news-image-matematicas"/>
-                <div className="news-content-matematicas">
-                  <h3>{tema.Titulo}</h3>
-                  <p>{tema.Subtitulo}</p>
-                </div>
-              </Link>
-            ))}
+          {sortedTemas.map((tema, index) => (
+            <Link to={`http://localhost:5173/matematicas/tema${tema.NumTema}`} className="news-item-matematicas" key={index}>
+              <img src={`data:image/jpeg;base64,${tema.Imagen.toString('base64')}`} alt={`Imagen de ${tema.Titulo}`} className="news-image-matematicas"/>
+              <div className="news-content-matematicas">
+                <h3>{tema.Titulo}</h3>
+                <p>{tema.Subtitulo}</p>
+              </div>
+            </Link>
+          ))}
           </div>
         </div>
         <div className="about-section-matematicas">
