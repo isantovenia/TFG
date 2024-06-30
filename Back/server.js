@@ -124,10 +124,12 @@ app.get('/temas/:numAsignatura', (req, res) => {
 app.post('/addTema', (req, res) => {
   const { numAsignatura, numTema, imagen, titulo, subtitulo } = req.body;
   var connection = mysql.createConnection(credentials);
+
+  const base64Image = imagen.replace(/^data:image\/(jpeg|jpg|png);base64,/, '');
   
   // Insertar el nuevo tema en la base de datos
   const insertTemaQuery = 'INSERT INTO temas (NumAsignatura, NumTema, Imagen, Titulo, Subtitulo) VALUES (?, ?, ?, ?, ?)';
-  const params = [numAsignatura, numTema, imagen, titulo, subtitulo];
+  const params = [numAsignatura, numTema, base64Image, titulo, subtitulo];
 
   connection.query(insertTemaQuery, params, (error, results, fields) => {
     if (error) {
