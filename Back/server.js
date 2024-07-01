@@ -492,7 +492,20 @@ app.get('/asignaturas/:NumAsignatura', (req, res) => {
   });
 });
 
+app.get('/asignaturas', (req, res) => {
+  const connection = mysql.createConnection(credentials);
+  const query = 'SELECT * FROM asignaturas';
 
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.error('Error al obtener las asignaturas:', error);
+      res.status(500).send('Error al obtener las asignaturas');
+    } else {
+      res.status(200).json(results);
+    }
+    connection.end(); // Siempre cerrar conexión después de ejecutar la consulta
+  });
+});
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);

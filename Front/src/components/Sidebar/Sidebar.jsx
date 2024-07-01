@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
 const Sidebar = ({ username, rol, handleLogout }) => {
     const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
     const [isTopicsOpen, setIsTopicsOpen] = useState(false);
-    const [isQuestionsOpen, setIsQuestionsOpen] = useState(false); 
-    const [isUsuariosOpen, setIsUsuariosOpen] = useState(false); 
-    const [isNoticiasOpen, setIsNoticiasOpen] = useState(false); 
+    const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
+    const [isUsuariosOpen, setIsUsuariosOpen] = useState(false);
+    const [isNoticiasOpen, setIsNoticiasOpen] = useState(false);
+    const [asignaturas, setAsignaturas] = useState([]);
 
-    
+    useEffect(() => {
+        fetchAsignaturas();
+    }, []);
+
+    const fetchAsignaturas = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/asignaturas');
+            if (!response.ok) {
+                throw new Error('Error al obtener las asignaturas');
+            }
+            const data = await response.json();
+            setAsignaturas(data);
+        } catch (error) {
+            console.error('Error fetching asignaturas:', error);
+            // Handle error as needed
+        }
+    };
 
     const toggleSubjects = () => {
         setIsSubjectsOpen(!isSubjectsOpen);
@@ -20,15 +37,15 @@ const Sidebar = ({ username, rol, handleLogout }) => {
     };
 
     const toggleQuestions = () => {
-        setIsQuestionsOpen(!isQuestionsOpen); 
+        setIsQuestionsOpen(!isQuestionsOpen);
     };
 
     const toggleUsuarios = () => {
-        setIsUsuariosOpen(!isUsuariosOpen); 
+        setIsUsuariosOpen(!isUsuariosOpen);
     };
 
     const toggleNoticias = () => {
-        setIsNoticiasOpen(!isNoticiasOpen); 
+        setIsNoticiasOpen(!isNoticiasOpen);
     };
 
     return (
@@ -61,9 +78,9 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                     </li>
                     {isSubjectsOpen && (
                         <ul className="submenu">
-                            <li><a href="/asignatura/2">Historia de España</a></li>
-                            <li><a href="/asignatura/1">Matemáticas</a></li>
-                            <li><a href="#">Biología</a></li>
+                            {asignaturas.map(asignatura => (
+                                <li key={asignatura.NumAsignatura}><a href={`/asignatura/${asignatura.NumAsignatura}`}>{asignatura.NombreAsignatura}</a></li>
+                            ))}
                         </ul>
                     )}
                     {rol === 'ROLE_ADMIN' && (
