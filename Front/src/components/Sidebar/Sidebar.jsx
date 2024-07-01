@@ -99,8 +99,8 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                             {isAsignaturaOpen && (
                                 <ul className="submenu">
                                     <li><a href="/crearAsignatura">Añadir Asignatura</a></li>
-                                    <li><a href="/editTema">Editar Asignatura</a></li>
-                                    <li><a href="/removeTemas">Eliminar Asignatura</a></li>
+                                    <li><a href="/editarAsignatura">Editar Asignatura</a></li>
+                                    <li><a href="/eliminarAsignatura">Eliminar Asignatura</a></li>
                                 </ul>
                             )}
                         </ul>

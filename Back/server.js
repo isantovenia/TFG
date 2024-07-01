@@ -565,6 +565,48 @@ app.put('/editAsignatura', (req, res) => {
   connection.end();
 });
 
+app.delete("/eliminarAsignatura", (req, res) => {
+  const { NumAsignatura, NombreAsignatura } = req.body;
+  const connection = mysql.createConnection(credentials);
+
+  // Verificar si la asignatura existe antes de eliminarla
+  const verificaExistenciaQuery =
+    "SELECT * FROM asignaturas WHERE NumAsignatura = ? AND NombreAsignatura = ?";
+  connection.query(
+    verificaExistenciaQuery,
+    [NumAsignatura, NombreAsignatura],
+    (error, results) => {
+      if (error) {
+        console.error("Error al verificar existencia de asignatura:", error);
+        res.status(500).send("Error al verificar existencia de asignatura");
+      } else {
+        if (results.length === 0) {
+          // No se encontró una asignatura con esos parámetros
+          res.status(404).send("No se encontró la asignatura especificada");
+        } else {
+          // Eliminar la asignatura de la base de datos
+          const deleteAsignaturaQuery = "DELETE FROM asignaturas WHERE NumAsignatura = ? AND NombreAsignatura = ?";
+          connection.query(
+            deleteAsignaturaQuery,
+            [NumAsignatura, NombreAsignatura],
+            (deleteError, deleteResults) => {
+              if (deleteError) {
+                console.error("Error al eliminar la asignatura:", deleteError);
+                res.status(500).send("Error al eliminar la asignatura");
+              } else {
+                console.log("Asignatura eliminada correctamente");
+                res.status(200).send("Asignatura eliminada correctamente");
+              }
+            }
+          );
+        }
+      }
+      // Cerrar la conexión a la base de datos después de finalizar todas las consultas
+      connection.end();
+    }
+  );
+});
+
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 

@@ -29,6 +29,7 @@ import EliminarNoticia from './components/Noticias/EliminarNoticia/EliminarNotic
 import Asignatura from './components/pruebaAsignatura/pruebAsignatura.jsx';
 import CrearAsignatura from './components/Asignaturas/CrearAsignatura/CrearAsignatura.jsx';
 import EditarAsignatura from './components/Asignaturas/EditarAsignatura/EditarAsignatura.jsx';
+import EliminarAsignatura from './components/Asignaturas/EliminarAsignatura/EliminarAsignatura.jsx';
 
 const router = createBrowserRouter([
   {
@@ -138,6 +139,10 @@ const router = createBrowserRouter([
   {
     path: "/editarAsignatura",
     element: <EditarAsignatura />,
+  },
+  {
+    path: "/eliminarAsignatura",
+    element: <EliminarAsignatura />,
   },
 ]);
 
