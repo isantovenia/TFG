@@ -8,6 +8,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
     const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
     const [isUsuariosOpen, setIsUsuariosOpen] = useState(false);
     const [isNoticiasOpen, setIsNoticiasOpen] = useState(false);
+    const [isAsignaturaOpen, setIsAsignaturaOpen] = useState(false);
     const [asignaturas, setAsignaturas] = useState([]);
 
     useEffect(() => {
@@ -48,6 +49,10 @@ const Sidebar = ({ username, rol, handleLogout }) => {
         setIsNoticiasOpen(!isNoticiasOpen);
     };
 
+    const toggleAsignatura = () => {
+        setIsAsignaturaOpen(!isAsignaturaOpen);
+    };
+
     return (
         <div className="sidebar">
             <div className="logo">
@@ -79,8 +84,25 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                     {isSubjectsOpen && (
                         <ul className="submenu">
                             {asignaturas.map(asignatura => (
-                                <li key={asignatura.NumAsignatura}><a href={`/asignatura/${asignatura.NumAsignatura}`}>{asignatura.NombreAsignatura}</a></li>
+                                <li key={asignatura.NumAsignatura}>
+                                    <a href={`/asignatura/${asignatura.NumAsignatura}`}>
+                                        {asignatura.NombreAsignatura}
+                                    </a>
+                                </li>
                             ))}
+                            <li className="submenu-toggle">
+                                <a href="#" onClick={toggleAsignatura}>
+                                    <i className="icon-folder"></i>Asignaturas Operaciones
+                                    <span className="arrow">{isAsignaturaOpen ? '▲' : '▼'}</span>
+                                </a>
+                            </li>
+                            {isAsignaturaOpen && (
+                                <ul className="submenu">
+                                    <li><a href="/crearAsignatura">Añadir Asignatura</a></li>
+                                    <li><a href="/editTema">Editar Asignatura</a></li>
+                                    <li><a href="/removeTemas">Eliminar Asignatura</a></li>
+                                </ul>
+                            )}
                         </ul>
                     )}
                     {rol === 'ROLE_ADMIN' && (

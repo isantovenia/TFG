@@ -507,6 +507,44 @@ app.get('/asignaturas', (req, res) => {
   });
 });
 
+app.post('/addAsignatura', (req, res) => {
+  const { numAsignatura, nombreAsignatura, colorFondo } = req.body;
+
+  // Crear conexión a la base de datos
+  const connection = mysql.createConnection(credentials);
+
+  // Verificar si ya existe una asignatura con el mismo NumAsignatura
+  const verificaExistenciaQuery = 'SELECT * FROM asignaturas WHERE NumAsignatura = ?';
+  connection.query(verificaExistenciaQuery, [numAsignatura], (error, results) => {
+      if (error) {
+          console.error('Error al verificar existencia de asignatura:', error);
+          res.status(500).send('Error al verificar existencia de asignatura');
+          connection.end(); // Cerrar conexión en caso de error
+      } else {
+          if (results.length > 0) {
+              // Ya existe una asignatura con ese NumAsignatura
+              res.status(409).send('Ya existe una asignatura con ese número');
+              connection.end(); // Cerrar conexión después de enviar respuesta
+          } else {
+              // Insertar la nueva asignatura en la base de datos
+              const insertAsignaturaQuery = 'INSERT INTO asignaturas (NumAsignatura, NombreAsignatura, ColorFondo) VALUES (?, ?, ?)';
+              const params = [numAsignatura, nombreAsignatura, colorFondo];
+
+              connection.query(insertAsignaturaQuery, params, (insertError, insertResults) => {
+                  if (insertError) {
+                      console.error('Error al agregar la asignatura:', insertError);
+                      res.status(500).send('Error al agregar la asignatura');
+                  } else {
+                      console.log('Asignatura agregada correctamente');
+                      res.status(200).send('Asignatura agregada correctamente');
+                  }
+                  connection.end(); // Siempre cerrar conexión después de ejecutar la consulta
+              });
+          }
+      }
+  });
+});
+
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 
