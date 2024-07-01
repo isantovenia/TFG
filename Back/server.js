@@ -545,6 +545,26 @@ app.post('/addAsignatura', (req, res) => {
   });
 });
 
+app.put('/editAsignatura', (req, res) => {
+  const { NumAsignatura, NombreAsignatura, ColorFondo } = req.body;
+  const connection = mysql.createConnection(credentials);
+
+  const updateAsignaturaQuery = 'UPDATE asignaturas SET NombreAsignatura = ?, ColorFondo = ? WHERE NumAsignatura = ?';
+  const params = [NombreAsignatura, ColorFondo, NumAsignatura];
+
+  connection.query(updateAsignaturaQuery, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error al editar la asignatura:', error);
+      res.status(500).send('Error al editar la asignatura');
+    } else {
+      console.log('Asignatura editada correctamente');
+      res.status(200).send('Asignatura editada correctamente');
+    }
+  });
+
+  connection.end();
+});
+
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 
