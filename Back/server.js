@@ -468,6 +468,32 @@ app.delete("/eliminarNoticia", (req, res) => {
   );
 });
 
+app.get('/asignaturas/:NumAsignatura', (req, res) => {
+  const numAsignatura = req.params.NumAsignatura;
+  const connection = mysql.createConnection(credentials);
+  console.log(`Received request for NumAsignatura: ${numAsignatura}`);
+
+  const query = 'SELECT * FROM asignaturas WHERE NumAsignatura = ?';
+  console.log(query)
+  connection.query(query, [numAsignatura], (error, results) => {
+    if (error) {
+      console.error('Error al obtener la asignatura:', error);
+      res.status(500).send('Error al obtener la asignatura');
+    } else {
+      if (results.length > 0) {
+        console.log('Asignatura retrieved:', results[0]);
+        res.status(200).json(results[0]);
+      } else {
+        console.log('No asignatura found with NumAsignatura:', numAsignatura);
+        res.status(404).send('Asignatura no encontrada');
+      }
+    }
+    connection.end(); // Siempre cerrar conexión después de ejecutar la consulta
+  });
+});
+
+
+
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 

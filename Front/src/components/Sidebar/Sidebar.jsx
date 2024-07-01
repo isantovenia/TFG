@@ -9,6 +9,8 @@ const Sidebar = ({ username, rol, handleLogout }) => {
     const [isUsuariosOpen, setIsUsuariosOpen] = useState(false); 
     const [isNoticiasOpen, setIsNoticiasOpen] = useState(false); 
 
+    
+
     const toggleSubjects = () => {
         setIsSubjectsOpen(!isSubjectsOpen);
     };
@@ -59,8 +61,8 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                     </li>
                     {isSubjectsOpen && (
                         <ul className="submenu">
-                            <li><a href="/historia-españa">Historia de España</a></li>
-                            <li><a href="/matematicas">Matemáticas</a></li>
+                            <li><a href="/asignatura/2">Historia de España</a></li>
+                            <li><a href="/asignatura/1">Matemáticas</a></li>
                             <li><a href="#">Biología</a></li>
                         </ul>
                     )}
