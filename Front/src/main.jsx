@@ -49,35 +49,35 @@ const router = createBrowserRouter([
     element: <LandingPage />
   },
   { 
-    path: "/historia-españa/tema1",
+    path: "/asignatura/2/tema1",
     element: <HistoriaEspañaTema1 />
   },
   { 
-    path: "/historia-españa/tema2",
+    path: "/asignatura/2/tema2",
     element: <HistoriaEspañaTema2 />
   },
   { 
-    path: "/historia-españa/tema1/quiz",
+    path: "/asignatura/2/tema1/quiz",
     element: <QuizTema1Historia />
   },
   { 
-    path: "/historia-españa/tema2/quiz",
+    path: "/asignatura/2/tema2/quiz",
     element: <QuizTema2Historia />
   },
   {
-    path: "/matematicas/tema1",
+    path: "/asignatura/1/tema1",
     element: <MatematicasTema1 />
   },
   {
-    path: "/matematicas/tema1/quiz",
+    path: "/asignatura/1/tema1/quiz",
     element: <QuizTema1Matematicas />
   },
   {
-    path: "/matematicas/tema2",
+    path: "/asignatura/1/tema2",
     element: <MatematicasTema2 />
   },
   {
-    path: "/matematicas/tema2/quiz",
+    path: "/asignatura/1/quiz",
     element: <QuizTema2Matematicas />
   },
   {
