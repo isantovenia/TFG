@@ -14,7 +14,8 @@ function QuizTema1Matematicas() {
     const fetchQuestions = async () => {
       try {
         const numTest = 1; // Aquí define el número de test que deseas cargar dinámicamente
-        const response = await fetch(`http://localhost:8080/test/${numTest}`); // Cambia la URL para incluir el número de test
+        const numAsignatura = 1
+        const response = await fetch(`http://localhost:8080/test/${numAsignatura}/${numTest}`); // Cambia la URL para incluir el número de test
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

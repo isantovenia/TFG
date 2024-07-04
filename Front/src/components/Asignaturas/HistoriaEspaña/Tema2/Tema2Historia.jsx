@@ -209,7 +209,7 @@ function Tema2Historia() {
           </div>
         </div>
        <div className="quiz-button-container">
-          <Link to="/historia-españa/tema2/quiz" className="quiz-button">Ir al Quiz</Link>
+          <Link to="/asignatura/2/tema2/quiz" className="quiz-button">Ir al Quiz</Link>
         </div>
       <div className="about-section-historia-tema2">
         <h2>¿Qué es BachInfo?</h2>

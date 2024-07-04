@@ -174,7 +174,7 @@ function Tema1Matematicas() {
           </div>
         </div>
        <div className="quiz-button-container">
-          <Link to="/asignatura/1/quiz" className="quiz-button">Ir al Quiz</Link>
+          <Link to="/asignatura/1/tema1/quiz" className="quiz-button">Ir al Quiz</Link>
         </div>
       <div className="about-section-matematicas-tema1">
         <h2>¿Qué es BachInfo?</h2>
