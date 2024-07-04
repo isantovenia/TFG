@@ -56,8 +56,6 @@ app.get("/api/data", (req, res) => {
 app.get('/test/:numAsignatura/:numTest', (req, res) => {
   const numTest = req.params.numTest; // Obtener el número de test desde los parámetros de la URL
   const numAsignatura = req.params.numAsignatura;
-  console.log(numTest)
-  console.log(numAsignatura)
   var connection = mysql.createConnection(credentials);
   
   // Consulta SQL para obtener las preguntas del número de test especificado
@@ -67,7 +65,6 @@ app.get('/test/:numAsignatura/:numTest', (req, res) => {
       console.error('Error en la consulta:', error);
       res.status(500).send('Error en la consulta');
     } else {
-      console.log(query)
       res.status(200).json(result);
     }
   });
