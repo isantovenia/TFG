@@ -208,7 +208,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
+  width: 300px; /* Ancho deseado para cada noticia */
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
@@ -216,8 +216,9 @@
 }
 
 .news-image {
-  width: 100%;
-  height: auto;
+  width: 100%; /* Ocupa el 100% del contenedor */
+  height: 200px; /* Altura fija deseada */
+  object-fit: cover; /* Ajusta la imagen para cubrir el tamaño definido */
   border-radius: 8px;
 }
 
