@@ -57,8 +57,9 @@
       cursor: pointer;
       border: 1px solid #ddd;
       border-radius: 4px;
-      background: #fff;
+      background: #ffffff;
       transition: background-color 0.3s ease;
+      color: #000;
     }
     
     .answer-section button:hover {
