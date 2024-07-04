@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './EditarAsignatura.css'; // Archivo de estilos CSS para el formulario
 import Sidebar from '../../Sidebar/Sidebar.jsx';
 
@@ -6,6 +6,26 @@ const EditarAsignatura = () => {
     const [numAsignatura, setNumAsignatura] = useState('');
     const [nombreAsignatura, setNombreAsignatura] = useState('');
     const [colorFondo, setColorFondo] = useState('#ffffff'); // Color de fondo por defecto en blanco
+    const [asignaturas, setAsignaturas] = useState([]);
+
+    useEffect(() => {
+        // Obtener asignaturas desde el backend
+        const fetchAsignaturas = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/asignaturas');
+                if (!response.ok) {
+                    throw new Error('Error al obtener las asignaturas');
+                }
+                const data = await response.json();
+                setAsignaturas(data);
+            } catch (error) {
+                console.error('Error fetching asignaturas:', error);
+                // Handle error as needed
+            }
+        };
+
+        fetchAsignaturas();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,7 +67,7 @@ const EditarAsignatura = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.href = '/login';
-      };
+    };
 
     return (
         <div className="editar-asignatura-container">
@@ -55,13 +75,23 @@ const EditarAsignatura = () => {
             <h2>Editar Asignatura</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="numAsignatura">Número de Asignatura:</label>
-                <input
-                    type="text"
+                <select
                     id="numAsignatura"
                     value={numAsignatura}
-                    onChange={(e) => setNumAsignatura(e.target.value)}
+                    onChange={(e) => {
+                        const selectedAsignatura = asignaturas.find(asignatura => asignatura.NumAsignatura === parseInt(e.target.value));
+                        setNumAsignatura(e.target.value);
+                        setNombreAsignatura(selectedAsignatura ? selectedAsignatura.NombreAsignatura : '');
+                    }}
                     required
-                />
+                >
+                    <option value="">Selecciona una asignatura</option>
+                    {asignaturas.map(asignatura => (
+                        <option key={asignatura.NumAsignatura} value={asignatura.NumAsignatura}>
+                            {asignatura.NombreAsignatura}
+                        </option>
+                    ))}
+                </select>
 
                 <label htmlFor="nombreAsignatura">Nombre de la Asignatura:</label>
                 <input

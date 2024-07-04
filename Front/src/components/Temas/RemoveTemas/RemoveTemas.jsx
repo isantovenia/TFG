@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './RemoveTemas.css';
 import Sidebar from '../../Sidebar/Sidebar.jsx';
 
@@ -6,11 +6,25 @@ function RemoveTemas() {
   const [numAsignatura, setNumAsignatura] = useState('');
   const [numTema, setNumTema] = useState('');
 
-  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
+  const [asignaturas, setAsignaturas] = useState([]);
 
-  const toggleSubjects = () => {
-    setIsSubjectsOpen(!isSubjectsOpen);
-  };
+  useEffect(() => {
+    const fetchAsignaturas = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/asignaturas');
+        if (!response.ok) {
+          throw new Error('Error al obtener las asignaturas');
+        }
+        const data = await response.json();
+        setAsignaturas(data);
+      } catch (error) {
+        console.error('Error fetching asignaturas:', error);
+        // Handle error as needed
+      }
+    };
+
+    fetchAsignaturas();
+  }, []);
 
   const handleLogout = () => {
     // Eliminar el token de autenticación u otra información relacionada con la sesión
@@ -55,12 +69,18 @@ function RemoveTemas() {
       <form onSubmit={handleSubmit}>
         <label>
           Número de Asignatura:
-          <input
-            type="text"
+          <select
             value={numAsignatura}
             onChange={(e) => setNumAsignatura(e.target.value)}
             required
-          />
+          >
+            <option value="">Selecciona una asignatura</option>
+            {asignaturas.map(asignatura => (
+              <option key={asignatura.NumAsignatura} value={asignatura.NumAsignatura}>
+                {asignatura.NombreAsignatura}
+              </option>
+            ))}
+          </select>
         </label>
         <label>
           Número de Tema:

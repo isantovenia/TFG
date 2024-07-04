@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './EliminarAsignatura.css'; // Archivo de estilos CSS para el formulario
 import Sidebar from '../../Sidebar/Sidebar.jsx';
 
 const EliminarAsignatura = () => {
     const [numAsignatura, setNumAsignatura] = useState('');
     const [nombreAsignatura, setNombreAsignatura] = useState('');
+    const [asignaturas, setAsignaturas] = useState([]);
+
+    useEffect(() => {
+        const fetchAsignaturas = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/asignaturas');
+                if (!response.ok) {
+                    throw new Error('Error al obtener las asignaturas');
+                }
+                const data = await response.json();
+                setAsignaturas(data);
+            } catch (error) {
+                console.error('Error fetching asignaturas:', error);
+                // Handle error as needed
+            }
+        };
+
+        fetchAsignaturas();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,8 +52,9 @@ const EliminarAsignatura = () => {
     };
 
     const handleNumAsignaturaChange = (e) => {
+        const selectedAsignatura = asignaturas.find(asignatura => asignatura.NumAsignatura === parseInt(e.target.value));
         setNumAsignatura(e.target.value);
-        // Al cambiar el número de asignatura, se puede llamar a fetchNombreAsignatura() para actualizar el nombre
+        setNombreAsignatura(selectedAsignatura ? selectedAsignatura.NombreAsignatura : '');
     };
 
     const username = localStorage.getItem('user');
@@ -51,13 +71,19 @@ const EliminarAsignatura = () => {
             <h2>Eliminar Asignatura</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="numAsignatura">Número de Asignatura:</label>
-                <input
-                    type="text"
+                <select
                     id="numAsignatura"
                     value={numAsignatura}
                     onChange={handleNumAsignaturaChange}
                     required
-                />
+                >
+                    <option value="">Selecciona una asignatura</option>
+                    {asignaturas.map(asignatura => (
+                        <option key={asignatura.NumAsignatura} value={asignatura.NumAsignatura}>
+                            {asignatura.NombreAsignatura}
+                        </option>
+                    ))}
+                </select>
 
                 <label htmlFor="nombreAsignatura">Nombre de la Asignatura:</label>
                 <input
