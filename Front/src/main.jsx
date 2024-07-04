@@ -77,7 +77,7 @@ const router = createBrowserRouter([
     element: <MatematicasTema2 />
   },
   {
-    path: "/asignatura/1/quiz",
+    path: "/asignatura/1/tema2/quiz",
     element: <QuizTema2Matematicas />
   },
   {

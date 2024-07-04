@@ -13,7 +13,7 @@ function QuizTema2Matematicas() {
     // Función para cargar las preguntas desde la API
     const fetchQuestions = async () => {
       try {
-        const numTest = 1; // Aquí define el número de test que deseas cargar dinámicamente
+        const numTest = 2; // Aquí define el número de test que deseas cargar dinámicamente
         const response = await fetch(`http://localhost:8080/test/${numTest}`); // Cambia la URL para incluir el número de test
         if (!response.ok) {
           throw new Error('Network response was not ok');
