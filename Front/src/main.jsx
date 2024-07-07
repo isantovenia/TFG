@@ -26,7 +26,7 @@ import EliminarUsuario from './components/Usuarios/EliminarUsuario/EliminarUsuar
 import CrearNoticia from './components/Noticias/CrearNoticia/CrearNoticia.jsx';
 import EditarNoticia from './components/Noticias/EditarNoticia/EditarNoticia.jsx';
 import EliminarNoticia from './components/Noticias/EliminarNoticia/EliminarNoticia.jsx';
-import Asignatura from './components/pruebaAsignatura/pruebAsignatura.jsx';
+import Asignatura from './components/Asignaturas/Asignatura/Asignatura.jsx';
 import CrearAsignatura from './components/Asignaturas/CrearAsignatura/CrearAsignatura.jsx';
 import EditarAsignatura from './components/Asignaturas/EditarAsignatura/EditarAsignatura.jsx';
 import EliminarAsignatura from './components/Asignaturas/EliminarAsignatura/EliminarAsignatura.jsx';

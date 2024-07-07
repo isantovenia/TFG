@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './pruebaAsignatura.css';
+import './Asignatura.css';
 import { Link } from 'react-router-dom';
-import Sidebar from '../Sidebar/Sidebar.jsx';
+import Sidebar from '../../Sidebar/Sidebar.jsx';
 
 function Asignatura() {
   const { NumAsignatura } = useParams();

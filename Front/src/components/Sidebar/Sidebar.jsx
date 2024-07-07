@@ -68,16 +68,16 @@ const Sidebar = ({ username, rol, handleLogout }) => {
             <nav className="nav">
                 <ul>
                     <li>
-                        <a href="/landing-page">
-                            <i className="icon-home"></i>Página de Inicio
-                        </a>
+                    <a href="/landing-page">
+                        🏠 Página de Inicio
+                    </a>
                     </li>
                     {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
-                        <li><a href="/correo"><i className="icon-stats"></i>Contactanos</a></li>
+                        <li><a href="/correo"><i className="icon-stats"></i>📧 Contactanos</a></li>
                     )}
                     <li className="submenu-toggle">
                         <a href="#" onClick={toggleSubjects}>
-                            <i className="icon-book"></i>Asignaturas
+                            <i className="icon-book"></i>📖 Asignaturas
                             <span className="arrow">{isSubjectsOpen ? '▲' : '▼'}</span>
                         </a>
                     </li>
@@ -114,7 +114,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                         <>
                             <li className="submenu-toggle">
                                 <a href="#" onClick={toggleTopics}>
-                                    <i className="icon-folder"></i>Temas
+                                    <i className="icon-folder"></i>📂 Temas
                                     <span className="arrow">{isTopicsOpen ? '▲' : '▼'}</span>
                                 </a>
                             </li>
@@ -131,7 +131,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                         <>
                             <li className="submenu-toggle">
                                 <a href="#" onClick={toggleQuestions}>
-                                    <i className="icon-question"></i>Preguntas
+                                    <i className="icon-question"></i>❓ Preguntas
                                     <span className="arrow">{isQuestionsOpen ? '▲' : '▼'}</span>
                                 </a>
                             </li>
@@ -148,7 +148,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                         <>
                             <li className="submenu-toggle">
                                 <a href="#" onClick={toggleUsuarios}>
-                                    <i className="icon-question"></i>Usuarios
+                                    <i className="icon-question"></i>👤 Usuarios
                                     <span className="arrow">{isUsuariosOpen ? '▲' : '▼'}</span>
                                 </a>
                             </li>
@@ -165,7 +165,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                         <>
                             <li className="submenu-toggle">
                                 <a href="#" onClick={toggleNoticias}>
-                                    <i className="icon-question"></i>Noticias
+                                    <i className="icon-question"></i>📰 Noticias
                                     <span className="arrow">{isNoticiasOpen ? '▲' : '▼'}</span>
                                 </a>
                             </li>
