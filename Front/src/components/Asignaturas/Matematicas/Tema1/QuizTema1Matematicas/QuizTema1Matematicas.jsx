@@ -75,7 +75,7 @@ function QuizTema1Matematicas() {
         <div className='score-section'>
           Lograste {score} de {questions.length}
           <div className="finish-button-container">
-            <a href="/matematicas/tema2" className='finish-button'>Finalizar</a>
+            <a href="/landing-page" className='finish-button'>Finalizar</a>
           </div>
         </div>
       ) : (
