@@ -10,7 +10,7 @@ body, html {
 
 .main-content-historia-tema1 {
   padding: 20px;
-  background-color: #fffde7;
+  background-color: #f9ff9e;
   width: calc(100vw - 250px);
   margin-left: 250px;
   overflow-x: hidden; /* Prevent horizontal scrolling */

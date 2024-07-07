@@ -100,7 +100,7 @@
 
 .main-content {
   padding: 20px;
-  background-color: #fff; /* fondo blanco */
+  background-color: rgba(243, 243, 243, 0.8); /* fondo blanco */
   box-sizing: border-box;
   width: 84vw; /* Ancho igual al ancho de la ventana del navegador */
   margin-left: 250px; /* Igual al ancho de la barra lateral */
@@ -209,10 +209,10 @@
   flex-direction: column;
   align-items: center;
   width: 300px; /* Ancho deseado para cada noticia */
-  border: 1px solid #ddd;
+  border: 1px solid #cfcfcf;
   border-radius: 8px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #fafafa;
 }
 
 .news-image {
@@ -237,12 +237,12 @@
 }
 
 .about-section {
-  margin-top: 50px;
-  padding: 20px;
-  background-color: #f1f1f1;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ffffff;
   border-radius: 8px;
   text-align: center;
-  width: 1030px; /* Reemplaza 300px con el ancho de la sección de noticias */
+  width: 1000px; /* Reemplaza 300px con el ancho de la sección de noticias */
   margin-left: auto;
   margin-right: auto; /* Para centrar horizontalmente */
 }

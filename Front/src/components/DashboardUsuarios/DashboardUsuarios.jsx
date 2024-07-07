@@ -62,7 +62,7 @@ function Dashboard() {
               </tbody>
             </table>
           </div>
-          <div className="about-section-historia">
+          <div className="about-section-dashboard">
             <h2>¿Qué es BachInfo?</h2>
             <p>BachInfo es un TFG (Trabajo de Fin de Grado) con el propósito de ayudar a estudiantes de 2º de Bachillerato, empleando una metodología que incluye la revisión del currículo educativo, entrevistas con docentes, y análisis de recursos educativos en línea para identificar contenidos relevantes.</p>
           </div>

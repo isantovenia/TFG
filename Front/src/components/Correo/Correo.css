@@ -5,7 +5,8 @@
   display: inline-block;
   text-align: center;
   padding: 10px 20px;
-  border: 1px solid #dddddd; /* Línea rodeando todo el contenido */
+  border: 1px solid #ffffff; /* Línea rodeando todo el contenido */
+  background-color: #fff;
   border-radius: 15px;
   margin-bottom: 20px;
 }

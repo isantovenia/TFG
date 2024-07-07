@@ -26,9 +26,10 @@
   input {
     width: 100%;
     padding: 8px;
-    box-sizing: border-box;
-    color: black;
-    background-color: white;
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+    border: 1px solid #cccccc;
+    border-radius: 4px;
   }
   
   button {

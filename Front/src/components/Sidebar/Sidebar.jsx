@@ -90,7 +90,9 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                                     </a>
                                 </li>
                             ))}
-                            <li className="submenu-toggle">
+                        {rol === 'ROLE_ADMIN' && (
+                        <>
+                             <li className="submenu-toggle">
                                 <a href="#" onClick={toggleAsignatura}>
                                     <i className="icon-folder"></i>Asignaturas Operaciones
                                     <span className="arrow">{isAsignaturaOpen ? '▲' : '▼'}</span>
@@ -102,7 +104,10 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                                     <li><a href="/editarAsignatura">Editar Asignatura</a></li>
                                     <li><a href="/eliminarAsignatura">Eliminar Asignatura</a></li>
                                 </ul>
+                                
                             )}
+                        </>
+                         )}
                         </ul>
                     )}
                     {rol === 'ROLE_ADMIN' && (
