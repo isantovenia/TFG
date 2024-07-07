@@ -7,11 +7,7 @@ import CreateUser from './components/CreateUser/CreateUser.jsx'
 import LandingPage from './components/LandingPage/LandingPage.jsx'
 import HistoriaEspañaTema1 from './components/Asignaturas/HistoriaEspaña/Tema1/Tema1Historia.jsx'
 import HistoriaEspañaTema2 from './components/Asignaturas/HistoriaEspaña/Tema2/Tema2Historia.jsx'
-import QuizTema1Historia from './components/Asignaturas/HistoriaEspaña/Tema1/QuizTema1Historia/QuizTema1Historia.jsx';
-import QuizTema2Historia from './components/Asignaturas/HistoriaEspaña/Tema2/QuizTema2Historia/QuizTema2Historia.jsx';
 import MatematicasTema1 from './components/Asignaturas/Matematicas/Tema1/Tema1Matematicas.jsx'
-import QuizTema1Matematicas from './components/Asignaturas/Matematicas/Tema1/QuizTema1Matematicas/QuizTema1Matematicas.jsx'
-import QuizTema2Matematicas from './components/Asignaturas/Matematicas/Tema2/QuizTema2Matematicas/QuizTema2Matematicas2.jsx'
 import MatematicasTema2 from './components/Asignaturas/Matematicas/Tema2/Tema2Matematicas.jsx'
 import DashboardUsuarios from './components/DashboardUsuarios/DashboardUsuarios.jsx'
 import Correo from './components/Correo/Correo.jsx';
@@ -30,6 +26,7 @@ import Asignatura from './components/Asignaturas/Asignatura/Asignatura.jsx';
 import CrearAsignatura from './components/Asignaturas/CrearAsignatura/CrearAsignatura.jsx';
 import EditarAsignatura from './components/Asignaturas/EditarAsignatura/EditarAsignatura.jsx';
 import EliminarAsignatura from './components/Asignaturas/EliminarAsignatura/EliminarAsignatura.jsx';
+import Test from './components/pruebaTest/Test.jsx';
 
 const router = createBrowserRouter([
   {
@@ -56,29 +53,13 @@ const router = createBrowserRouter([
     path: "/asignatura/2/tema2",
     element: <HistoriaEspañaTema2 />
   },
-  { 
-    path: "/asignatura/2/tema1/quiz",
-    element: <QuizTema1Historia />
-  },
-  { 
-    path: "/asignatura/2/tema2/quiz",
-    element: <QuizTema2Historia />
-  },
   {
     path: "/asignatura/1/tema1",
     element: <MatematicasTema1 />
   },
   {
-    path: "/asignatura/1/tema1/quiz",
-    element: <QuizTema1Matematicas />
-  },
-  {
     path: "/asignatura/1/tema2",
     element: <MatematicasTema2 />
-  },
-  {
-    path: "/asignatura/1/tema2/quiz",
-    element: <QuizTema2Matematicas />
   },
   {
     path: "/correo",
@@ -131,6 +112,10 @@ const router = createBrowserRouter([
   {
     path: "/asignatura/:NumAsignatura",
     element: <Asignatura />,
+  },
+  {
+    path: "/asignatura/:NumAsignatura/tema/:NumTest/quiz",
+    element: <Test />,
   },
   {
     path: "/crearAsignatura",

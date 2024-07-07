@@ -173,9 +173,9 @@ function Tema1Matematicas() {
               )}
           </div>
         </div>
-       <div className="quiz-button-container">
-          <Link to="/asignatura/1/tema1/quiz" className="quiz-button">Ir al Quiz</Link>
-        </div>
+        <div className="quiz-button-container">
+           <Link to="/asignatura/1/tema/1/quiz" className="quiz-button">Ir al Quiz</Link>
+       </div>
       <div className="about-section-matematicas-tema1">
         <h2>¿Qué es BachInfo?</h2>
         <p>BachInfo es un TFG (Trabajo de Fin de Grado) con el propósito de ayudar a estudiantes de 2º de Bachillerato, empleando una metodología que incluye la revisión del currículo educativo, entrevistas con docentes, y análisis de recursos educativos en línea para identificar contenidos relevantes.</p>

@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import './QuizTema1Matematicas.css';
-import Sidebar from '../../../../Sidebar/Sidebar.jsx';
+import { useParams } from 'react-router-dom';
+import './Test.css';
+import Sidebar from '../Sidebar/Sidebar.jsx';
 
-function QuizTema1Matematicas() {
+function Test() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [showNext, setShowNext] = useState(false);
 
+  const { NumAsignatura, NumTest } = useParams();
+
   useEffect(() => {
-    // Función para cargar las preguntas desde la API
     const fetchQuestions = async () => {
       try {
-        const numTest = 1; // Aquí define el número de test que deseas cargar dinámicamente
-        const numAsignatura = 1
-        const response = await fetch(`http://localhost:8080/test/${numAsignatura}/${numTest}`); // Cambia la URL para incluir el número de test
+        console.log(NumAsignatura, NumTest)
+        const response = await fetch(`http://localhost:8080/test/${NumAsignatura}/${NumTest}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        // Formatear las preguntas según el formato necesario
         const formattedQuestions = data.map(pregunta => ({
           questionText: pregunta.Pregunta,
           answerOptions: [
@@ -33,13 +33,11 @@ function QuizTema1Matematicas() {
         setQuestions(formattedQuestions);
       } catch (error) {
         console.error('Error al obtener las preguntas:', error);
-        // Manejo de errores: podrías mostrar un mensaje de error en tu interfaz
       }
     };
-  
-    fetchQuestions(); // Llamar a la función para cargar las preguntas cuando el componente se monte
-  }, []); // [] significa que se ejecuta solo una vez al montarse el componente
-   // [] como segundo parámetro para que se ejecute solo una vez al montarse el componente
+
+    fetchQuestions();
+  }, [NumAsignatura, NumTest]);
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
@@ -62,15 +60,13 @@ function QuizTema1Matematicas() {
   const rol = localStorage.getItem('rol');
 
   const handleLogout = () => {
-    // Eliminar el token de autenticación u otra información relacionada con la sesión
     localStorage.removeItem('token');
-    // Redirigir a la página de inicio de sesión u otra página después de cerrar sesión
-    window.location.href = '/login'; // Redirige a la página de inicio de sesión
+    window.location.href = '/login';
   };
 
   return (
     <div className='main-container-quiz-matematicas-tema2'>
-      <Sidebar username={username} rol={rol} handleLogout={handleLogout} /> {/* Usando el componente Sidebar */}
+      <Sidebar username={username} rol={rol} handleLogout={handleLogout} />
       {showScore ? (
         <div className='score-section'>
           Lograste {score} de {questions.length}
@@ -106,4 +102,4 @@ function QuizTema1Matematicas() {
   );
 }
 
-export default QuizTema1Matematicas;
+export default Test;
