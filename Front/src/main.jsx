@@ -26,7 +26,7 @@ import Asignatura from './components/Asignaturas/Asignatura/Asignatura.jsx';
 import CrearAsignatura from './components/Asignaturas/CrearAsignatura/CrearAsignatura.jsx';
 import EditarAsignatura from './components/Asignaturas/EditarAsignatura/EditarAsignatura.jsx';
 import EliminarAsignatura from './components/Asignaturas/EliminarAsignatura/EliminarAsignatura.jsx';
-import Test from './components/pruebaTest/Test.jsx';
+import Test from './components/Test/Test.jsx';
 
 const router = createBrowserRouter([
   {
