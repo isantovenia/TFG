@@ -15,19 +15,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
         fetchAsignaturas();
     }, []);
 
-    const fetchAsignaturas = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/asignaturas');
-            if (!response.ok) {
-                throw new Error('Error al obtener las asignaturas');
-            }
-            const data = await response.json();
-            setAsignaturas(data);
-        } catch (error) {
-            console.error('Error fetching asignaturas:', error);
-            // Handle error as needed
-        }
-    };
+
 
     const toggleSubjects = () => {
         setIsSubjectsOpen(!isSubjectsOpen);
@@ -51,6 +39,20 @@ const Sidebar = ({ username, rol, handleLogout }) => {
 
     const toggleAsignatura = () => {
         setIsAsignaturaOpen(!isAsignaturaOpen);
+    };
+
+    const fetchAsignaturas = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/asignaturas');
+            if (!response.ok) {
+                throw new Error('Error al obtener las asignaturas');
+            }
+            const data = await response.json();
+            setAsignaturas(data);
+        } catch (error) {
+            console.error('Error fetching asignaturas:', error);
+            // Handle error as needed
+        }
     };
 
     return (
