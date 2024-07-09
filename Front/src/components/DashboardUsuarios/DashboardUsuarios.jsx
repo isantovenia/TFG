@@ -9,14 +9,20 @@ function Dashboard() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Cambia la URL si es necesario
-    axios.get(import.meta.env.VITE_URL + '/api/data')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(import.meta.env.VITE_URL + '/api/data');
+        if (!response.ok) {
+          throw new Error('Error fetching data');
+        }
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
+      }
+    };
+  
+    fetchData();
   }, []);
   const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
 
