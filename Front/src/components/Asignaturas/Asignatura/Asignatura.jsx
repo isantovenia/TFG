@@ -12,7 +12,7 @@ function Asignatura() {
   useEffect(() => {
     const fetchAsignatura = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/asignaturas/${NumAsignatura}`);
+        const response = await fetch(import.meta.env.VITE_URL + `/asignaturas/${NumAsignatura}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

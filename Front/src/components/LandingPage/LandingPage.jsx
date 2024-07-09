@@ -11,12 +11,12 @@ function LandingPage() {
   useEffect(() => {
     const fetchNoticias = async () => {
       try {
-        const response = await fetch('http://localhost:8080/noticias');
+        const response = await fetch(import.meta.env.VITE_URL + '/noticias');
         if (!response.ok) {
           throw new Error('Error al obtener las noticias');
         }
         const data = await response.json();
-
+        console.log(import.meta.env.VITE_URL + '/noticias')
         // Procesar las noticias para convertir la imagen base64 a una URL válida
         const noticiasConImagenes = data.map(noticia => {
           const imagenUrl = `${noticia.Imagen}`; // La URL ya debería ser válida si es data:image/jpeg;base64,...

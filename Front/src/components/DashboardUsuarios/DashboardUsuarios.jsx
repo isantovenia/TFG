@@ -10,7 +10,7 @@ function Dashboard() {
 
   useEffect(() => {
     // Cambia la URL si es necesario
-    axios.get('http://localhost:8080/api/data')
+    axios.get(import.meta.env.VITE_URL + '/api/data')
       .then(response => {
         setData(response.data);
       })

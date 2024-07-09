@@ -9,7 +9,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/auth/signin', {
+      const response = await fetch(import.meta.env.VITE_URL + '/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

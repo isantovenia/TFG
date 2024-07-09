@@ -29,7 +29,7 @@ const EliminarAsignatura = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8080/eliminarAsignatura', {
+            const response = await fetch(import.meta.env.VITE_URL + '/eliminarAsignatura', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

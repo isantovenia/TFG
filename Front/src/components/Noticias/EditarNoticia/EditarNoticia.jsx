@@ -11,7 +11,7 @@ function EditarNoticia() {
   const handleEditarNoticia = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/editarNoticia', {
+      const response = await fetch(import.meta.env.VITE_URL + '/editarNoticia', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

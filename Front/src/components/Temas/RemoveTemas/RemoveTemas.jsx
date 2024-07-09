@@ -11,7 +11,7 @@ function RemoveTemas() {
   useEffect(() => {
     const fetchAsignaturas = async () => {
       try {
-        const response = await fetch('http://localhost:8080/asignaturas');
+        const response = await fetch(import.meta.env.VITE_URL + '/asignaturas');
         if (!response.ok) {
           throw new Error('Error al obtener las asignaturas');
         }
@@ -39,7 +39,7 @@ function RemoveTemas() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/removeTema', {
+      const response = await fetch(import.meta.env.VITE_URL + '/removeTema', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

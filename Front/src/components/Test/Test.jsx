@@ -16,7 +16,7 @@ function Test() {
     const fetchQuestions = async () => {
       try {
         console.log(NumAsignatura, NumTest)
-        const response = await fetch(`http://localhost:8080/test/${NumAsignatura}/${NumTest}`);
+        const response = await fetch(import.meta.env.VITE_URL + `/test/${NumAsignatura}/${NumTest}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

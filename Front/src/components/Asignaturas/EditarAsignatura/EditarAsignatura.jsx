@@ -37,7 +37,7 @@ const EditarAsignatura = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:8080/editAsignatura', {
+            const response = await fetch(import.meta.env.VITE_URL + '/editAsignatura', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

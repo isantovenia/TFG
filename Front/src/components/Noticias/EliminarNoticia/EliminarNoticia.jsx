@@ -9,7 +9,7 @@ function EliminarNoticia() {
   const handleEliminarNoticia = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/eliminarNoticia', {
+      const response = await fetch(import.meta.env.VITE_URL + '/eliminarNoticia', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ function EliminarUsuario() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/eliminarUsuario', {
+      const response = await fetch(import.meta.env.VITE_URL + '/eliminarUsuario', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

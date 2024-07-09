@@ -16,7 +16,7 @@ function EditarQuestion() {
   useEffect(() => {
     const fetchAsignaturas = async () => {
       try {
-        const response = await fetch('http://localhost:8080/asignaturas');
+        const response = await fetch(import.meta.env.VITE_URL + '/asignaturas');
         if (!response.ok) {
           throw new Error('Error al obtener las asignaturas');
         }
@@ -44,7 +44,7 @@ function EditarQuestion() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/editarPregunta', {
+      const response = await fetch(import.meta.env.VITE_URL + '/editarPregunta', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ function EditarUsuario() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/editarUsuario', {
+      const response = await fetch(import.meta.env.VITE_URL + '/editarUsuario', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

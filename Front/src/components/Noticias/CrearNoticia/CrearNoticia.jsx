@@ -30,7 +30,7 @@ function CrearNoticia() {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/addNoticia', {
+      const response = await fetch(import.meta.env.VITE_URL + '/addNoticia', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ function CrearNoticia() {
 
   const verificarExistenciaNoticia = async (numNoticia) => {
     try {
-      const response = await fetch(`http://localhost:8080/noticias/${numNoticia}`);
+      const response = await fetch(import.meta.env.VITE_URL + `/noticias/${numNoticia}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
