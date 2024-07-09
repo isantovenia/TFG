@@ -24,11 +24,6 @@ function Dashboard() {
   
     fetchData();
   }, []);
-  const [isSubjectsOpen, setIsSubjectsOpen] = useState(false);
-
-    const toggleSubjects = () => {
-        setIsSubjectsOpen(!isSubjectsOpen);
-    };
 
     const handleLogout = () => {
       // Eliminar el token de autenticación u otra información relacionada con la sesión
