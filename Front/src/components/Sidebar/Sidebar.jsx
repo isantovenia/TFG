@@ -146,7 +146,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                             )}
                         </>
                     )}
-                    {rol === 'ROLE_ADMIN' && (
+                    {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
                         <>
                             <li className="submenu-toggle">
                                 <a href="#" onClick={toggleUsuarios}>
@@ -156,13 +156,18 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                             </li>
                             {isUsuariosOpen && (
                                 <ul className="submenu">
-                                     <li><a href="/dashboard">Ver Usuarios</a></li>
-                                     <li><a href="/editUsuario">Editar Usuarios</a></li>
-                                     <li><a href="/eliminarUsuario">Eliminar Usuarios</a></li>
+                                    <li><a href="/editUsuario">Editar Usuarios</a></li>
+                                    {rol === 'ROLE_ADMIN' && (
+                                        <>
+                                            <li><a href="/eliminarUsuario">Eliminar Usuarios</a></li>
+                                            <li><a href="/dashboard">Ver Usuarios</a></li>
+                                        </>
+                                    )}
                                 </ul>
                             )}
                         </>
                     )}
+
                     {rol === 'ROLE_ADMIN' && (
                         <>
                             <li className="submenu-toggle">
