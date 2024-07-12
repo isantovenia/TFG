@@ -15,21 +15,27 @@ function Test() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        console.log(NumAsignatura, NumTest)
+        console.log(NumAsignatura, NumTest);
         const response = await fetch(import.meta.env.VITE_URL + `/test/${NumAsignatura}/${NumTest}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        const formattedQuestions = data.map(pregunta => ({
-          questionText: pregunta.Pregunta,
-          answerOptions: [
+
+        const formattedQuestions = data.map(pregunta => {
+          const answerOptions = [
             { answerText: pregunta.RespuestaBuena, isCorrect: true },
             { answerText: pregunta.RespuestaMala1, isCorrect: false },
             { answerText: pregunta.RespuestaMala2, isCorrect: false },
             { answerText: pregunta.RespuestaMala3, isCorrect: false }
-          ]
-        }));
+          ];
+          
+          return {
+            questionText: pregunta.Pregunta,
+            answerOptions: shuffle(answerOptions) // Shuffle the answer options
+          };
+        });
+
         setQuestions(formattedQuestions);
       } catch (error) {
         console.error('Error al obtener las preguntas:', error);
@@ -38,6 +44,15 @@ function Test() {
 
     fetchQuestions();
   }, [NumAsignatura, NumTest]);
+
+  // Function to shuffle an array
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
@@ -103,3 +118,4 @@ function Test() {
 }
 
 export default Test;
+``
