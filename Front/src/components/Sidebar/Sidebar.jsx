@@ -44,8 +44,8 @@ const Sidebar = ({ username, rol, handleLogout }) => {
             <nav className="nav">
                 <ul>
                 <li>
-                        <Link to="/landing-page" className="sidebar-link" style={{ justifyContent: 'flex-start' }}>🏠 Página de Inicio</Link>
-                    </li>
+                    <Link to="/landing-page" className="sidebar-link" style={{ justifyContent: 'flex-start' }}>🏠 Página de Inicio</Link>
+                </li>
                     {(rol === 'ROLE_ADMIN' || rol === 'ROLE_MODERATOR') && (
                         <li>
                             <Link to="/correo" className="sidebar-link" style={{ justifyContent: 'flex-start' }}>📧 Contactanos</Link>
