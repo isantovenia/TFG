@@ -8,14 +8,12 @@ function Test() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [showNext, setShowNext] = useState(false);
 
   const { NumAsignatura, NumTest } = useParams();
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        console.log(NumAsignatura, NumTest);
         const response = await fetch(import.meta.env.VITE_URL + `/test/${NumAsignatura}/${NumTest}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -29,7 +27,7 @@ function Test() {
             { answerText: pregunta.RespuestaMala2, isCorrect: false },
             { answerText: pregunta.RespuestaMala3, isCorrect: false }
           ];
-          
+
           return {
             questionText: pregunta.Pregunta,
             answerOptions: shuffle(answerOptions) // Shuffle the answer options
@@ -58,16 +56,21 @@ function Test() {
     if (isCorrect) {
       setScore(score + 1);
     }
-    setShowNext(true);
   };
 
   const handleNextQuestion = () => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
-      setShowNext(false);
     } else {
       setShowScore(true);
+    }
+  };
+
+  const handlePreviousQuestion = () => {
+    const previousQuestion = currentQuestion - 1;
+    if (previousQuestion >= 0) {
+      setCurrentQuestion(previousQuestion);
     }
   };
 
@@ -104,13 +107,23 @@ function Test() {
               ))}
             </div>
           </div>
-          {showNext && (
-            <div className='next-button-container'>
-              <button className='next-button' onClick={handleNextQuestion}>
-                Siguiente
+          <div className='navigation-buttons'>
+            <button
+              className='prev-button circular-button'
+              onClick={handlePreviousQuestion}
+              style={{ visibility: currentQuestion === 0 ? 'hidden' : 'visible' }}
+            >
+              &#9664; {/* Left arrow */}
+            </button>
+            <button className='finish-button' onClick={() => setShowScore(true)}>
+                Finalizar
+            </button>
+
+              <button className='next-button circular-button' onClick={handleNextQuestion} style={{ visibility: currentQuestion < questions.length - 1 ? 'visible' : 'hidden' }}>
+                &#9654; {/* Right arrow */}
               </button>
-            </div>
-          )}
+
+          </div>
         </div>
       )}
     </div>
@@ -118,4 +131,3 @@ function Test() {
 }
 
 export default Test;
-``
