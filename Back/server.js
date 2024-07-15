@@ -75,6 +75,11 @@ app.get('/test/:numAsignatura/:numTest', (req, res) => {
 app.post('/addQuestion', (req, res) => {
   const { NumAsignatura, testNumber, questionText, answerOptions } = req.body;
 
+  // Comprobar que hay suficientes opciones
+  if (!answerOptions || answerOptions.length < 4) {
+    return res.status(400).send('Se requieren 4 opciones de respuesta.');
+  }
+
   // Crear conexión a la base de datos
   const connection = mysql.createConnection(credentials);
 
@@ -84,10 +89,10 @@ app.post('/addQuestion', (req, res) => {
     testNumber,
     NumAsignatura,
     questionText,
-    answerOptions[0].answerText,
-    answerOptions[1].answerText,
-    answerOptions[2].answerText,
-    answerOptions[3].answerText,
+    answerOptions[0]?.answerText || '', // Respuesta correcta
+    answerOptions[1]?.answerText || '', // Respuesta mala 1
+    answerOptions[2]?.answerText || '', // Respuesta mala 2
+    answerOptions[3]?.answerText || '', // Respuesta mala 3
   ];
 
   connection.query(insertQuestionQuery, params, (error, results, fields) => {
@@ -102,6 +107,7 @@ app.post('/addQuestion', (req, res) => {
 
   connection.end();
 });
+
 
 
 app.get('/temas/:numAsignatura', (req, res) => {
