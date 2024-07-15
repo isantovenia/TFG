@@ -142,27 +142,32 @@ function AddQuestionForm() {
             required
           />
         </label>
-        {answerOptions.map((option, index) => (
-          <div key={index} className="answer-option">
-            <label className="answer-label">
-              Opción {index + 1}:
-              <input
-                type="text"
-                value={option.answerText}
-                onChange={(e) => handleAnswerTextChange(index, e.target.value)}
-                required
-              />
-            </label>
-            <label className="checkbox-label">
-              <input
-                type="checkbox"
-                checked={option.isCorrect}
-                onChange={() => handleCorrectAnswerChange(index)}
-              />
-              Correcta
-            </label>
-          </div>
-        ))}
+{answerOptions.map((option, index) => (
+  <div key={index} className="answer-option">
+    <label className="answer-label">
+      Opción {index + 1}:
+    </label>
+    <div className="answer-input-container">
+      <input
+        type="text"
+        value={option.answerText}
+        onChange={(e) => handleAnswerTextChange(index, e.target.value)}
+        required
+      />
+      <label className="checkbox-label">
+        <input
+          type="checkbox"
+          checked={option.isCorrect}
+          onChange={() => handleCorrectAnswerChange(index)}
+        />
+        Correcta
+      </label>
+    </div>
+  </div>
+))}
+
+
+
         <button type="submit">Agregar Pregunta</button>
       </form>
     </div>
