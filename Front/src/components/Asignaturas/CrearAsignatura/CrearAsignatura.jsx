@@ -3,7 +3,6 @@ import './CrearAsignatura.css'; // Archivo de estilos CSS para el formulario
 import Sidebar from '../../Sidebar/Sidebar.jsx';
 
 const CrearAsignatura = () => {
-    const [numAsignatura, setNumAsignatura] = useState('');
     const [nombreAsignatura, setNombreAsignatura] = useState('');
     const [colorFondo, setColorFondo] = useState('#ffffff'); // Color de fondo por defecto en blanco
 
@@ -11,7 +10,6 @@ const CrearAsignatura = () => {
         e.preventDefault();
 
         const data = {
-            numAsignatura,
             nombreAsignatura,
             colorFondo
         };
@@ -47,22 +45,13 @@ const CrearAsignatura = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.href = '/login';
-      };
+    };
 
     return (
         <div className="crear-asignatura-container">
             <Sidebar username={username} rol={rol} handleLogout={handleLogout} />
             <h2>Crear Nueva Asignatura</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="numAsignatura">Número de Asignatura:</label>
-                <input
-                    type="text"
-                    id="numAsignatura"
-                    value={numAsignatura}
-                    onChange={(e) => setNumAsignatura(e.target.value)}
-                    required
-                />
-
                 <label htmlFor="nombreAsignatura">Nombre de la Asignatura:</label>
                 <input
                     type="text"

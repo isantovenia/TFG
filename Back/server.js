@@ -509,27 +509,27 @@ app.get('/asignaturas', (req, res) => {
 });
 
 app.post('/addAsignatura', (req, res) => {
-  const { numAsignatura, nombreAsignatura, colorFondo } = req.body;
+  const { nombreAsignatura, colorFondo } = req.body;
 
   // Crear conexión a la base de datos
   const connection = mysql.createConnection(credentials);
 
-  // Verificar si ya existe una asignatura con el mismo NumAsignatura
-  const verificaExistenciaQuery = 'SELECT * FROM asignaturas WHERE NumAsignatura = ?';
-  connection.query(verificaExistenciaQuery, [numAsignatura], (error, results) => {
+  // Verificar si ya existe una asignatura con el mismo NombreAsignatura
+  const verificaExistenciaQuery = 'SELECT * FROM asignaturas WHERE NombreAsignatura = ?';
+  connection.query(verificaExistenciaQuery, [nombreAsignatura], (error, results) => {
       if (error) {
           console.error('Error al verificar existencia de asignatura:', error);
           res.status(500).send('Error al verificar existencia de asignatura');
           connection.end(); // Cerrar conexión en caso de error
       } else {
           if (results.length > 0) {
-              // Ya existe una asignatura con ese NumAsignatura
-              res.status(409).send('Ya existe una asignatura con ese número');
+              // Ya existe una asignatura con ese NombreAsignatura
+              res.status(409).send('Ya existe una asignatura con ese nombre');
               connection.end(); // Cerrar conexión después de enviar respuesta
           } else {
               // Insertar la nueva asignatura en la base de datos
-              const insertAsignaturaQuery = 'INSERT INTO asignaturas (NumAsignatura, NombreAsignatura, ColorFondo) VALUES (?, ?, ?)';
-              const params = [numAsignatura, nombreAsignatura, colorFondo];
+              const insertAsignaturaQuery = 'INSERT INTO asignaturas (NombreAsignatura, ColorFondo) VALUES (?, ?)';
+              const params = [nombreAsignatura, colorFondo];
 
               connection.query(insertAsignaturaQuery, params, (insertError, insertResults) => {
                   if (insertError) {
@@ -545,6 +545,7 @@ app.post('/addAsignatura', (req, res) => {
       }
   });
 });
+
 
 app.put('/editAsignatura', (req, res) => {
   const { NumAsignatura, NombreAsignatura, ColorFondo } = req.body;
