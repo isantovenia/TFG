@@ -63,7 +63,7 @@ function Asignatura() {
   }
 
   return (
-    <div className="main-container-asignatura" style={{ backgroundColor: asignatura.ColorFondo }}>
+    <div className="main-container-asignatura">
       <Sidebar username={username} rol={rol} handleLogout={handleLogout} />
       <div className="main-content-asignatura" style={{ marginLeft: "250px"}}>
         <h1>Bienvenido a BachInfo</h1>

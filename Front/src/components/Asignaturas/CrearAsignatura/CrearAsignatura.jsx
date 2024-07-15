@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import './CrearAsignatura.css'; // Archivo de estilos CSS para el formulario
+import { SketchPicker } from 'react-color';
+import './CrearAsignatura.css';
 import Sidebar from '../../Sidebar/Sidebar.jsx';
 
 const CrearAsignatura = () => {
     const [nombreAsignatura, setNombreAsignatura] = useState('');
-    const [colorFondo, setColorFondo] = useState('#ffffff'); // Color de fondo por defecto en blanco
+    const [colorFondo, setColorFondo] = useState('#ffffff');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const data = {
             nombreAsignatura,
-            colorFondo
+            colorFondo,
         };
 
         try {
@@ -28,15 +29,14 @@ const CrearAsignatura = () => {
             }
 
             alert('Asignatura creada correctamente');
-            // Aquí podrías redirigir a otra página o realizar alguna otra acción después de crear la asignatura
         } catch (error) {
             console.error('Error al enviar la asignatura:', error);
             alert('Error al crear la asignatura');
         }
     };
 
-    const handleColorChange = (e) => {
-        setColorFondo(e.target.value);
+    const handleColorChange = (color) => {
+        setColorFondo(color.hex);
     };
 
     const username = localStorage.getItem('user');
@@ -61,14 +61,13 @@ const CrearAsignatura = () => {
                     required
                 />
 
-                <label htmlFor="colorFondo">Color de Fondo:</label>
-                <input
-                    type="color"
-                    id="colorFondo"
-                    value={colorFondo}
-                    onChange={handleColorChange}
-                    style={{ marginLeft: '10px' }}
-                />
+                <label>Color de Fondo:</label>
+                <div className="color-picker-container">
+                    <SketchPicker
+                        color={colorFondo}
+                        onChangeComplete={handleColorChange}
+                    />
+                </div>
 
                 <button type="submit">Crear Asignatura</button>
             </form>

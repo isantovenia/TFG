@@ -87,7 +87,7 @@ const Sidebar = ({ username, rol, handleLogout }) => {
                         <ul className="submenu">
                             {asignaturas.map(asignatura => (
                                 <li key={asignatura.NumAsignatura}>
-                                    <a href={`/asignatura/${asignatura.NumAsignatura}`}>
+                                        <a href={`/asignatura/${asignatura.NumAsignatura}`} style={{ color: asignatura.ColorFondo }}>
                                         {asignatura.NombreAsignatura}
                                     </a>
                                 </li>
