@@ -36,20 +36,17 @@
   flex-grow: 1;
   overflow-y: auto; /* Permitir desplazamiento vertical en el nav */
   max-height: calc(100vh - 140px); /* Restar el espacio del logo y el footer */
-  align-items: left;
 }
 
 .nav ul {
   list-style-type: none;
   padding: 0;
-  justify-content: flex-start;
+  margin-right: 20px; /* Ajuste negativo para acercar a la derecha */
 }
 
 .nav li {
   list-style-type: none;
   padding: 10px 20px;
-  justify-content: flex-start;
-  
 }
 
 .nav ul li a {
@@ -58,12 +55,11 @@
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .nav ul li a i {
-  margin-right: 10px;
-  justify-content: flex-end;
+  margin-right: -10px;
 }
 
 .nav ul li .arrow {
@@ -75,9 +71,8 @@
   padding: 0;
   padding-left: 20px;
   margin-top: 10px;
+  margin-left: 22px; /* Ajuste negativo para acercar a la derecha */
 }
-
-
 
 .submenu li {
   margin: 5px 0;
