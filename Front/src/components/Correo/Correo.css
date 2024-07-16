@@ -1,71 +1,83 @@
 /* Correo.css */
 
-/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
 .header-contact-container {
-  display: inline-block;
-  text-align: center;
+  display: block;
+  text-align: left;
+  width: 700px; /* Ancho incrementado */
+  margin: 50px auto;
+  margin-left: 50px; /* Centrar el contenedor */
   padding: 10px 20px;
-  border: 1px solid #ffffff; /* Línea rodeando todo el contenido */
   background-color: #fff;
+  border: 1px solid #ffffff; /* Línea rodeando todo el contenido */
   border-radius: 15px;
-  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-contact {
-  margin: 0;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-/* Estilos para los fieldset */
-.field-asunto,
-.field-message {
+.field-asunto, .field-message {
   border: none;  /* Eliminar el borde del fieldset */
   padding: 0;    /* Eliminar el padding del fieldset */
   margin: 0;     /* Eliminar el margin del fieldset */
   margin-bottom: 20px;  /* Agregar margen inferior para separación */
 }
 
-/* Estilos para los label y input */
-.field-asunto label,
-.field-message label {
+.field-asunto label, .field-message label {
   display: block;
-  margin: 10px 0;
+  margin-bottom: 5px;
 }
 
-.field-asunto input,
-.field-message textarea {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-  color: black;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.field-message textarea {
-  resize: vertical; /* Permite redimensionar verticalmente el textarea */
-}
-
-/* Estilos para el botón */
-.btn-send {
-  display: block;
+.field-asunto input, .field-message textarea {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: Arial, sans-serif; /* Asegurar que la fuente sea la misma */
+}
+
+.field-asunto input::placeholder, .field-message textarea::placeholder {
+  font-size: 16px;
+  font-family: Arial, sans-serif; /* Asegurar que la fuente sea la misma */
+}
+
+.field-message textarea {
+  resize: none; /* Evita la esquina de redimensionamiento */
+}
+
+.field-asunto input:focus, .field-message textarea:focus {
+  border-color: #a6a6a6;
+  background-color: #fff;
+  outline: none;
+}
+
+.btn-send {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;  /* Separación del botón del último fieldset */
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .btn-send:hover {
   background-color: #0056b3;
-}
-
-/* Estilos específicos para dispositivos pequeños */
-@media screen and (max-width: 600px) {
-  .btn-send {
-      font-size: 14px;
-  }
 }

@@ -62,7 +62,6 @@
 }
 
 .add-question-form-container .answer-label {
-  font-weight: bold; /* Mantener la etiqueta en negrita */
   margin-bottom: 5px; /* Espacio entre la etiqueta y el campo de texto */
 }
 
