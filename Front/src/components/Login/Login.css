@@ -14,35 +14,50 @@
   background-color: #ffffff; /* Fondo blanco similar a Google */
 }
   
-  h2 {
-    text-align: center;
-  }
+h2 {
+  text-align: center;
+}
   
-  label {
-    display: block;
-    margin: 10px 0;
-  }
+label {
+  display: block;
+  margin: 10px 0;
+}
   
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 20px;
-    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-  }
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
   
-  button {
-    width: 100%;
-  }
+button {
+  width: 100%;
+}
   
-  button:hover {
-    background-color: #45a049;
-  }
+button:hover {
+  background-color: #45a049;
+}
 
-  .button-container {
-    display: flex;
-    gap: 10px;
-    font-size: 14px;
-  }
-  
+.button-container {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-link {
+  color: #007BFF;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.signup-link:hover {
+  color: #0056b3;
+}

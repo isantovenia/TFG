@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <div className="login-wrapper">
       <div className="login-container">
-        <h2>Login</h2>
+        <h2>Iniciar Sesion</h2>
         <label>
           Usuario:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -52,9 +52,11 @@ const Login = () => {
         </label>
         <br />
         <div className="button-container">
-          <button onClick={handleLogin}>Sign in</button>
-          <button onClick={handleCreateUser}>Sign up</button>
+          <button onClick={handleLogin}>Iniciar Sesion</button>
         </div>
+        <p className="signup-text">
+          ¿No tienes usuario? <span onClick={handleCreateUser} className="signup-link">Crear usuario</span>
+        </p>
       </div>
     </div>
   );

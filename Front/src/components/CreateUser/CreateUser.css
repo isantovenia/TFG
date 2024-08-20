@@ -37,13 +37,13 @@
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .button-container button {
-  flex: 1;
+  width: 100%;
   padding: 10px;
-  margin: 0 5px;
+  margin: 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -53,4 +53,20 @@
 
 .button-container button:hover {
   background-color: #0056b3;
+}
+
+.signin-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signin-link {
+  color: #007BFF;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.signin-link:hover {
+  color: #0056b3;
 }

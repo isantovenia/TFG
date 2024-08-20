@@ -61,7 +61,7 @@ function EditarUsuario() {
           />
         </label>
         <label>
-          Nombre de Usuario:
+          Nombre de usuario nuevo:
           <input
             type="text"
             value={username}
@@ -70,16 +70,16 @@ function EditarUsuario() {
           />
         </label>
         <label>
-          Email:
+          Email nuevo:
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value) }
             required
           />
         </label>
         <label>
-          Rol:
+          Rol nuevo:
           <select value={rol} onChange={(e) => setRol(e.target.value)} required>
             <option value="">Selecciona un rol</option>
             <option value="usuario">Usuario</option>
