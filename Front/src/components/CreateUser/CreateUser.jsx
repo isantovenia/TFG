@@ -10,6 +10,19 @@ const CreateUser = () => {
     const role = 'user'; // Rol predefinido como 'user'
 
     const handleSignUp = async () => {
+        if (username.trim() === '') {
+            alert('Por favor, rellena el campo de usuario.');
+            return;
+        }
+        if (password.trim() === '') {
+            alert('Por favor, rellena el campo de contraseña.');
+            return;
+        }
+        if (email.trim() === '') {
+            alert('Por favor, rellena el campo de email.');
+            return;
+        }
+
         try {
             const response = await fetch(import.meta.env.VITE_URL + '/api/auth/signup', {
                 method: 'POST',
@@ -41,21 +54,35 @@ const CreateUser = () => {
                 <h2>Crear Usuario</h2>
                 <label>
                     Usuario:
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
                 </label>
                 <br />
                 <label>
                     Contraseña:
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </label>
                 <br />
                 <label>
                     Email:
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </label>
                 <br />
                 <div className="button-container">
-                    <button onClick={handleSignUp}>Crear Usuario</button>
+                    <button onClick={handleSignUp}>
+                        Crear Usuario
+                    </button>
                 </div>
                 <p className="signin-text">
                     ¿Ya tienes usuario? <span onClick={handleGoBack} className="signin-link">Iniciar sesión</span>
