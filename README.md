@@ -7,6 +7,8 @@ npm install nodemailer
 npm install react-router-dom
 npm install mysql body-parser
 
+Creación del archivo .env para evitar sobrecarga de peticiones a la dirección de la API
+
 Ejecutar el server para el back
 cd .\Back\
 node server.js
